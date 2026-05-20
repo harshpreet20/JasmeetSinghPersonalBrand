@@ -1,10 +1,11 @@
 "use client";
 import { useEffect, useState } from "react";
-import { supabase } from "@/lib/supabase";
+import { createClient } from "@/lib/supabase-browser";
 
 interface Template { id: string; name: string; subject: string; body_html: string; variables: string[]; created_at: string; updated_at: string }
 
 export default function Templates() {
+  const supabase = createClient();
   const [templates, setTemplates] = useState<Template[]>([]);
   const [loading, setLoading] = useState(true);
   const [selected, setSelected] = useState<Template | null>(null);

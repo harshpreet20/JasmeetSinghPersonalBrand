@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { supabase } from "@/lib/supabase";
+import { createClient } from "@/lib/supabase-browser";
 
 interface Webhook { id: string; name: string; url: string; events: string[]; is_active: boolean; created_at: string }
 interface WebhookLog { id: string; event_type: string; response_status: number; duration_ms: number; created_at: string }
@@ -8,6 +8,7 @@ interface WebhookLog { id: string; event_type: string; response_status: number; 
 const EVENTS = ["form_submission","contact_created","status_changed","automation_run"];
 
 export default function Webhooks() {
+  const supabase = createClient();
   const [webhooks, setWebhooks] = useState<Webhook[]>([]);
   const [logs, setLogs] = useState<WebhookLog[]>([]);
   const [loading, setLoading] = useState(true);

@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { supabase } from "@/lib/supabase";
+import { createClient } from "@/lib/supabase-browser";
 
 interface Contact { id: string; name: string; email: string; company: string; status: string; pipeline_stage: string; tags: string[]; created_at: string }
 
@@ -14,6 +14,7 @@ const STAGES = [
 ];
 
 export default function Pipeline() {
+  const supabase = createClient();
   const [contacts, setContacts] = useState<Contact[]>([]);
   const [loading, setLoading] = useState(true);
   const [dragging, setDragging] = useState<string | null>(null);

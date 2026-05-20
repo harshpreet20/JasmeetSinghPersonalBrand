@@ -1,13 +1,14 @@
 "use client";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { supabase } from "@/lib/supabase";
+import { createClient } from "@/lib/supabase-browser";
 
 interface Submission { id: string; form_name: string; data: Record<string, string>; created_at: string; status: string; contact_id: string; crm_contacts?: { name: string; email: string } }
 
 const STATUS_COLORS: Record<string,string> = { new:"bg-blue-100 text-blue-700", reviewed:"bg-yellow-100 text-yellow-700", actioned:"bg-green-100 text-green-700", archived:"bg-gray-100 text-gray-500" };
 
 export default function Submissions() {
+  const supabase = createClient();
   const [rows, setRows] = useState<Submission[]>([]);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
