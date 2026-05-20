@@ -1,7 +1,9 @@
 import { createClient } from "@supabase/supabase-js";
 
-const url = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+// Use fallback strings so module evaluation at build time doesn't throw.
+// Real values are always present at runtime via NEXT_PUBLIC_ env vars.
+const url = process.env.NEXT_PUBLIC_SUPABASE_URL ?? "https://placeholder.supabase.co";
+const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? "placeholder";
 
 export const supabase = createClient(url, key);
 
