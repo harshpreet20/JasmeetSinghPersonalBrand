@@ -16,17 +16,14 @@ const LinkedInIcon  = () => (<svg width={14} height={14} viewBox="0 0 24 24" fil
 const InstagramIcon = () => (<svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>);
 const FacebookIcon  = () => (<svg width={14} height={14} viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>);
 const TwitterIcon   = () => (<svg width={14} height={14} viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>);
-
 const CheckIcon = () => (
-  <svg width={18} height={18} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+  <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
 );
-
-const PARTNERS = ["BCG","DailyPay","Microsoft","Airbnb","ActionCOACH","Allstate","Zepto","Credova","FlySafair","Allbridge","Consodata","Tweewieler","PFALZWERKE","binocs","brave"];
 
 /* ── Navbar ─────────────────────────────────────────────── */
 function Navbar({ cm }: { cm: ContentMap }) {
   const [open, setOpen] = useState(false);
-  const links = ["Home","About","Services","Success Stories","Blog"];
+  const links = ["Home","About","How It Works","Success Stories","Blog"];
   return (
     <nav className="fixed top-0 inset-x-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 h-16 flex items-center justify-between">
@@ -37,12 +34,14 @@ function Navbar({ cm }: { cm: ContentMap }) {
           <span className="font-bold text-[17px] text-gray-900 tracking-tight">{c(cm,"navbar","brand_name","Jasmeet Singh")}</span>
         </a>
         <div className="hidden md:flex items-center gap-7">
-          {links.map(l => <a key={l} href={`#${l.toLowerCase().replace(/ /g,"-")}`} className="text-[13px] font-medium text-gray-600 hover:text-[#7C3AED] transition-colors">{l}</a>)}
+          {links.map(l => (
+            <a key={l} href={`#${l.toLowerCase().replace(/ /g,"-")}`} className="text-[13px] font-medium text-gray-600 hover:text-[#7C3AED] transition-colors">{l}</a>
+          ))}
         </div>
         <a href="#contact" className="hidden md:inline-flex items-center gap-2 bg-[#0A0A0F] hover:bg-gray-800 text-white text-[13px] font-semibold px-5 py-2.5 rounded-full transition-colors">
-          {c(cm,"navbar","cta_text","Book a Free Call")}
+          {c(cm,"navbar","cta_text","Book a Family Session")}
         </a>
-        <button onClick={() => setOpen(!open)} className="md:hidden p-2 flex flex-col gap-1.5">
+        <button onClick={() => setOpen(!open)} className="md:hidden p-2 flex flex-col gap-1.5" aria-label="Toggle menu">
           <span className={`block w-5 h-0.5 bg-gray-800 transition-all origin-center ${open?"rotate-45 translate-y-2":""}`}/>
           <span className={`block w-5 h-0.5 bg-gray-800 transition-all ${open?"opacity-0":""}`}/>
           <span className={`block w-5 h-0.5 bg-gray-800 transition-all origin-center ${open?"-rotate-45 -translate-y-2":""}`}/>
@@ -50,49 +49,60 @@ function Navbar({ cm }: { cm: ContentMap }) {
       </div>
       {open && (
         <div className="md:hidden bg-white border-t border-gray-100 px-6 py-5 flex flex-col gap-4">
-          {links.map(l => <a key={l} href={`#${l.toLowerCase().replace(/ /g,"-")}`} onClick={() => setOpen(false)} className="text-sm font-medium text-gray-700 hover:text-[#7C3AED]">{l}</a>)}
-          <a href="#contact" onClick={() => setOpen(false)} className="inline-flex items-center gap-2 bg-[#0A0A0F] text-white text-sm font-semibold px-5 py-2.5 rounded-full w-fit mt-2">{c(cm,"navbar","cta_text","Book a Free Call")}</a>
+          {links.map(l => (
+            <a key={l} href={`#${l.toLowerCase().replace(/ /g,"-")}`} onClick={() => setOpen(false)} className="text-sm font-medium text-gray-700 hover:text-[#7C3AED]">{l}</a>
+          ))}
+          <a href="#contact" onClick={() => setOpen(false)} className="inline-flex items-center gap-2 bg-[#0A0A0F] text-white text-sm font-semibold px-5 py-2.5 rounded-full w-fit mt-2">
+            {c(cm,"navbar","cta_text","Book a Family Session")}
+          </a>
         </div>
       )}
     </nav>
   );
 }
 
-/* ── Hero (Character + Desire) ──────────────────────────── */
+/* ── Hero ───────────────────────────────────────────────── */
 function Hero({ cm }: { cm: ContentMap }) {
   const stats = [
-    { num: c(cm,"hero","stat1_value","500+"),  label: c(cm,"hero","stat1_label","Careers Transformed"), icon: "🚀" },
-    { num: c(cm,"hero","stat2_value","93%"),   label: c(cm,"hero","stat2_label","Land Their Dream Role"), icon: "🎯" },
-    { num: c(cm,"hero","stat3_value","12+"),   label: c(cm,"hero","stat3_label","Years of Experience"), icon: "⭐" },
-    { num: c(cm,"hero","stat4_value","30+"),   label: c(cm,"hero","stat4_label","Industries Coached"), icon: "🌐" },
+    { num: c(cm,"hero","stat1_value","800+"),  label: c(cm,"hero","stat1_label","Families Guided"), icon: "🏠" },
+    { num: c(cm,"hero","stat2_value","India & Global"), label: c(cm,"hero","stat2_label","Families Served"), icon: "🌏" },
+    { num: c(cm,"hero","stat3_value","Certified"),      label: c(cm,"hero","stat3_label","Psychometric Practitioner"), icon: "✅" },
+    { num: c(cm,"hero","stat4_value","Zero"),           label: c(cm,"hero","stat4_label","Families Left Stuck"), icon: "💜" },
   ];
   return (
     <section id="home" className="relative min-h-screen flex flex-col">
       <div className="absolute inset-0 bg-[#0A0A10]"/>
-      <div className="absolute inset-0" style={{ backgroundImage:`url('${c(cm,"hero","bg_image","/Z24A9117.jpg")}')`, backgroundSize:"cover", backgroundPosition:"center top", opacity:0.35 }}/>
-      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/25 to-black/90"/>
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage: `url('${c(cm,"hero","bg_image","/Z24A9117.jpg")}')`,
+          backgroundSize: "cover",
+          backgroundPosition: "center top",
+          opacity: 0.32,
+        }}
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/20 to-black/90"/>
       <div className="relative z-10 flex-1 max-w-7xl mx-auto px-6 lg:px-8 w-full flex flex-col justify-center pt-32 pb-10">
         <div className="max-w-2xl">
           <div className="inline-flex items-center gap-2 bg-[#7C3AED]/20 border border-[#7C3AED]/40 rounded-full px-4 py-1.5 mb-8">
             <span className="w-2 h-2 rounded-full bg-[#7C3AED] animate-pulse"/>
-            <span className="text-[#A78BFA] text-xs font-semibold tracking-wide uppercase">{c(cm,"hero","badge","AI-Powered Career Coaching")}</span>
+            <span className="text-[#A78BFA] text-xs font-semibold tracking-wide uppercase">
+              {c(cm,"hero","badge","Certified Career Counsellor & Family Alignment Coach")}
+            </span>
           </div>
-          <h1 className="text-5xl md:text-[64px] lg:text-[72px] font-extrabold text-white leading-[1.05] tracking-tight mb-6">
-            {c(cm,"hero","headline_line1","You Were Not Built")}<br/>
-            <span className="text-[#A78BFA]">{c(cm,"hero","headline_line2","to Stay Stuck.")}</span>
+          <h1 className="text-5xl md:text-[62px] lg:text-[70px] font-extrabold text-white leading-[1.06] tracking-tight mb-6">
+            {c(cm,"hero","headline_line1","Your child has a future.")}<br/>
+            <span className="text-[#A78BFA]">{c(cm,"hero","headline_line2","Your family deserves to agree on it.")}</span>
           </h1>
-          <p className="text-gray-300 text-base md:text-lg leading-relaxed mb-4 max-w-lg">
-            {c(cm,"hero","subtext","Most professionals spend years in careers that drain them — talented, capable, yet invisible to the opportunities they deserve. It doesn't have to be this way.")}
-          </p>
-          <p className="text-gray-400 text-sm md:text-base leading-relaxed mb-10 max-w-lg">
-            {c(cm,"hero","subtext2","I help ambitious professionals architect a future aligned with their strengths, using AI-driven clarity to land roles and build lives they're proud of.")}
+          <p className="text-gray-300 text-base md:text-lg leading-relaxed mb-10 max-w-lg">
+            {c(cm,"hero","subtext","I help Indian teenagers and their parents move from circular arguments and silent tension — to a shared, grounded direction that everyone can trust.")}
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <a href="#contact" className="inline-flex items-center justify-center gap-2.5 bg-[#7C3AED] hover:bg-[#6D28D9] text-white text-sm font-bold px-7 py-3.5 rounded-full transition-all shadow-lg shadow-purple-900/40">
-              {c(cm,"hero","cta_primary","Book Your Free Strategy Call")}
+              {c(cm,"hero","cta_primary","Book a Family Session")}
               <span className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center"><ArrowRight size={14}/></span>
             </a>
-            <a href="#about" className="inline-flex items-center justify-center gap-2.5 border border-white/30 hover:border-white/60 hover:bg-white/5 text-white text-sm font-semibold px-7 py-3.5 rounded-full transition-all">
+            <a href="#how-it-works" className="inline-flex items-center justify-center gap-2.5 border border-white/30 hover:border-white/60 hover:bg-white/5 text-white text-sm font-semibold px-7 py-3.5 rounded-full transition-all">
               {c(cm,"hero","cta_secondary","See How It Works")}
             </a>
           </div>
@@ -101,28 +111,16 @@ function Hero({ cm }: { cm: ContentMap }) {
       <div className="relative z-10 w-full bg-black/50 backdrop-blur-sm border-t border-white/10">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4">
-            {stats.map((s,i) => (
-              <div key={s.label} className={`py-7 px-6 flex items-center gap-3 ${i<3?"border-r border-white/10":""}`}>
+            {stats.map((s, i) => (
+              <div key={s.label} className={`py-7 px-6 flex items-center gap-3 ${i < 3 ? "border-r border-white/10" : ""}`}>
                 <span className="text-xl">{s.icon}</span>
-                <div><p className="text-2xl md:text-3xl font-extrabold text-white leading-none">{s.num}</p><p className="text-gray-400 text-xs mt-0.5">{s.label}</p></div>
+                <div>
+                  <p className="text-xl md:text-2xl font-extrabold text-white leading-none">{s.num}</p>
+                  <p className="text-gray-400 text-xs mt-0.5">{s.label}</p>
+                </div>
               </div>
             ))}
           </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ── Partners Marquee ───────────────────────────────────── */
-function Partners() {
-  const doubled = [...PARTNERS,...PARTNERS];
-  return (
-    <section className="py-14 bg-white border-b border-gray-100 overflow-hidden">
-      <p className="text-center text-[#7C3AED] font-bold text-base tracking-widest uppercase mb-10">Clients & Partners From</p>
-      <div className="overflow-hidden">
-        <div className="marquee-inner">
-          {doubled.map((p,i) => <span key={i} className="mx-10 text-gray-400 hover:text-gray-700 font-semibold text-xs tracking-[0.2em] uppercase transition-colors cursor-default whitespace-nowrap">{p}</span>)}
         </div>
       </div>
     </section>
@@ -133,19 +131,22 @@ function Partners() {
 function Problem({ cm }: { cm: ContentMap }) {
   const problems = [
     {
-      icon: "😔",
-      title: c(cm,"problem","p1_title","You're Talented — But Invisible"),
-      desc:  c(cm,"problem","p1_desc","You've put in the work. You have the skills. Yet the promotions go to others, the dream roles never seem to land, and your career feels like it's on someone else's timeline."),
+      who: "For the Parent",
+      icon: "👨‍👩‍👧",
+      title: c(cm,"problem","p1_title","You want the best for your child — but they won't listen"),
+      desc: c(cm,"problem","p1_desc","You've sacrificed so much to give them options you never had. You're not asking for control — you're asking for a seat at the table. But every conversation ends in frustration, silence, or tears. You wonder if you're losing them."),
     },
     {
-      icon: "🔁",
-      title: c(cm,"problem","p2_title","You Feel Stuck in the Wrong Story"),
-      desc:  c(cm,"problem","p2_desc","Every Sunday dread. Every performance review that doesn't reflect your real value. A creeping sense that you've outgrown your current path — but no clear roadmap for what's next."),
+      who: "For the Teenager",
+      icon: "🧑‍🎓",
+      title: c(cm,"problem","p2_title","You know what you feel — but can't make your family understand"),
+      desc: c(cm,"problem","p2_desc","You're not being irresponsible. You have genuine interests and real ambitions. But the moment you bring them up, it becomes a debate about stability, rankings, and what the relatives will say. You feel unseen."),
     },
     {
-      icon: "🤖",
-      title: c(cm,"problem","p3_title","AI Is Changing Everything — Fast"),
-      desc:  c(cm,"problem","p3_desc","The rules of career success are being rewritten. Without a strategy that leverages AI and future-of-work insights, even exceptional professionals risk being left behind."),
+      who: "For the Family",
+      icon: "🔄",
+      title: c(cm,"problem","p3_title","The conversation keeps going in circles"),
+      desc: c(cm,"problem","p3_desc","Nobody is wrong here. But nobody has a shared language for this decision either. And without that, even the most caring families find themselves stuck — repeating the same arguments, growing further apart, while the deadline gets closer."),
     },
   ];
   return (
@@ -158,27 +159,30 @@ function Problem({ cm }: { cm: ContentMap }) {
             <span className="w-8 h-px bg-gray-700 block"/>
           </div>
           <h2 className="text-[36px] md:text-[48px] font-extrabold text-white leading-tight mb-5">
-            {c(cm,"problem","heading","Most Professionals Are Living Someone Else's Career Plan")}
+            {c(cm,"problem","heading","Bright child. Caring parents. A conversation that keeps going nowhere.")}
           </h2>
           <p className="text-gray-400 text-[15px] leading-relaxed">
-            {c(cm,"problem","subtext","It's not a talent problem. It's a clarity, strategy, and positioning problem — and it's costing you years of your one career.")}
+            {c(cm,"problem","subtext","It's not a failure of love. It's the absence of a shared framework — and that's exactly what I provide.")}
           </p>
         </div>
         <div className="grid md:grid-cols-3 gap-6">
           {problems.map(p => (
             <div key={p.title} className="bg-white/5 border border-white/10 rounded-2xl p-8 hover:border-[#7C3AED]/40 transition-colors">
-              <div className="text-4xl mb-5">{p.icon}</div>
-              <h3 className="text-white font-bold text-lg mb-3">{p.title}</h3>
+              <div className="flex items-center gap-3 mb-5">
+                <span className="text-3xl">{p.icon}</span>
+                <span className="text-xs font-bold text-[#A78BFA] uppercase tracking-widest">{p.who}</span>
+              </div>
+              <h3 className="text-white font-bold text-lg mb-3 leading-snug">{p.title}</h3>
               <p className="text-gray-400 text-sm leading-[1.75]">{p.desc}</p>
             </div>
           ))}
         </div>
         <div className="mt-14 text-center">
           <p className="text-[#A78BFA] font-semibold text-lg mb-6">
-            {c(cm,"problem","pivot","There is a better way — and it starts with a single conversation.")}
+            {c(cm,"problem","pivot","This doesn't have to be how your family makes this decision.")}
           </p>
           <a href="#contact" className="inline-flex items-center gap-2.5 bg-[#7C3AED] hover:bg-[#6D28D9] text-white text-sm font-bold px-8 py-3.5 rounded-full transition-colors shadow-lg shadow-purple-900/40">
-            {c(cm,"problem","cta","Yes, I Want to Change This")} <ArrowRight size={14}/>
+            {c(cm,"problem","cta","Book a Family Session")} <ArrowRight size={14}/>
           </a>
         </div>
       </div>
@@ -189,35 +193,44 @@ function Problem({ cm }: { cm: ContentMap }) {
 /* ── About (Guide) ──────────────────────────────────────── */
 function About({ cm }: { cm: ContentMap }) {
   const credentials = [
-    c(cm,"about","cred1","12+ years in corporate strategy & leadership"),
-    c(cm,"about","cred2","AI & Future of Work thought leader"),
-    c(cm,"about","cred3","Coached professionals across 30+ industries"),
-    c(cm,"about","cred4","Speaker at global leadership & innovation forums"),
+    c(cm,"about","cred1","Certified Career Counsellor"),
+    c(cm,"about","cred2","Certified Family Alignment Coach"),
+    c(cm,"about","cred3","Psychometric Assessment Practitioner"),
+    c(cm,"about","cred4","Deep expertise in Indian family dynamics & career frameworks"),
+    c(cm,"about","cred5","Works with families in India and globally"),
   ];
   return (
     <section id="about" className="py-28 bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-20 items-center">
           <div>
-            <div className="flex items-center gap-3 mb-5"><span className="w-8 h-px bg-gray-400 block"/><span className="text-xs font-semibold text-gray-500 tracking-[0.2em] uppercase">Your Guide</span></div>
-            <h2 className="text-[40px] md:text-5xl font-extrabold text-gray-900 leading-tight mb-2">Meet {c(cm,"about","name","Jasmeet Singh")}</h2>
-            <h2 className="text-[40px] md:text-5xl font-extrabold leading-tight mb-6">Your <span className="text-[#7C3AED]">{c(cm,"about","title","Future Architect")}</span></h2>
+            <div className="flex items-center gap-3 mb-5">
+              <span className="w-8 h-px bg-gray-400 block"/>
+              <span className="text-xs font-semibold text-gray-500 tracking-[0.2em] uppercase">Your Guide</span>
+            </div>
+            <h2 className="text-[40px] md:text-5xl font-extrabold text-gray-900 leading-tight mb-2">
+              Meet {c(cm,"about","name","Jasmeet Singh")}
+            </h2>
+            <h2 className="text-[36px] md:text-[44px] font-extrabold leading-tight mb-6">
+              <span className="text-[#7C3AED]">{c(cm,"about","title","Career Counsellor & Family Alignment Coach")}</span>
+            </h2>
             <p className="text-gray-600 text-[15px] leading-[1.8] mb-4 max-w-md">
-              {c(cm,"about","bio_1","I know what it feels like to be at a crossroads. After a decade navigating corporate leadership, strategy consulting, and the rapid rise of AI, I realized most high-performers lack one thing: a clear, confident vision for their future.")}
+              {c(cm,"about","bio_1","Over years of working with ambitious Indian families — at home and across the globe — I kept seeing the same pattern: bright children, caring parents, and a conversation that kept going in circles. Not because anyone was wrong. But because no one had given the family a common language for this decision.")}
             </p>
             <p className="text-gray-600 text-[15px] leading-[1.8] mb-8 max-w-md">
-              {c(cm,"about","bio_2","I built my coaching practice to solve exactly that. Together, we combine deep human insight with AI-powered career intelligence to design your next chapter — not just a job, but a career that compounds over time.")}
+              {c(cm,"about","bio_2","That gap — between what a child wants and what a family can trust — is exactly where I work. I combine certified psychometric tools, structured career frameworks, and deep experience with Indian family dynamics to guide sessions that are not just about which career to choose, but about how a family makes that choice together, without losing each other in the process.")}
             </p>
             <div className="flex flex-col gap-3 mb-10">
               {credentials.map((cred, i) => (
-                <div key={i} className="flex items-center gap-3">
-                  <span className="w-5 h-5 rounded-full bg-[#7C3AED]/10 text-[#7C3AED] flex items-center justify-center flex-shrink-0"><CheckIcon/></span>
+                <div key={i} className="flex items-start gap-3">
+                  <span className="w-5 h-5 rounded-full bg-[#7C3AED]/10 text-[#7C3AED] flex items-center justify-center flex-shrink-0 mt-0.5"><CheckIcon/></span>
                   <span className="text-gray-700 text-sm">{cred}</span>
                 </div>
               ))}
             </div>
             <a href="#contact" className="inline-flex items-center gap-2.5 bg-[#7C3AED] hover:bg-[#6D28D9] text-white text-sm font-semibold px-6 py-3 rounded-full transition-colors">
-              {c(cm,"about","cta_text","Work With Jasmeet")}<span className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center ml-1"><ArrowRight size={13}/></span>
+              {c(cm,"about","cta_text","Work With Jasmeet")}
+              <span className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center ml-1"><ArrowRight size={13}/></span>
             </a>
           </div>
           <div className="relative h-[560px]">
@@ -228,16 +241,20 @@ function About({ cm }: { cm: ContentMap }) {
               <img src={c(cm,"about","photo_2","/Z24A8994 copy.jpg")} alt="Coaching session" className="w-full h-full object-cover"/>
             </div>
             <div className="absolute right-2 top-8 w-52 bg-white rounded-2xl shadow-2xl border border-gray-100 p-4 z-10">
-              <div className="flex items-center gap-1.5 mb-2"><span className="text-xs font-semibold text-[#7C3AED] bg-[#7C3AED]/10 px-2.5 py-0.5 rounded-full">🌐 Global Coach</span></div>
-              <p className="font-extrabold text-gray-900 text-sm mb-1">{c(cm,"about","badge_text","AI + Human Intelligence")}</p>
-              <p className="text-[11px] text-gray-500 leading-relaxed">Combining AI tools with deep human coaching to give you an unfair career advantage</p>
+              <div className="flex items-center gap-1.5 mb-2">
+                <span className="text-xs font-semibold text-[#7C3AED] bg-[#7C3AED]/10 px-2.5 py-0.5 rounded-full">🌏 India & Global</span>
+              </div>
+              <p className="font-extrabold text-gray-900 text-sm mb-1">{c(cm,"about","badge_text","Roots & Wings Philosophy")}</p>
+              <p className="text-[11px] text-gray-500 leading-relaxed">Every child deserves the security of family support and the freedom to fly toward a life that is genuinely their own.</p>
             </div>
             <div className="absolute right-0 top-[340px] flex flex-col gap-1.5">
-              <div className="w-2 h-6 bg-[#7C3AED] rounded-full"/><div className="w-2 h-2 bg-gray-200 rounded-full"/><div className="w-2 h-2 bg-gray-200 rounded-full"/>
+              <div className="w-2 h-6 bg-[#7C3AED] rounded-full"/>
+              <div className="w-2 h-2 bg-gray-200 rounded-full"/>
+              <div className="w-2 h-2 bg-gray-200 rounded-full"/>
             </div>
             <div className="absolute left-0 bottom-10 bg-[#7C3AED] rounded-2xl p-4 shadow-xl text-white">
-              <p className="text-2xl font-extrabold leading-none">{c(cm,"about","experience_years","12+")}</p>
-              <p className="text-[11px] text-purple-200 mt-0.5">Years Experience</p>
+              <p className="text-2xl font-extrabold leading-none">{c(cm,"about","experience_years","800+")}</p>
+              <p className="text-[11px] text-purple-200 mt-0.5">Families Guided</p>
             </div>
           </div>
         </div>
@@ -250,31 +267,31 @@ function About({ cm }: { cm: ContentMap }) {
 function Services({ cm }: { cm: ContentMap }) {
   const cards = [
     {
-      date:  c(cm,"services","card1_date","Most Popular"),
-      title: c(cm,"services","card1_title","1-on-1 Career Architecture Session"),
-      desc:  c(cm,"services","card1_desc","A deep-dive private coaching engagement where we map your strengths, identify your highest-leverage opportunities, and build a 90-day career action plan powered by AI insights."),
+      tag:   c(cm,"services","card1_date","Most Requested"),
+      title: c(cm,"services","card1_title","Family Alignment Session"),
+      desc:  c(cm,"services","card1_desc","A structured session with the teenager and parents together. Using certified psychometric tools and guided conversation, we create a shared language for the career decision — so the family leaves aligned, not just compromised."),
       img:   c(cm,"services","card1_img","/Z24A9117.jpg"),
       dark:  true,
     },
     {
-      date:  c(cm,"services","card2_date","Fast-Track"),
-      title: c(cm,"services","card2_title","Career Clarity Intensive"),
-      desc:  c(cm,"services","card2_desc","A focused half-day intensive to break through confusion and walk away with total clarity on your next career move, your personal positioning, and a concrete step-by-step plan."),
-      img:   c(cm,"services","card2_img","https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80"),
+      tag:   c(cm,"services","card2_date","For Teenagers"),
+      title: c(cm,"services","card2_title","Career Clarity Programme"),
+      desc:  c(cm,"services","card2_desc","A personalised deep-dive for the student: psychometric assessment, strengths mapping, career pathway exploration, and a grounded action plan — built around who they actually are, not who others expect them to be."),
+      img:   c(cm,"services","card2_img","https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&q=80"),
       dark:  false,
     },
     {
-      date:  c(cm,"services","card3_date","Group Programme"),
-      title: c(cm,"services","card3_title","Future Architects Mastermind"),
-      desc:  c(cm,"services","card3_desc","Join a curated cohort of ambitious professionals. Weekly group coaching, AI career tools, accountability sprints, and a community of peers all architecting extraordinary careers."),
-      img:   c(cm,"services","card3_img","https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&q=80"),
+      tag:   c(cm,"services","card3_date","For Parents"),
+      title: c(cm,"services","card3_title","Parent Coaching Session"),
+      desc:  c(cm,"services","card3_desc","A dedicated session for parents to process their own fears and hopes, understand today's career landscape with clarity, and learn how to guide — not push — their child toward a future they can both be proud of."),
+      img:   c(cm,"services","card3_img","https://images.unsplash.com/photo-1609220136736-443140cffec6?w=600&q=80"),
       dark:  false,
     },
     {
-      date:  c(cm,"services","card4_date","Executive"),
-      title: c(cm,"services","card4_title","LinkedIn & Personal Brand Overhaul"),
-      desc:  c(cm,"services","card4_desc","Turn your LinkedIn profile and personal brand into a magnet for the right opportunities. We craft your narrative, optimize your presence, and create content that positions you as an industry authority."),
-      img:   c(cm,"services","card4_img","https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&q=80"),
+      tag:   c(cm,"services","card4_date","Ongoing Support"),
+      title: c(cm,"services","card4_title","Continued Guidance Programme"),
+      desc:  c(cm,"services","card4_desc","For families who want sustained support through the decision, application, and transition process. Regular check-ins, course corrections, and a trusted advisor beside you at every step of the journey."),
+      img:   c(cm,"services","card4_img","https://images.unsplash.com/photo-1573497620053-ea5300f94f21?w=600&q=80"),
       dark:  false,
     },
   ];
@@ -283,24 +300,31 @@ function Services({ cm }: { cm: ContentMap }) {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16">
           <div>
-            <div className="flex items-center gap-3 mb-5"><span className="w-8 h-px bg-gray-400 block"/><span className="text-xs font-semibold text-gray-500 tracking-[0.2em] uppercase">How I Help You</span></div>
-            <h2 className="text-[40px] md:text-5xl font-extrabold text-gray-900 leading-tight">Coaching Programmes <br/><span className="text-[#7C3AED]">Designed for Your Future</span></h2>
+            <div className="flex items-center gap-3 mb-5">
+              <span className="w-8 h-px bg-gray-400 block"/>
+              <span className="text-xs font-semibold text-gray-500 tracking-[0.2em] uppercase">How I Work With You</span>
+            </div>
+            <h2 className="text-[40px] md:text-5xl font-extrabold text-gray-900 leading-tight">
+              Sessions Designed<br/><span className="text-[#7C3AED]">for the Whole Family</span>
+            </h2>
           </div>
-          <p className="text-gray-600 text-[15px] leading-relaxed max-w-xs">{c(cm,"services","subtext","Every programme is built around your unique strengths, goals, and the career landscape of tomorrow — not yesterday.")}</p>
+          <p className="text-gray-600 text-[15px] leading-relaxed max-w-xs">
+            {c(cm,"services","subtext","Whether we start with the family together, the teenager alone, or the parents — every session moves toward the same goal: a decision the whole family can stand behind.")}
+          </p>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 mb-12">
           {cards.map(s => (
-            <div key={s.title} className={`rounded-2xl overflow-hidden flex flex-col transition-transform hover:-translate-y-1.5 cursor-pointer shadow-sm hover:shadow-xl ${s.dark?"bg-[#1A0A3E]":"bg-white border border-gray-200"}`}>
+            <div key={s.title} className={`rounded-2xl overflow-hidden flex flex-col transition-transform hover:-translate-y-1.5 cursor-pointer shadow-sm hover:shadow-xl ${s.dark ? "bg-[#1A0A3E]" : "bg-white border border-gray-200"}`}>
               <div className="h-44 overflow-hidden relative">
                 <img src={s.img} alt={s.title} className="w-full h-full object-cover"/>
                 {s.dark && <div className="absolute inset-0 bg-[#1A0A3E]/40"/>}
               </div>
               <div className="p-5 flex flex-col flex-1">
-                <span className={`text-[11px] font-mono mb-3 block ${s.dark?"text-purple-300":"text-gray-400"}`}>{s.date}</span>
-                <h3 className={`font-bold text-sm leading-snug mb-2 ${s.dark?"text-white":"text-gray-900"}`}>{s.title}</h3>
-                <p className={`text-xs leading-relaxed flex-1 ${s.dark?"text-purple-200/80":"text-gray-500"}`}>{s.desc}</p>
+                <span className={`text-[11px] font-mono mb-3 block ${s.dark ? "text-purple-300" : "text-gray-400"}`}>{s.tag}</span>
+                <h3 className={`font-bold text-sm leading-snug mb-2 ${s.dark ? "text-white" : "text-gray-900"}`}>{s.title}</h3>
+                <p className={`text-xs leading-relaxed flex-1 ${s.dark ? "text-purple-200/80" : "text-gray-500"}`}>{s.desc}</p>
                 <div className="mt-5 flex justify-end">
-                  <button className={`w-9 h-9 rounded-full flex items-center justify-center transition-colors ${s.dark?"bg-[#7C3AED] hover:bg-[#6D28D9] text-white":"bg-gray-100 hover:bg-[#7C3AED] hover:text-white text-gray-600"}`}><ArrowRight size={14}/></button>
+                  <button className={`w-9 h-9 rounded-full flex items-center justify-center transition-colors ${s.dark ? "bg-[#7C3AED] hover:bg-[#6D28D9] text-white" : "bg-gray-100 hover:bg-[#7C3AED] hover:text-white text-gray-600"}`}><ArrowRight size={14}/></button>
                 </div>
               </div>
             </div>
@@ -308,7 +332,7 @@ function Services({ cm }: { cm: ContentMap }) {
         </div>
         <div className="flex justify-center">
           <a href="#contact" className="inline-flex items-center gap-2.5 bg-[#7C3AED] hover:bg-[#6D28D9] text-white text-sm font-semibold px-8 py-3.5 rounded-full transition-colors">
-            {c(cm,"services","cta_text","Book a Free Discovery Call")} <ArrowRight size={14}/>
+            {c(cm,"services","cta_text","Book a Session")} <ArrowRight size={14}/>
           </a>
         </div>
       </div>
@@ -316,56 +340,66 @@ function Services({ cm }: { cm: ContentMap }) {
   );
 }
 
-/* ── Plan (The 3-Step Process) ──────────────────────────── */
+/* ── Process (The Plan) ─────────────────────────────────── */
 function Process({ cm }: { cm: ContentMap }) {
   const [active, setActive] = useState(0);
   const steps = [
     {
-      title: c(cm,"process","step1_title","Step 1: Gain Crystal-Clear Clarity"),
-      body:  c(cm,"process","step1_body","In our first sessions, we use a proprietary AI-assisted assessment combined with deep coaching conversations to map your values, strengths, and hidden potential. You'll finally understand exactly who you are professionally and where you're meant to go."),
+      title: c(cm,"process","step1_title","Step 1: Listen — to everyone in the room"),
+      body:  c(cm,"process","step1_body","Before any advice is given, every voice in the family is heard. I create a structured space where the teenager feels safe to speak honestly, and the parents feel respected — not sidelined. Often, this alone shifts something."),
     },
     {
-      title: c(cm,"process","step2_title","Step 2: Build Your Career Strategy"),
-      body:  c(cm,"process","step2_body","Together we craft a precision career strategy: your positioning, your target roles, your personal brand narrative, and a roadmap for getting there. We use AI tools to benchmark market demand, salary data, and emerging opportunities aligned to your goals."),
+      title: c(cm,"process","step2_title","Step 2: Illuminate — using certified psychometric tools"),
+      body:  c(cm,"process","step2_body","We use validated psychometric assessments to surface the teenager's natural strengths, personality, interests, and values. This gives the family objective data to build on — not just opinions and feelings. It shifts the conversation from debate to discovery."),
     },
     {
-      title: c(cm,"process","step3_title","Step 3: Execute & Launch with Confidence"),
-      body:  c(cm,"process","step3_body","This is where transformation becomes real. We optimize your LinkedIn, refine your interview strategy, build your visibility, and surround you with accountability and momentum. Most clients see meaningful career movement within 90 days."),
+      title: c(cm,"process","step3_title","Step 3: Align — build a shared framework"),
+      body:  c(cm,"process","step3_body","With clarity on the table, we map real-world career pathways — growth prospects, required preparation, alternative routes — through the lens of both the child's strengths and the family's genuine concerns. We find the intersection, not the compromise."),
     },
     {
-      title: c(cm,"process","step4_title","Step 4: Sustain & Scale Your Growth"),
-      body:  c(cm,"process","step4_body","A great career isn't built in a sprint — it's architected over time. We install habits, systems, and mindsets that compound your growth year after year, ensuring the career you build keeps getting better."),
+      title: c(cm,"process","step4_title","Step 4: Move — leave with a plan, not just a feeling"),
+      body:  c(cm,"process","step4_body","Every family leaves with a concrete next step: a shortlist of aligned career directions, a preparation roadmap, and the shared language to continue the conversation without it becoming a conflict. The goal is not to have the answer — it's to know how to find it, together."),
     },
   ];
   return (
-    <section className="py-28 bg-[#F3EFFF]">
+    <section id="how-it-works" className="py-28 bg-[#F3EFFF]">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div>
             <div className="flex items-center justify-between mb-12">
-              <h2 className="text-[36px] md:text-[44px] font-extrabold text-gray-900 leading-tight">{c(cm,"process","heading","A Simple Plan to Architect Your Future")}</h2>
-              <a href="#contact" className="hidden sm:inline-flex items-center gap-2 border border-[#7C3AED] text-[#7C3AED] hover:bg-[#7C3AED] hover:text-white text-xs font-semibold px-4 py-2 rounded-full transition-colors whitespace-nowrap">Get Started <ArrowRight size={12}/></a>
+              <h2 className="text-[36px] md:text-[44px] font-extrabold text-gray-900 leading-tight">
+                {c(cm,"process","heading","How a Family Goes from Conflict to Clarity")}
+              </h2>
+              <a href="#contact" className="hidden sm:inline-flex items-center gap-2 border border-[#7C3AED] text-[#7C3AED] hover:bg-[#7C3AED] hover:text-white text-xs font-semibold px-4 py-2 rounded-full transition-colors whitespace-nowrap">
+                Get Started <ArrowRight size={12}/>
+              </a>
             </div>
             <div className="flex flex-col gap-0">
-              {steps.map((s,i) => (
-                <div key={i} onClick={() => setActive(i)} className={`cursor-pointer border-b border-gray-200 ${i===0?"border-t":""}`}>
+              {steps.map((s, i) => (
+                <div key={i} onClick={() => setActive(i)} className={`cursor-pointer border-b border-gray-200 ${i === 0 ? "border-t" : ""}`}>
                   <div className="flex items-center justify-between py-4 px-1">
                     <div className="flex items-center gap-3">
-                      <span className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 transition-colors ${active===i?"bg-[#7C3AED] text-white":"bg-gray-200 text-gray-500"}`}>{i+1}</span>
-                      <h3 className={`font-semibold text-[15px] ${active===i?"text-gray-900":"text-gray-500"}`}>{s.title}</h3>
+                      <span className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 transition-colors ${active === i ? "bg-[#7C3AED] text-white" : "bg-gray-200 text-gray-500"}`}>{i + 1}</span>
+                      <h3 className={`font-semibold text-[15px] ${active === i ? "text-gray-900" : "text-gray-500"}`}>{s.title}</h3>
                     </div>
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ml-4 transition-all ${active===i?"bg-[#7C3AED] text-white rotate-90":"bg-white text-gray-400"}`}><ChevronRight/></div>
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ml-4 transition-all ${active === i ? "bg-[#7C3AED] text-white rotate-90" : "bg-white text-gray-400"}`}><ChevronRight/></div>
                   </div>
-                  {active===i && <div className="pb-5 px-1 pl-10"><p className="text-gray-600 text-sm leading-[1.75]">{s.body}</p></div>}
+                  {active === i && (
+                    <div className="pb-5 px-1 pl-10">
+                      <p className="text-gray-600 text-sm leading-[1.75]">{s.body}</p>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
           </div>
           <div className="relative rounded-3xl overflow-hidden shadow-2xl h-[480px]">
-            <img src={c(cm,"process","photo","/Z24A8994 copy.jpg")} alt="Coaching in action" className="w-full h-full object-cover"/>
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"/>
+            <img src={c(cm,"process","photo","/Z24A8994 copy.jpg")} alt="Family coaching session" className="w-full h-full object-cover"/>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent"/>
             <div className="absolute bottom-6 left-6 right-6">
-              <p className="text-white font-bold text-lg">{c(cm,"process","photo_caption","Your transformation begins with one honest conversation.")}</p>
+              <p className="text-white font-bold text-lg leading-snug">
+                {c(cm,"process","photo_caption","The goal isn't the perfect career answer. It's the ability to find it — as a family.")}
+              </p>
             </div>
           </div>
         </div>
@@ -374,32 +408,35 @@ function Process({ cm }: { cm: ContentMap }) {
   );
 }
 
-/* ── Vision Section (Success & Stakes) ─────────────────── */
+/* ── Vision (Success & Stakes) ──────────────────────────── */
 function Vision({ cm }: { cm: ContentMap }) {
   const successes = [
-    { icon:"💼", text: c(cm,"vision","s1","Land a role that pays you what you're actually worth") },
-    { icon:"📣", text: c(cm,"vision","s2","Build a personal brand that opens doors without you knocking") },
-    { icon:"🧭", text: c(cm,"vision","s3","Have a career roadmap for the next 3–5 years") },
-    { icon:"🤝", text: c(cm,"vision","s4","Walk into any room — or interview — with total confidence") },
-    { icon:"⚡", text: c(cm,"vision","s5","Use AI tools to stay ahead of your industry, not behind it") },
-    { icon:"🏆", text: c(cm,"vision","s6","Feel proud of the work you do every single day") },
+    { icon: "🤝", text: c(cm,"vision","s1","Parents and teenagers leave the session on the same page — for the first time") },
+    { icon: "🧭", text: c(cm,"vision","s2","Your child has a clear, personalised career direction they believe in") },
+    { icon: "💬", text: c(cm,"vision","s3","Your family has a shared language for career conversations — not just arguments") },
+    { icon: "🛡️", text: c(cm,"vision","s4","Parents feel genuinely confident in the path forward — not just resigned to it") },
+    { icon: "🌱", text: c(cm,"vision","s5","Your child knows they have your support — and the freedom to grow into themselves") },
+    { icon: "✈️", text: c(cm,"vision","s6","The family relationship comes out of the process stronger, not strained") },
   ];
   return (
     <section className="py-28 bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div>
-            <div className="flex items-center gap-3 mb-5"><span className="w-8 h-px bg-gray-400 block"/><span className="text-xs font-semibold text-gray-500 tracking-[0.2em] uppercase">Your Future Self</span></div>
+            <div className="flex items-center gap-3 mb-5">
+              <span className="w-8 h-px bg-gray-400 block"/>
+              <span className="text-xs font-semibold text-gray-500 tracking-[0.2em] uppercase">What Success Looks Like</span>
+            </div>
             <h2 className="text-[36px] md:text-[48px] font-extrabold text-gray-900 leading-tight mb-6">
-              {c(cm,"vision","heading","Imagine Waking Up Excited About Your Career — Every Day")}
+              {c(cm,"vision","heading","Roots and Wings — Both, Not One or the Other")}
             </h2>
             <p className="text-gray-600 text-[15px] leading-[1.8] mb-10">
-              {c(cm,"vision","subtext","Working with hundreds of professionals has shown me this: when people have clarity, strategy, and the right support, extraordinary careers become inevitable. Here's what that looks like for you:")}
+              {c(cm,"vision","subtext","Every child deserves the security of a family that believes in them — and the freedom to build a life that is genuinely their own. These aren't opposites. When the right conversation happens, they become the same thing.")}
             </p>
             <div className="grid grid-cols-1 gap-4">
-              {successes.map((s,i) => (
+              {successes.map((s, i) => (
                 <div key={i} className="flex items-center gap-4 p-4 rounded-xl bg-[#F3EFFF] border border-[#7C3AED]/10">
-                  <span className="text-2xl">{s.icon}</span>
+                  <span className="text-2xl flex-shrink-0">{s.icon}</span>
                   <p className="text-gray-800 text-sm font-medium">{s.text}</p>
                 </div>
               ))}
@@ -407,15 +444,21 @@ function Vision({ cm }: { cm: ContentMap }) {
           </div>
           <div className="flex flex-col gap-6">
             <div className="rounded-3xl overflow-hidden h-64 shadow-xl">
-              <img src={c(cm,"vision","photo","https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80")} alt="Future success" className="w-full h-full object-cover"/>
+              <img
+                src={c(cm,"vision","photo","https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80")}
+                alt="Family aligned and happy"
+                className="w-full h-full object-cover"
+              />
             </div>
             <div className="bg-[#0A0A10] rounded-2xl p-8 text-white">
-              <p className="text-[#A78BFA] text-sm font-semibold mb-3 uppercase tracking-wide">{c(cm,"vision","warning_label","But the cost of staying stuck...")}</p>
+              <p className="text-[#A78BFA] text-sm font-semibold mb-3 uppercase tracking-wide">
+                {c(cm,"vision","warning_label","The cost of not having this conversation")}
+              </p>
               <p className="text-gray-300 text-[15px] leading-[1.8]">
-                {c(cm,"vision","warning_text","Every year in the wrong role is a year of lost earnings, lost growth, and lost energy. The professionals who transform their careers are not the most talented — they're the ones who decided to stop waiting and start architecting.")}
+                {c(cm,"vision","warning_text","When families make this decision without a shared framework, someone always loses — either the child follows a path they resent, or the parents feel shut out of one of the most important moments of their family's life. This doesn't have to be the story.")}
               </p>
               <a href="#contact" className="inline-flex items-center gap-2 mt-6 text-[#A78BFA] font-bold text-sm hover:text-white transition-colors">
-                Don't wait another year <ArrowRight size={14}/>
+                Start the right conversation <ArrowRight size={14}/>
               </a>
             </div>
           </div>
@@ -429,7 +472,7 @@ function Vision({ cm }: { cm: ContentMap }) {
 function VideoSection({ cm }: { cm: ContentMap }) {
   const [showEmbed, setShowEmbed] = useState(false);
   const embedUrl = c(cm,"video","youtube_url","");
-  const caption  = c(cm,"video","caption","See What Career Transformation Really Looks Like");
+  const caption  = c(cm,"video","caption","See What Happens When Families Find Their Common Language");
   return (
     <section className="py-0 bg-[#F3EFFF]">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 pb-28">
@@ -441,14 +484,16 @@ function VideoSection({ cm }: { cm: ContentMap }) {
               <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?w=1400&q=80" alt="Video" className="w-full h-full object-cover"/>
               <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent"/>
               <div className="absolute inset-0 flex items-center justify-center">
-                <button onClick={() => embedUrl ? setShowEmbed(true) : undefined}
-                  className="w-[72px] h-[72px] bg-[#7C3AED]/90 hover:bg-[#7C3AED] rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform">
+                <button
+                  onClick={() => embedUrl ? setShowEmbed(true) : undefined}
+                  className="w-[72px] h-[72px] bg-[#7C3AED]/90 hover:bg-[#7C3AED] rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform"
+                >
                   <svg width={22} height={22} viewBox="0 0 24 24" fill="white"><path d="M5 3l14 9-14 9V3z"/></svg>
                 </button>
               </div>
               <div className="absolute bottom-6 left-6 right-6">
                 <p className="text-white font-bold text-xl md:text-2xl">{caption}</p>
-                <p className="text-gray-300 text-sm mt-1">Keynotes, live coaching sessions, podcasts &amp; client stories</p>
+                <p className="text-gray-300 text-sm mt-1">Live sessions, keynotes, family stories &amp; insights</p>
               </div>
             </>
           )}
@@ -462,22 +507,22 @@ function VideoSection({ cm }: { cm: ContentMap }) {
 function Blog({ cm }: { cm: ContentMap }) {
   const posts = [
     {
-      date:    c(cm,"blog","post1_date","Future of Work"),
-      title:   c(cm,"blog","post1_title","How AI Is Reshaping Career Trajectories — And What to Do About It"),
-      excerpt: c(cm,"blog","post1_excerpt","The professionals thriving in the AI era aren't the ones fearing automation — they're the ones who've learned to use AI as a career accelerator. Here's the playbook."),
-      img:     c(cm,"blog","post1_img","https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&q=80"),
+      date:    c(cm,"blog","post1_date","Family Dynamics"),
+      title:   c(cm,"blog","post1_title","Why Indian Families Struggle to Agree on Careers — And What Actually Helps"),
+      excerpt: c(cm,"blog","post1_excerpt","The problem isn't that parents want too much or children want too little. It's that both sides are speaking different languages. Here's how to find a shared one."),
+      img:     c(cm,"blog","post1_img","https://images.unsplash.com/photo-1609220136736-443140cffec6?w=600&q=80"),
     },
     {
-      date:    c(cm,"blog","post2_date","Career Strategy"),
-      title:   c(cm,"blog","post2_title","The Hidden Reason High-Performers Stay Stuck (And How to Break Free)"),
-      excerpt: c(cm,"blog","post2_excerpt","Talent is never the bottleneck. After coaching 500+ professionals, I've found the real reason brilliant people stay in roles they've outgrown — and the simple shift that changes everything."),
-      img:     c(cm,"blog","post2_img","https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&q=80"),
+      date:    c(cm,"blog","post2_date","Career Guidance"),
+      title:   c(cm,"blog","post2_title","Psychometric Tests Won't Tell Your Child What to Do — But Here's What They Will Reveal"),
+      excerpt: c(cm,"blog","post2_excerpt","A certified assessment is not a fortune teller. It's a mirror. Understanding what it shows — and what it doesn't — is the difference between a useful session and a confusing one."),
+      img:     c(cm,"blog","post2_img","https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&q=80"),
     },
     {
-      date:    c(cm,"blog","post3_date","Personal Brand"),
-      title:   c(cm,"blog","post3_title","Your LinkedIn Is a Resume. It Should Be a Magnet."),
-      excerpt: c(cm,"blog","post3_excerpt","Most LinkedIn profiles tell employers what you've done. The best ones make them feel like they'd be crazy not to reach out. Learn the 5 elements of a LinkedIn profile that actually generates inbound opportunities."),
-      img:     c(cm,"blog","post3_img","https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&q=80"),
+      date:    c(cm,"blog","post3_date","Parenting"),
+      title:   c(cm,"blog","post3_title","Roots and Wings: The Philosophy Behind Every Career Conversation I Have"),
+      excerpt: c(cm,"blog","post3_excerpt","Security and freedom are not opposites in a child's career. When families understand this, the entire conversation changes — and so does the relationship."),
+      img:     c(cm,"blog","post3_img","https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80"),
     },
   ];
   return (
@@ -485,20 +530,29 @@ function Blog({ cm }: { cm: ContentMap }) {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row gap-12 mb-16">
           <div className="flex-1">
-            <div className="flex items-center gap-3 mb-5"><span className="w-8 h-px bg-gray-400 block"/><span className="text-xs font-semibold text-gray-500 tracking-[0.2em] uppercase">Career Intelligence</span></div>
+            <div className="flex items-center gap-3 mb-5">
+              <span className="w-8 h-px bg-gray-400 block"/>
+              <span className="text-xs font-semibold text-gray-500 tracking-[0.2em] uppercase">Thinking & Guidance</span>
+            </div>
             <h2 className="text-[40px] md:text-5xl font-extrabold text-gray-900 leading-tight max-w-lg">
-              {c(cm,"blog","heading","Insights to Architect a Career You're Proud Of")}
+              {c(cm,"blog","heading","Honest Thinking on Careers, Families & What Actually Works")}
             </h2>
           </div>
           <div className="max-w-xs flex flex-col justify-end">
-            <p className="text-gray-500 text-[15px] leading-relaxed mb-6">{c(cm,"blog","subtext","Practical, research-backed thinking on careers, AI, leadership, and personal branding — delivered straight from the coaching floor.")}</p>
-            <a href="#" className="inline-flex items-center gap-2.5 border border-[#7C3AED] text-[#7C3AED] hover:bg-[#7C3AED] hover:text-white text-sm font-semibold px-6 py-3 rounded-full transition-colors w-fit">See All Articles <ArrowRight size={13}/></a>
+            <p className="text-gray-500 text-[15px] leading-relaxed mb-6">
+              {c(cm,"blog","subtext","Practical insights for Indian families navigating one of the most important — and most emotionally charged — decisions they'll ever make together.")}
+            </p>
+            <a href="#" className="inline-flex items-center gap-2.5 border border-[#7C3AED] text-[#7C3AED] hover:bg-[#7C3AED] hover:text-white text-sm font-semibold px-6 py-3 rounded-full transition-colors w-fit">
+              See All Articles <ArrowRight size={13}/>
+            </a>
           </div>
         </div>
         <div className="grid md:grid-cols-3 gap-6">
           {posts.map(p => (
             <article key={p.title} className="rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-shadow group cursor-pointer bg-white">
-              <div className="h-52 overflow-hidden"><img src={p.img} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/></div>
+              <div className="h-52 overflow-hidden">
+                <img src={p.img} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
+              </div>
               <div className="p-6">
                 <p className="text-[11px] text-[#7C3AED] font-semibold mb-3 uppercase tracking-wide">{p.date}</p>
                 <h3 className="font-bold text-gray-900 text-sm leading-snug mb-2">{p.title}</h3>
@@ -518,51 +572,64 @@ function Testimonials({ cm }: { cm: ContentMap }) {
   const [active, setActive] = useState(0);
   const testimonials = [
     {
-      quote:  c(cm,"testimonials","t1_quote","Working with Jasmeet was a turning point. Within 3 months of our coaching, I landed a senior leadership role at a global tech company — a 40% salary jump. But more than the title and salary, I finally feel like I'm doing work that matters. He didn't just help me find a job. He helped me find my direction."),
-      name:   c(cm,"testimonials","t1_name","Priya M."),
-      role:   c(cm,"testimonials","t1_role","VP of Strategy, Global Tech Firm"),
-      avatar: c(cm,"testimonials","t1_avatar","https://images.unsplash.com/photo-1494790108755-2616b612b47c?w=100&q=80"),
+      quote:  c(cm,"testimonials","t1_quote","We had been arguing about this for two years. In three sessions with Jasmeet, my daughter and I finally understood what the other was actually afraid of. She's now studying what she loves — and I'm genuinely at peace with it. I didn't think both things were possible at the same time."),
+      name:   c(cm,"testimonials","t1_name","Rajesh M."),
+      role:   c(cm,"testimonials","t1_role","Parent, Delhi"),
+      avatar: c(cm,"testimonials","t1_avatar","https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80"),
     },
     {
-      quote:  c(cm,"testimonials","t2_quote","I had 15 years of experience and felt completely invisible to the market. Jasmeet rebuilt my LinkedIn, my pitch, and my confidence. Six weeks later I had three competing offers. I went with the one that paid double my previous salary. This is the best investment I've ever made in myself."),
-      name:   c(cm,"testimonials","t2_name","Daniel R."),
-      role:   c(cm,"testimonials","t2_role","Engineering Director, Fortune 500"),
-      avatar: c(cm,"testimonials","t2_avatar","https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80"),
+      quote:  c(cm,"testimonials","t2_quote","My parents wanted engineering. I wanted design. Jasmeet didn't tell us who was right. He gave us something better — a way to have the conversation where we were both actually listening. The psychometric session changed everything. My parents finally saw my strengths on paper, not just in my opinion."),
+      name:   c(cm,"testimonials","t2_name","Ananya S."),
+      role:   c(cm,"testimonials","t2_role","Student, Age 17, Bengaluru"),
+      avatar: c(cm,"testimonials","t2_avatar","https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=100&q=80"),
     },
     {
-      quote:  c(cm,"testimonials","t3_quote","I was burned out, underpaid, and honestly afraid of AI replacing my role. Jasmeet completely reframed my relationship with AI — I now use it as my competitive edge. He helped me pivot into a new field I love and negotiate a package I wouldn't have dared ask for a year ago."),
-      name:   c(cm,"testimonials","t3_name","Amara K."),
-      role:   c(cm,"testimonials","t3_role","AI Strategy Lead, Consulting"),
-      avatar: c(cm,"testimonials","t3_avatar","https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=100&q=80"),
+      quote:  c(cm,"testimonials","t3_quote","As an NRI family, we worried about career choices being relevant both in India and abroad. Jasmeet understood this layered pressure immediately. He helped us map pathways that honoured our son's strengths and worked across geographies. He was practical, thoughtful, and deeply human throughout."),
+      name:   c(cm,"testimonials","t3_name","Sunita & Vikram K."),
+      role:   c(cm,"testimonials","t3_role","Parents, Singapore"),
+      avatar: c(cm,"testimonials","t3_avatar","https://images.unsplash.com/photo-1494790108755-2616b612b47c?w=100&q=80"),
     },
   ];
   return (
     <section id="success-stories" className="py-28 bg-gray-50">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="text-center mb-16">
-          <div className="flex items-center justify-center gap-3 mb-4"><span className="w-8 h-px bg-gray-400 block"/><span className="text-xs font-semibold text-gray-500 tracking-[0.2em] uppercase">Success Stories</span><span className="w-8 h-px bg-gray-400 block"/></div>
-          <h2 className="text-[40px] md:text-5xl font-extrabold text-gray-900 mb-4">Real People. <span className="text-[#7C3AED]">Real Transformations.</span></h2>
-          <p className="text-gray-500 text-[15px] max-w-sm mx-auto leading-relaxed">{c(cm,"testimonials","subtext","These aren't just career wins — they're lives changed. Here's what's possible when you commit to architecting your future.")}</p>
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <span className="w-8 h-px bg-gray-400 block"/>
+            <span className="text-xs font-semibold text-gray-500 tracking-[0.2em] uppercase">Family Stories</span>
+            <span className="w-8 h-px bg-gray-400 block"/>
+          </div>
+          <h2 className="text-[40px] md:text-5xl font-extrabold text-gray-900 mb-4">
+            Families Who Found <span className="text-[#7C3AED]">Their Direction.</span>
+          </h2>
+          <p className="text-gray-500 text-[15px] max-w-sm mx-auto leading-relaxed">
+            {c(cm,"testimonials","subtext","Not just students who picked a career — families who found a way to make that decision together.")}
+          </p>
         </div>
         <div className="grid md:grid-cols-3 gap-6 mb-10">
-          {testimonials.map((t,i) => (
-            <div key={i} onClick={() => setActive(i)} className={`rounded-2xl p-7 cursor-pointer transition-all border ${active===i?"bg-white border-[#7C3AED]/30 shadow-xl":"bg-white border-gray-100 shadow-sm hover:shadow-md"}`}>
+          {testimonials.map((t, i) => (
+            <div key={i} onClick={() => setActive(i)} className={`rounded-2xl p-7 cursor-pointer transition-all border ${active === i ? "bg-white border-[#7C3AED]/30 shadow-xl" : "bg-white border-gray-100 shadow-sm hover:shadow-md"}`}>
               <div className="text-[64px] leading-none text-gray-200 font-serif mb-2 -mt-3 -ml-1">&ldquo;</div>
               <p className="text-gray-700 text-sm leading-[1.75] mb-6 -mt-4">{t.quote}</p>
               <div className="flex items-center gap-3">
                 <img src={t.avatar} alt={t.name} className="w-10 h-10 rounded-full object-cover border-2 border-gray-100"/>
-                <div className="flex-1"><p className="font-bold text-gray-900 text-sm">{t.name}</p><p className="text-gray-500 text-xs">{t.role}</p></div>
-                <div className="flex gap-0.5">{[...Array(5)].map((_,si) => <StarFilled key={si}/>)}</div>
+                <div className="flex-1">
+                  <p className="font-bold text-gray-900 text-sm">{t.name}</p>
+                  <p className="text-gray-500 text-xs">{t.role}</p>
+                </div>
+                <div className="flex gap-0.5">{[...Array(5)].map((_, si) => <StarFilled key={si}/>)}</div>
               </div>
             </div>
           ))}
         </div>
         <div className="flex items-center justify-center gap-2">
-          <button onClick={() => setActive(a => Math.max(0,a-1))} className="w-7 h-7 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center">
+          <button onClick={() => setActive(a => Math.max(0, a - 1))} className="w-7 h-7 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5}><path d="M15 18l-6-6 6-6" strokeLinecap="round"/></svg>
           </button>
-          {testimonials.map((_,i) => <button key={i} onClick={() => setActive(i)} className={`rounded-full transition-all ${active===i?"w-6 h-2.5 bg-[#7C3AED]":"w-2.5 h-2.5 bg-gray-200 hover:bg-gray-300"}`}/>)}
-          <button onClick={() => setActive(a => Math.min(testimonials.length-1,a+1))} className="w-7 h-7 rounded-full bg-[#7C3AED] hover:bg-[#6D28D9] flex items-center justify-center text-white">
+          {testimonials.map((_, i) => (
+            <button key={i} onClick={() => setActive(i)} className={`rounded-full transition-all ${active === i ? "w-6 h-2.5 bg-[#7C3AED]" : "w-2.5 h-2.5 bg-gray-200 hover:bg-gray-300"}`}/>
+          ))}
+          <button onClick={() => setActive(a => Math.min(testimonials.length - 1, a + 1))} className="w-7 h-7 rounded-full bg-[#7C3AED] hover:bg-[#6D28D9] flex items-center justify-center text-white">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5}><path d="M9 18l6-6-6-6" strokeLinecap="round"/></svg>
           </button>
         </div>
@@ -571,9 +638,9 @@ function Testimonials({ cm }: { cm: ContentMap }) {
   );
 }
 
-/* ── Contact Form ────────────────────────────────────────── */
+/* ── Contact ─────────────────────────────────────────────── */
 function Contact({ cm }: { cm: ContentMap }) {
-  const [form, setForm] = useState({ name:"", email:"", message:"" });
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [status, setStatus] = useState<"idle"|"loading"|"success"|"error">("idle");
 
   const submit = async (e: React.FormEvent) => {
@@ -583,9 +650,9 @@ function Contact({ cm }: { cm: ContentMap }) {
       const res = await fetch("/api/submit-form", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ form_name:"contact", ...form, source_url: window.location.href }),
+        body: JSON.stringify({ form_name: "contact", ...form, source_url: window.location.href }),
       });
-      if (res.ok) { setStatus("success"); setForm({ name:"", email:"", message:"" }); }
+      if (res.ok) { setStatus("success"); setForm({ name: "", email: "", message: "" }); }
       else setStatus("error");
     } catch { setStatus("error"); }
   };
@@ -593,38 +660,44 @@ function Contact({ cm }: { cm: ContentMap }) {
   return (
     <section id="contact" className="py-28 bg-[#0A0A10]">
       <div className="max-w-3xl mx-auto px-6 lg:px-8 text-center">
-        <div className="flex items-center justify-center gap-3 mb-5"><span className="w-8 h-px bg-gray-700 block"/><span className="text-xs font-semibold text-gray-500 tracking-[0.2em] uppercase">Take the First Step</span><span className="w-8 h-px bg-gray-700 block"/></div>
+        <div className="flex items-center justify-center gap-3 mb-5">
+          <span className="w-8 h-px bg-gray-700 block"/>
+          <span className="text-xs font-semibold text-gray-500 tracking-[0.2em] uppercase">Start the Conversation</span>
+          <span className="w-8 h-px bg-gray-700 block"/>
+        </div>
         <h2 className="text-[40px] md:text-5xl font-extrabold text-white leading-tight mb-5">
-          Ready to <span className="text-[#8B5CF6]">{c(cm,"contact","heading","Architect Your Future?")}</span>
+          Ready to <span className="text-[#8B5CF6]">{c(cm,"contact","heading","Find Your Family's Direction?")}</span>
         </h2>
         <p className="text-gray-400 text-[15px] leading-relaxed mb-4 max-w-lg mx-auto">
-          {c(cm,"contact","subtext","Book a free 30-minute strategy call. We'll talk about where you are, where you want to be, and whether working together is the right next step. No pressure. Just clarity.")}
+          {c(cm,"contact","subtext","Book a free 30-minute introductory call. We'll talk about where your family is right now, what's making the conversation difficult, and whether working together makes sense. No pressure. Just an honest conversation.")}
         </p>
         <p className="text-gray-600 text-sm mb-12">
-          {c(cm,"contact","note","Most clients walk away from the discovery call with at least one actionable insight — regardless of what they decide.")}
+          {c(cm,"contact","note","Sessions are available for families in India and globally. Online sessions available.")}
         </p>
 
         {status === "success" ? (
           <div className="max-w-md mx-auto bg-green-500/10 border border-green-500/30 rounded-2xl p-8 text-center">
             <p className="text-4xl mb-4">✅</p>
-            <p className="text-white font-bold text-lg mb-2">You're One Step Closer!</p>
-            <p className="text-gray-400 text-sm">Thank you for reaching out. Jasmeet will be in touch within 24 hours to schedule your strategy call.</p>
+            <p className="text-white font-bold text-lg mb-2">Message Received</p>
+            <p className="text-gray-400 text-sm">Thank you for reaching out. Jasmeet will be in touch within 24 hours to schedule your introductory call.</p>
             <button onClick={() => setStatus("idle")} className="mt-6 text-[#8B5CF6] text-sm font-semibold hover:underline">Send another message</button>
           </div>
         ) : (
           <form onSubmit={submit} className="flex flex-col gap-4 max-w-md mx-auto text-left">
-            <input required value={form.name} onChange={e => setForm(f => ({...f,name:e.target.value}))} placeholder="Your full name"
+            <input required value={form.name} onChange={e => setForm(f => ({...f, name: e.target.value}))} placeholder="Your full name"
               className="bg-white/5 border border-white/10 hover:border-white/20 focus:border-[#7C3AED] text-white placeholder-gray-600 rounded-xl px-5 py-3.5 text-sm outline-none transition-colors"/>
-            <input required type="email" value={form.email} onChange={e => setForm(f => ({...f,email:e.target.value}))} placeholder="Your email address"
+            <input required type="email" value={form.email} onChange={e => setForm(f => ({...f, email: e.target.value}))} placeholder="Your email address"
               className="bg-white/5 border border-white/10 hover:border-white/20 focus:border-[#7C3AED] text-white placeholder-gray-600 rounded-xl px-5 py-3.5 text-sm outline-none transition-colors"/>
-            <textarea required rows={4} value={form.message} onChange={e => setForm(f => ({...f,message:e.target.value}))} placeholder="What's your biggest career challenge right now?"
+            <textarea required rows={4} value={form.message} onChange={e => setForm(f => ({...f, message: e.target.value}))} placeholder="Tell me what's making the career conversation difficult in your family right now..."
               className="bg-white/5 border border-white/10 hover:border-white/20 focus:border-[#7C3AED] text-white placeholder-gray-600 rounded-xl px-5 py-3.5 text-sm outline-none transition-colors resize-none"/>
             {status === "error" && <p className="text-red-400 text-xs">Something went wrong. Please try again.</p>}
-            <button type="submit" disabled={status==="loading"}
+            <button type="submit" disabled={status === "loading"}
               className="flex items-center justify-center gap-2 bg-[#7C3AED] hover:bg-[#6D28D9] text-white font-bold py-4 rounded-xl transition-colors mt-2 disabled:opacity-60">
-              {status==="loading" ? "Sending…" : <>{c(cm,"contact","cta_text","Book My Free Strategy Call")} <ArrowRight/></>}
+              {status === "loading" ? "Sending…" : <>{c(cm,"contact","cta_text","Book My Free Introductory Call")} <ArrowRight/></>}
             </button>
-            <p className="text-center text-gray-600 text-xs">{c(cm,"contact","guarantee","100% free. No sales pitch. Just an honest conversation about your future.")}</p>
+            <p className="text-center text-gray-600 text-xs">
+              {c(cm,"contact","guarantee","Free call. No obligation. Just clarity on whether this is the right next step for your family.")}
+            </p>
           </form>
         )}
       </div>
@@ -634,13 +707,15 @@ function Contact({ cm }: { cm: ContentMap }) {
 
 /* ── Footer ─────────────────────────────────────────────── */
 function Footer({ cm }: { cm: ContentMap }) {
-  const links = ["Home","About","Services","Success Stories","Blog"];
+  const links = ["Home","About","How It Works","Success Stories","Blog"];
   return (
     <footer className="bg-white relative overflow-hidden border-t border-gray-100">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         <div className="py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-8 border-b border-gray-100">
           <div className="flex flex-wrap gap-6">
-            {links.map(l => <a key={l} href={`#${l.toLowerCase().replace(/ /g,"-")}`} className="text-sm text-gray-600 hover:text-gray-900 transition-colors">{l}</a>)}
+            {links.map(l => (
+              <a key={l} href={`#${l.toLowerCase().replace(/ /g,"-")}`} className="text-sm text-gray-600 hover:text-gray-900 transition-colors">{l}</a>
+            ))}
           </div>
           <div className="flex items-center gap-6">
             <a href={`mailto:${c(cm,"footer","email","hello@jasmeetchandhok.com")}`} className="text-sm text-gray-500 hover:text-gray-800 transition-colors flex items-center gap-1.5">
@@ -648,11 +723,11 @@ function Footer({ cm }: { cm: ContentMap }) {
             </a>
             <div className="flex gap-2">
               {[
-                { icon:<LinkedInIcon/>,   href:c(cm,"footer","linkedin_url","https://www.linkedin.com/in/jasmeetchandhok") },
-                { icon:<InstagramIcon/>,  href:c(cm,"footer","instagram_url","https://www.instagram.com/jasmeetchandhok.ai") },
-                { icon:<FacebookIcon/>,   href:c(cm,"footer","facebook_url","#") },
-                { icon:<TwitterIcon/>,    href:c(cm,"footer","twitter_url","#")  },
-              ].map((s,i) => (
+                { icon: <LinkedInIcon/>,  href: c(cm,"footer","linkedin_url","https://www.linkedin.com/in/jasmeetchandhok") },
+                { icon: <InstagramIcon/>, href: c(cm,"footer","instagram_url","https://www.instagram.com/jasmeetchandhok.ai") },
+                { icon: <FacebookIcon/>,  href: c(cm,"footer","facebook_url","#") },
+                { icon: <TwitterIcon/>,   href: c(cm,"footer","twitter_url","#") },
+              ].map((s, i) => (
                 <a key={i} href={s.href} className="w-8 h-8 rounded-full border border-gray-200 hover:border-[#7C3AED] hover:text-[#7C3AED] flex items-center justify-center text-gray-500 transition-colors">{s.icon}</a>
               ))}
             </div>
@@ -691,7 +766,6 @@ export default function Page() {
     <>
       <Navbar cm={cm}/>
       <Hero cm={cm}/>
-      <Partners/>
       <Problem cm={cm}/>
       <About cm={cm}/>
       <Services cm={cm}/>
