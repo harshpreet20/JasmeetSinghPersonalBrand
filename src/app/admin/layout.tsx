@@ -7,6 +7,7 @@ import type { User } from "@supabase/supabase-js";
 
 const NAV = [
   { href: "/admin",             icon: "▦",  label: "Dashboard"       },
+  { href: "/admin/blog",        icon: "✍️", label: "Blog"            },
   { href: "/admin/content",     icon: "✏",  label: "Content Editor"  },
   { href: "/admin/contacts",    icon: "👥", label: "Contacts"        },
   { href: "/admin/submissions", icon: "📋", label: "Submissions"     },
