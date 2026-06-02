@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import dynamic from "next/dynamic";
-
-const ChatWidget = dynamic(() => import("@/components/ChatWidget"), { ssr: false });
+import ChatWidgetLoader from "@/components/ChatWidgetLoader";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -54,7 +52,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen antialiased">
         {children}
-        <ChatWidget />
+        <ChatWidgetLoader />
       </body>
     </html>
   );

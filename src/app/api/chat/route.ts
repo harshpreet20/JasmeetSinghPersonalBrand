@@ -4,13 +4,15 @@ import { createClient } from '@supabase/supabase-js'
 
 const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+function getSupabase() {
+  return createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
+  )
+}
 
 async function buildSystemPrompt(): Promise<string> {
-  const { data: knowledge } = await supabase
+  const { data: knowledge } = await getSupabase()
     .from('chatbot_knowledge')
     .select('category, title, content')
     .eq('is_active', true)
@@ -60,7 +62,7 @@ export async function POST(req: NextRequest) {
     const reply = response.content[0].type === 'text' ? response.content[0].text : ''
 
     if (sessionToken) {
-      const { data: existing } = await supabase
+      const { data: existing } = await getSupabase()
         .from('chat_sessions')
         .select('id, messages')
         .eq('session_token', sessionToken)
@@ -73,12 +75,12 @@ export async function POST(req: NextRequest) {
       ]
 
       if (existing) {
-        await supabase
+        await getSupabase()
           .from('chat_sessions')
           .update({ messages: updatedMessages, ...(visitorMeta || {}) })
           .eq('session_token', sessionToken)
       } else {
-        await supabase.from('chat_sessions').insert({
+        await getSupabase().from('chat_sessions').insert({
           session_token: sessionToken,
           messages: updatedMessages,
           page_url: visitorMeta?.pageUrl,
