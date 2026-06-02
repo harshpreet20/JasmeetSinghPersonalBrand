@@ -28,10 +28,7 @@ function Navbar({ cm }: { cm: ContentMap }) {
     <nav className="fixed top-0 inset-x-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 h-16 flex items-center justify-between">
         <a href="#home" className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-full bg-[#7C3AED] flex items-center justify-center">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-          </div>
-          <span className="font-bold text-[17px] text-gray-900 tracking-tight">{c(cm,"navbar","brand_name","Jasmeet Singh")}</span>
+          <img src="/jc.png" alt="Jasmeet Singh" className="h-9 w-auto object-contain"/>
         </a>
         <div className="hidden md:flex items-center gap-7">
           {links.map(l => (
@@ -233,28 +230,27 @@ function About({ cm }: { cm: ContentMap }) {
               <span className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center ml-1"><ArrowRight size={13}/></span>
             </a>
           </div>
-          <div className="relative h-[560px]">
-            <div className="absolute left-0 top-0 w-[260px] h-[380px] rounded-2xl overflow-hidden shadow-xl">
-              <img src={c(cm,"about","photo_1","/Z24A9117.jpg")} alt="Jasmeet Singh" className="w-full h-full object-cover"/>
+          <div className="relative flex justify-center lg:justify-end">
+            {/* Decorative background shape */}
+            <div className="absolute -top-6 -right-6 w-72 h-[520px] rounded-3xl bg-[#F3EFFF]"/>
+            {/* Main portrait */}
+            <div className="relative w-72 h-[500px] rounded-3xl overflow-hidden shadow-2xl">
+              <img
+                src={c(cm,"about","photo_1","/Z24A9117.jpg")}
+                alt="Jasmeet Singh"
+                className="w-full h-full object-cover object-top"
+              />
             </div>
-            <div className="absolute right-0 bottom-0 w-[220px] h-[300px] rounded-2xl overflow-hidden shadow-xl">
-              <img src={c(cm,"about","photo_2","/Z24A8994 copy.jpg")} alt="Coaching session" className="w-full h-full object-cover"/>
+            {/* Credential badge — bottom left */}
+            <div className="absolute bottom-6 -left-4 bg-[#7C3AED] rounded-2xl px-5 py-4 shadow-xl text-white z-10">
+              <p className="text-3xl font-extrabold leading-none">{c(cm,"about","experience_years","800+")}</p>
+              <p className="text-[11px] text-purple-200 mt-1 font-medium">Families Guided</p>
             </div>
-            <div className="absolute right-2 top-8 w-52 bg-white rounded-2xl shadow-2xl border border-gray-100 p-4 z-10">
-              <div className="flex items-center gap-1.5 mb-2">
-                <span className="text-xs font-semibold text-[#7C3AED] bg-[#7C3AED]/10 px-2.5 py-0.5 rounded-full">🌏 India & Global</span>
-              </div>
-              <p className="font-extrabold text-gray-900 text-sm mb-1">{c(cm,"about","badge_text","Roots & Wings Philosophy")}</p>
-              <p className="text-[11px] text-gray-500 leading-relaxed">Every child deserves the security of family support and the freedom to fly toward a life that is genuinely their own.</p>
-            </div>
-            <div className="absolute right-0 top-[340px] flex flex-col gap-1.5">
-              <div className="w-2 h-6 bg-[#7C3AED] rounded-full"/>
-              <div className="w-2 h-2 bg-gray-200 rounded-full"/>
-              <div className="w-2 h-2 bg-gray-200 rounded-full"/>
-            </div>
-            <div className="absolute left-0 bottom-10 bg-[#7C3AED] rounded-2xl p-4 shadow-xl text-white">
-              <p className="text-2xl font-extrabold leading-none">{c(cm,"about","experience_years","800+")}</p>
-              <p className="text-[11px] text-purple-200 mt-0.5">Families Guided</p>
+            {/* Philosophy badge — top right */}
+            <div className="absolute top-6 -right-4 w-52 bg-white rounded-2xl shadow-xl border border-gray-100 p-4 z-10">
+              <span className="text-xs font-semibold text-[#7C3AED] bg-[#7C3AED]/10 px-2.5 py-0.5 rounded-full inline-block mb-2">🌏 India & Global</span>
+              <p className="font-extrabold text-gray-900 text-sm mb-1">{c(cm,"about","badge_text","Roots & Wings")}</p>
+              <p className="text-[11px] text-gray-500 leading-relaxed">Security of family support. Freedom to fly toward a life genuinely their own.</p>
             </div>
           </div>
         </div>
@@ -316,7 +312,7 @@ function Services({ cm }: { cm: ContentMap }) {
           {cards.map(s => (
             <div key={s.title} className={`rounded-2xl overflow-hidden flex flex-col transition-transform hover:-translate-y-1.5 cursor-pointer shadow-sm hover:shadow-xl ${s.dark ? "bg-[#1A0A3E]" : "bg-white border border-gray-200"}`}>
               <div className="h-44 overflow-hidden relative">
-                <img src={s.img} alt={s.title} className="w-full h-full object-cover"/>
+                <img src={s.img} alt={s.title} className="w-full h-full object-cover object-top"/>
                 {s.dark && <div className="absolute inset-0 bg-[#1A0A3E]/40"/>}
               </div>
               <div className="p-5 flex flex-col flex-1">
@@ -394,7 +390,7 @@ function Process({ cm }: { cm: ContentMap }) {
             </div>
           </div>
           <div className="relative rounded-3xl overflow-hidden shadow-2xl h-[480px]">
-            <img src={c(cm,"process","photo","/Z24A8994 copy.jpg")} alt="Family coaching session" className="w-full h-full object-cover"/>
+            <img src={c(cm,"process","photo","/Z24A8994 copy.jpg")} alt="Family coaching session" className="w-full h-full object-cover object-top"/>
             <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent"/>
             <div className="absolute bottom-6 left-6 right-6">
               <p className="text-white font-bold text-lg leading-snug">
@@ -712,10 +708,13 @@ function Footer({ cm }: { cm: ContentMap }) {
     <footer className="bg-white relative overflow-hidden border-t border-gray-100">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         <div className="py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-8 border-b border-gray-100">
-          <div className="flex flex-wrap gap-6">
-            {links.map(l => (
-              <a key={l} href={`#${l.toLowerCase().replace(/ /g,"-")}`} className="text-sm text-gray-600 hover:text-gray-900 transition-colors">{l}</a>
-            ))}
+          <div className="flex flex-col gap-5">
+            <a href="#home"><img src="/jc.png" alt="Jasmeet Singh" className="h-10 w-auto object-contain"/></a>
+            <div className="flex flex-wrap gap-6">
+              {links.map(l => (
+                <a key={l} href={`#${l.toLowerCase().replace(/ /g,"-")}`} className="text-sm text-gray-600 hover:text-gray-900 transition-colors">{l}</a>
+              ))}
+            </div>
           </div>
           <div className="flex items-center gap-6">
             <a href={`mailto:${c(cm,"footer","email","hello@jasmeetchandhok.com")}`} className="text-sm text-gray-500 hover:text-gray-800 transition-colors flex items-center gap-1.5">
