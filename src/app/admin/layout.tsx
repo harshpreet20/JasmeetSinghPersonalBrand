@@ -29,7 +29,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const [loadingAuth, setLoadingAuth] = useState(true);
   const supabase = createClient();
 
+  const isLoginPage = path === "/admin/login";
+
   useEffect(() => {
+    if (isLoginPage) return;
     supabase.auth.getUser().then(({ data }) => {
       setUser(data.user);
       setLoadingAuth(false);
@@ -38,12 +41,17 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       setUser(session?.user ?? null);
     });
     return () => subscription.unsubscribe();
-  }, []);
+  }, [isLoginPage]);
 
   const signOut = async () => {
     await supabase.auth.signOut();
     router.replace("/admin/login");
   };
+
+  // Render login page without the sidebar shell
+  if (isLoginPage) {
+    return <>{children}</>
+  }
 
   if (loadingAuth) {
     return (
