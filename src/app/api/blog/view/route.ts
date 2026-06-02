@@ -9,7 +9,23 @@ function getSupabase() {
 }
 
 export async function POST(req: NextRequest) {
-  const { slug } = await req.json()
-  try { await getSupabase().rpc('increment_blog_view', { blog_slug: slug }) } catch { /* RPC may not exist */ }
-  return NextResponse.json({ ok: true })
+  try {
+    const { slug } = await req.json()
+
+    // Validate slug format
+    if (!slug || typeof slug !== 'string' || slug.length > 255) {
+      return NextResponse.json({ error: 'Invalid slug' }, { status: 400 })
+    }
+
+    // Sanitize slug - allow only alphanumeric, hyphens, underscores
+    if (!/^[a-z0-9_-]+$/i.test(slug)) {
+      return NextResponse.json({ error: 'Invalid slug format' }, { status: 400 })
+    }
+
+    await getSupabase().rpc('increment_blog_view', { blog_slug: slug })
+    return NextResponse.json({ ok: true })
+  } catch (error) {
+    console.error('Blog view error:', error)
+    return NextResponse.json({ error: 'Failed to record view' }, { status: 500 })
+  }
 }

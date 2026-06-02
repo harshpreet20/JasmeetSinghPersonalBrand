@@ -12,8 +12,27 @@ export async function POST(req: NextRequest) {
   try {
     const { blogId, keyword, contentHtml, metaTitle, metaDescription } = await req.json()
 
-    if (!keyword || !contentHtml) {
-      return NextResponse.json({ error: 'keyword and contentHtml are required' }, { status: 400 })
+    // Validate required fields
+    if (!keyword || typeof keyword !== 'string' || keyword.length > 255 || keyword.trim().length === 0) {
+      return NextResponse.json({ error: 'Invalid keyword' }, { status: 400 })
+    }
+
+    if (!contentHtml || typeof contentHtml !== 'string' || contentHtml.length > 100000 || contentHtml.trim().length === 0) {
+      return NextResponse.json({ error: 'Invalid contentHtml' }, { status: 400 })
+    }
+
+    // Validate optional fields
+    if (metaTitle && (typeof metaTitle !== 'string' || metaTitle.length > 255)) {
+      return NextResponse.json({ error: 'Invalid metaTitle' }, { status: 400 })
+    }
+
+    if (metaDescription && (typeof metaDescription !== 'string' || metaDescription.length > 255)) {
+      return NextResponse.json({ error: 'Invalid metaDescription' }, { status: 400 })
+    }
+
+    // Validate blogId if provided
+    if (blogId && (typeof blogId !== 'string' && typeof blogId !== 'number')) {
+      return NextResponse.json({ error: 'Invalid blogId' }, { status: 400 })
     }
 
     const response = await fetch('https://api.searchintel.ai/api/n8n/analyze', {

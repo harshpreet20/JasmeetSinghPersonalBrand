@@ -8,9 +8,44 @@ function getSupabase() {
   )
 }
 
+function validateEmail(email: string): boolean {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  return typeof email === 'string' && emailRegex.test(email) && email.length <= 255
+}
+
+function validatePhone(phone: string): boolean {
+  const phoneRegex = /^[0-9+\-\s()]{6,20}$/
+  return typeof phone === 'string' && phoneRegex.test(phone) && phone.length <= 20
+}
+
+function validateName(name: string): boolean {
+  return typeof name === 'string' && name.length >= 2 && name.length <= 255
+}
+
 export async function POST(req: NextRequest) {
   try {
     const { name, email, phone, sessionToken, problemSummary } = await req.json()
+
+    // Validate required fields
+    if (!validateName(name)) {
+      return NextResponse.json({ error: 'Invalid name' }, { status: 400 })
+    }
+    if (!validateEmail(email)) {
+      return NextResponse.json({ error: 'Invalid email' }, { status: 400 })
+    }
+    if (!validatePhone(phone)) {
+      return NextResponse.json({ error: 'Invalid phone' }, { status: 400 })
+    }
+
+    // Validate problemSummary if provided
+    if (problemSummary && (typeof problemSummary !== 'string' || problemSummary.length > 2000)) {
+      return NextResponse.json({ error: 'Invalid problem summary' }, { status: 400 })
+    }
+
+    // Validate sessionToken if provided
+    if (sessionToken && (typeof sessionToken !== 'string' || sessionToken.length > 255)) {
+      return NextResponse.json({ error: 'Invalid sessionToken' }, { status: 400 })
+    }
 
     const { data: lead } = await getSupabase()
       .from('form_submissions')

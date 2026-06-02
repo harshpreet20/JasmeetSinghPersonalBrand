@@ -50,6 +50,25 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Invalid messages' }, { status: 400 })
     }
 
+    // Validate message format and content
+    if (messages.length === 0) {
+      return NextResponse.json({ error: 'Messages array cannot be empty' }, { status: 400 })
+    }
+
+    for (const msg of messages) {
+      if (!msg.role || !msg.content || typeof msg.content !== 'string') {
+        return NextResponse.json({ error: 'Invalid message format' }, { status: 400 })
+      }
+      if (msg.content.length > 10000) {
+        return NextResponse.json({ error: 'Message too long' }, { status: 400 })
+      }
+    }
+
+    // Validate sessionToken if provided
+    if (sessionToken && (typeof sessionToken !== 'string' || sessionToken.length > 255)) {
+      return NextResponse.json({ error: 'Invalid sessionToken' }, { status: 400 })
+    }
+
     const systemPrompt = await buildSystemPrompt()
 
     const response = await anthropic.messages.create({
