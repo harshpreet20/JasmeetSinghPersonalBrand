@@ -15,6 +15,9 @@ const NAV = [
   { href: "/admin/webhooks",    icon: "🔗", label: "Webhooks"        },
   { href: "/admin/templates",   icon: "📧", label: "Email Templates" },
   { href: "/admin/analytics",   icon: "📊", label: "Analytics"       },
+  { href: "/admin/leads",       icon: "🎯", label: "Leads"           },
+  { href: "/admin/chats",       icon: "💬", label: "Chats"           },
+  { href: "/admin/knowledge",   icon: "🧠", label: "Knowledge Base"  },
 ];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
