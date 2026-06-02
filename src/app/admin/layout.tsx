@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { createClient } from "@/lib/supabase-browser";
@@ -67,10 +68,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       <aside className={`flex-shrink-0 bg-[#0A0A0F] flex flex-col transition-all duration-200 ${collapsed ? "w-[60px]" : "w-56"}`}>
         {/* Logo */}
         <div className="h-16 flex items-center gap-2.5 px-3 border-b border-white/[0.06] flex-shrink-0">
-          <div className="w-8 h-8 rounded-xl bg-[#7C3AED] flex items-center justify-center flex-shrink-0 shadow-lg shadow-purple-900/40">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          <div className="w-8 h-8 rounded-xl overflow-hidden flex-shrink-0 bg-white/5 border border-white/10">
+            <Image src="/jc.png" alt="JC" width={32} height={32} className="object-contain w-full h-full" />
           </div>
-          {!collapsed && <span className="text-white font-bold text-[13px] tracking-tight truncate">BrandElevate</span>}
+          {!collapsed && <span className="text-white font-bold text-[13px] tracking-tight truncate">Jasmeet Chandhok</span>}
           <button onClick={() => setCollapsed(c => !c)} className="ml-auto text-white/20 hover:text-white/60 transition-colors flex-shrink-0 text-xs p-1">
             {collapsed ? "›" : "‹"}
           </button>

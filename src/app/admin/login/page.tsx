@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase-browser";
 import { Suspense } from "react";
+import Image from "next/image";
 
 function LoginForm() {
   const router = useRouter();
@@ -63,21 +64,18 @@ function LoginForm() {
 
   return (
     <div className="min-h-screen bg-[#0A0A10] flex items-center justify-center p-4">
-      {/* Background glow */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#7C3AED]/20 rounded-full blur-3xl" />
       </div>
 
       <div className="relative w-full max-w-md">
-        {/* Logo */}
+        {/* Logo & name */}
         <div className="text-center mb-8">
-          <div className="w-14 h-14 rounded-2xl bg-[#7C3AED] flex items-center justify-center mx-auto mb-4 shadow-xl shadow-purple-900/40">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
-              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-            </svg>
+          <div className="w-16 h-16 rounded-2xl overflow-hidden flex items-center justify-center mx-auto mb-4 shadow-xl shadow-purple-900/40 bg-white/5 border border-white/10">
+            <Image src="/jc.png" alt="JC" width={64} height={64} className="object-contain" />
           </div>
-          <h1 className="text-2xl font-extrabold text-white tracking-tight">BrandElevate</h1>
-          <p className="text-gray-500 text-sm mt-1">Admin & CRM</p>
+          <h1 className="text-2xl font-extrabold text-white tracking-tight">Jasmeet Chandhok</h1>
+          <p className="text-gray-500 text-sm mt-1">Career Counsellor · Admin Portal</p>
         </div>
 
         {/* Card */}
@@ -101,7 +99,7 @@ function LoginForm() {
               </label>
               <input
                 type="email" required value={email} onChange={e => setEmail(e.target.value)}
-                placeholder="admin@jasmeetsingh.com"
+                placeholder="jasmeet@jasmeetchandhok.com"
                 className="w-full bg-white/5 border border-white/10 focus:border-[#7C3AED] text-white placeholder-gray-600 rounded-xl px-4 py-3.5 text-sm outline-none transition-colors"
               />
             </div>
