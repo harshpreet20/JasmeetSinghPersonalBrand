@@ -36,7 +36,7 @@ function Navbar({ cm }: { cm: ContentMap }) {
           ))}
         </div>
         <a href="#contact" className="hidden md:inline-flex items-center gap-2 bg-[#0A0A0F] hover:bg-gray-800 text-white text-[13px] font-semibold px-5 py-2.5 rounded-full transition-colors">
-          {c(cm,"navbar","cta_text","Book a Family Session")}
+          {c(cm,"navbar","cta_text","Book a Free Call")}
         </a>
         <button onClick={() => setOpen(!open)} className="md:hidden p-2 flex flex-col gap-1.5" aria-label="Toggle menu">
           <span className={`block w-5 h-0.5 bg-gray-800 transition-all origin-center ${open?"rotate-45 translate-y-2":""}`}/>
@@ -50,7 +50,7 @@ function Navbar({ cm }: { cm: ContentMap }) {
             <a key={l} href={`#${l.toLowerCase().replace(/ /g,"-")}`} onClick={() => setOpen(false)} className="text-sm font-medium text-gray-700 hover:text-[#7C3AED]">{l}</a>
           ))}
           <a href="#contact" onClick={() => setOpen(false)} className="inline-flex items-center gap-2 bg-[#0A0A0F] text-white text-sm font-semibold px-5 py-2.5 rounded-full w-fit mt-2">
-            {c(cm,"navbar","cta_text","Book a Family Session")}
+            {c(cm,"navbar","cta_text","Book a Free Call")}
           </a>
         </div>
       )}
@@ -61,10 +61,10 @@ function Navbar({ cm }: { cm: ContentMap }) {
 /* ── Hero ───────────────────────────────────────────────── */
 function Hero({ cm }: { cm: ContentMap }) {
   const stats = [
-    { num: c(cm,"hero","stat1_value","800+"),  label: c(cm,"hero","stat1_label","Families Guided"), icon: "🏠" },
-    { num: c(cm,"hero","stat2_value","India & Global"), label: c(cm,"hero","stat2_label","Families Served"), icon: "🌏" },
-    { num: c(cm,"hero","stat3_value","Certified"),      label: c(cm,"hero","stat3_label","Psychometric Practitioner"), icon: "✅" },
-    { num: c(cm,"hero","stat4_value","Zero"),           label: c(cm,"hero","stat4_label","Families Left Stuck"), icon: "💜" },
+    { num: c(cm,"hero","stat1_value","800+"),  label: c(cm,"hero","stat1_label","Families Helped"), icon: "🏠" },
+    { num: c(cm,"hero","stat2_value","Class 8–12"), label: c(cm,"hero","stat2_label","Students Served"), icon: "🌏" },
+    { num: c(cm,"hero","stat3_value","Certified"),      label: c(cm,"hero","stat3_label","Psychometric Tools"), icon: "✅" },
+    { num: c(cm,"hero","stat4_value","Both"),           label: c(cm,"hero","stat4_label","Parent & Child Attend"), icon: "💜" },
   ];
   return (
     <section id="home" className="relative min-h-screen flex flex-col">
@@ -88,19 +88,19 @@ function Hero({ cm }: { cm: ContentMap }) {
             </span>
           </div>
           <h1 className="text-5xl md:text-[62px] lg:text-[70px] font-extrabold text-white leading-[1.06] tracking-tight mb-6">
-            {c(cm,"hero","headline_line1","Your child has a future.")}<br/>
-            <span className="text-[#A78BFA]">{c(cm,"hero","headline_line2","Your family deserves to agree on it.")}</span>
+            {c(cm,"hero","headline_line1","Your child wants one thing.")}<br/>
+            <span className="text-[#A78BFA]">{c(cm,"hero","headline_line2","You want something safe. Let's end the fight.")}</span>
           </h1>
           <p className="text-gray-300 text-base md:text-lg leading-relaxed mb-10 max-w-lg">
-            {c(cm,"hero","subtext","I help Indian teenagers and their parents move from circular arguments and silent tension — to a shared, grounded direction that everyone can trust.")}
+            {c(cm,"hero","subtext","Jasmeet Singh helps Indian families turn career confusion into a plan everyone agrees on — using certified tools, not opinions.")}
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <a href="#contact" className="inline-flex items-center justify-center gap-2.5 bg-[#7C3AED] hover:bg-[#6D28D9] text-white text-sm font-bold px-7 py-3.5 rounded-full transition-all shadow-lg shadow-purple-900/40">
-              {c(cm,"hero","cta_primary","Book a Family Session")}
+              {c(cm,"hero","cta_primary","Book a Free Clarity Call")}
               <span className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center"><ArrowRight size={14}/></span>
             </a>
             <a href="#how-it-works" className="inline-flex items-center justify-center gap-2.5 border border-white/30 hover:border-white/60 hover:bg-white/5 text-white text-sm font-semibold px-7 py-3.5 rounded-full transition-all">
-              {c(cm,"hero","cta_secondary","See How It Works")}
+              {c(cm,"hero","cta_secondary","See how it works")}
             </a>
           </div>
         </div>
@@ -130,20 +130,20 @@ function Problem({ cm }: { cm: ContentMap }) {
     {
       who: "For the Parent",
       icon: "👨‍👩‍👧",
-      title: c(cm,"problem","p1_title","You want the best for your child — but they won't listen"),
-      desc: c(cm,"problem","p1_desc","You've sacrificed so much to give them options you never had. You're not asking for control — you're asking for a seat at the table. But every conversation ends in frustration, silence, or tears. You wonder if you're losing them."),
+      title: c(cm,"problem","p1_title","You want security. They say you don't understand them."),
+      desc: c(cm,"problem","p1_desc","You've seen what happens when people follow passion without a plan. You're not the villain — you're the one who has to pay the fees. But they won't hear it."),
     },
     {
       who: "For the Teenager",
       icon: "🧑‍🎓",
-      title: c(cm,"problem","p2_title","You know what you feel — but can't make your family understand"),
-      desc: c(cm,"problem","p2_desc","You're not being irresponsible. You have genuine interests and real ambitions. But the moment you bring them up, it becomes a debate about stability, rankings, and what the relatives will say. You feel unseen."),
+      title: c(cm,"problem","p2_title","They know what they feel. They can't make you trust it."),
+      desc: c(cm,"problem","p2_desc","Your child doesn't want to be forced into something they'll hate for 40 years. But they can't explain why to you without it turning into a fight. So they go quiet."),
     },
     {
       who: "For the Family",
       icon: "🔄",
-      title: c(cm,"problem","p3_title","The conversation keeps going in circles"),
-      desc: c(cm,"problem","p3_desc","Nobody is wrong here. But nobody has a shared language for this decision either. And without that, even the most caring families find themselves stuck — repeating the same arguments, growing further apart, while the deadline gets closer."),
+      title: c(cm,"problem","p3_title","So nothing gets decided. And the deadline gets closer."),
+      desc: c(cm,"problem","p3_desc","Class 10 results come. Class 12 comes. And you're still arguing. That's not a career problem — it's a communication problem with a career-shaped hole in the middle."),
     },
   ];
   return (
@@ -156,7 +156,7 @@ function Problem({ cm }: { cm: ContentMap }) {
             <span className="w-8 h-px bg-gray-700 block"/>
           </div>
           <h2 className="text-[36px] md:text-[48px] font-extrabold text-white leading-tight mb-5">
-            {c(cm,"problem","heading","Bright child. Caring parents. A conversation that keeps going nowhere.")}
+            {c(cm,"problem","heading","The same argument. Every day. No resolution.")}
           </h2>
           <p className="text-gray-400 text-[15px] leading-relaxed">
             {c(cm,"problem","subtext","It's not a failure of love. It's the absence of a shared framework — and that's exactly what I provide.")}
@@ -265,28 +265,28 @@ function Services({ cm }: { cm: ContentMap }) {
     {
       tag:   c(cm,"services","card1_date","Most Requested"),
       title: c(cm,"services","card1_title","Family Alignment Session"),
-      desc:  c(cm,"services","card1_desc","A structured session with the teenager and parents together. Using certified psychometric tools and guided conversation, we create a shared language for the career decision — so the family leaves aligned, not just compromised."),
+      desc:  c(cm,"services","card1_desc","90 minutes. Both parent and child in the room. You leave with a shortlist of careers you both agree on — backed by data, not guessing."),
       img:   c(cm,"services","card1_img","/Z24A9117.jpg"),
       dark:  true,
     },
     {
       tag:   c(cm,"services","card2_date","For Teenagers"),
       title: c(cm,"services","card2_title","Career Clarity Programme"),
-      desc:  c(cm,"services","card2_desc","A personalised deep-dive for the student: psychometric assessment, strengths mapping, career pathway exploration, and a grounded action plan — built around who they actually are, not who others expect them to be."),
+      desc:  c(cm,"services","card2_desc","4 sessions for your child alone. Psychometric assessments, aptitude mapping, interest profiling. They discover what they're actually good at — including options most families never considered."),
       img:   c(cm,"services","card2_img","https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&q=80"),
       dark:  false,
     },
     {
       tag:   c(cm,"services","card3_date","For Parents"),
       title: c(cm,"services","card3_title","Parent Coaching Session"),
-      desc:  c(cm,"services","card3_desc","A dedicated session for parents to process their own fears and hopes, understand today's career landscape with clarity, and learn how to guide — not push — their child toward a future they can both be proud of."),
+      desc:  c(cm,"services","card3_desc","60 minutes for you alone. Learn how to have this conversation without it becoming a fight. Understand your child's signals. Stop accidentally making it worse."),
       img:   c(cm,"services","card3_img","https://images.unsplash.com/photo-1609220136736-443140cffec6?w=600&q=80"),
       dark:  false,
     },
     {
-      tag:   c(cm,"services","card4_date","Ongoing Support"),
-      title: c(cm,"services","card4_title","Continued Guidance Programme"),
-      desc:  c(cm,"services","card4_desc","For families who want sustained support through the decision, application, and transition process. Regular check-ins, course corrections, and a trusted advisor beside you at every step of the journey."),
+      tag:   c(cm,"services","card4_date","Ongoing"),
+      title: c(cm,"services","card4_title","Continued Guidance"),
+      desc:  c(cm,"services","card4_desc","Monthly support as things evolve. Stream selection after Class 10, college applications, peer pressure, entrance strategy. Stay aligned as the stakes get higher."),
       img:   c(cm,"services","card4_img","https://images.unsplash.com/photo-1573497620053-ea5300f94f21?w=600&q=80"),
       dark:  false,
     },
@@ -305,7 +305,7 @@ function Services({ cm }: { cm: ContentMap }) {
             </h2>
           </div>
           <p className="text-gray-600 text-[15px] leading-relaxed max-w-xs">
-            {c(cm,"services","subtext","Whether we start with the family together, the teenager alone, or the parents — every session moves toward the same goal: a decision the whole family can stand behind.")}
+            {c(cm,"services","subtext","Every session is built around your family's actual situation — not a generic checklist.")}
           </p>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 mb-12">
@@ -328,7 +328,7 @@ function Services({ cm }: { cm: ContentMap }) {
         </div>
         <div className="flex justify-center">
           <a href="#contact" className="inline-flex items-center gap-2.5 bg-[#7C3AED] hover:bg-[#6D28D9] text-white text-sm font-semibold px-8 py-3.5 rounded-full transition-colors">
-            {c(cm,"services","cta_text","Book a Session")} <ArrowRight size={14}/>
+            {c(cm,"services","cta_text","Book a Free Clarity Call")} <ArrowRight size={14}/>
           </a>
         </div>
       </div>
@@ -341,20 +341,20 @@ function Process({ cm }: { cm: ContentMap }) {
   const [active, setActive] = useState(0);
   const steps = [
     {
-      title: c(cm,"process","step1_title","Step 1: Listen — to everyone in the room"),
+      title: c(cm,"process","step1_title","Step 1: Listen — First session is entirely about hearing what both sides actually want, without judgment."),
       body:  c(cm,"process","step1_body","Before any advice is given, every voice in the family is heard. I create a structured space where the teenager feels safe to speak honestly, and the parents feel respected — not sidelined. Often, this alone shifts something."),
     },
     {
-      title: c(cm,"process","step2_title","Step 2: Illuminate — using certified psychometric tools"),
-      body:  c(cm,"process","step2_body","We use validated psychometric assessments to surface the teenager's natural strengths, personality, interests, and values. This gives the family objective data to build on — not just opinions and feelings. It shifts the conversation from debate to discovery."),
+      title: c(cm,"process","step2_title","Step 2: Illuminate — Psychometric tools reveal what the child is genuinely suited for. Not what they said under pressure."),
+      body:  c(cm,"process","step2_body","We use validated psychometric assessments to surface the teenager's natural strengths, personality, interests, and values. This gives the family objective data to build on — not just opinions and feelings."),
     },
     {
-      title: c(cm,"process","step3_title","Step 3: Align — build a shared framework"),
-      body:  c(cm,"process","step3_body","With clarity on the table, we map real-world career pathways — growth prospects, required preparation, alternative routes — through the lens of both the child's strengths and the family's genuine concerns. We find the intersection, not the compromise."),
+      title: c(cm,"process","step3_title","Step 3: Align — Structured facilitation brings parent and child to a common language and a shared decision."),
+      body:  c(cm,"process","step3_body","With clarity on the table, we map real-world career pathways through the lens of both the child's strengths and the family's genuine concerns. We find the intersection, not the compromise."),
     },
     {
-      title: c(cm,"process","step4_title","Step 4: Move — leave with a plan, not just a feeling"),
-      body:  c(cm,"process","step4_body","Every family leaves with a concrete next step: a shortlist of aligned career directions, a preparation roadmap, and the shared language to continue the conversation without it becoming a conflict. The goal is not to have the answer — it's to know how to find it, together."),
+      title: c(cm,"process","step4_title","Step 4: Move — Concrete next steps. Which streams. Which colleges. Which entrance exams. A real plan."),
+      body:  c(cm,"process","step4_body","Every family leaves with a concrete next step: a shortlist of aligned career directions, a preparation roadmap, and the shared language to continue the conversation without it becoming a conflict."),
     },
   ];
   return (
@@ -364,7 +364,7 @@ function Process({ cm }: { cm: ContentMap }) {
           <div>
             <div className="flex items-center justify-between mb-12">
               <h2 className="text-[36px] md:text-[44px] font-extrabold text-gray-900 leading-tight">
-                {c(cm,"process","heading","How a Family Goes from Conflict to Clarity")}
+                {c(cm,"process","heading","Four steps. Zero guesswork.")}
               </h2>
               <a href="#contact" className="hidden sm:inline-flex items-center gap-2 border border-[#7C3AED] text-[#7C3AED] hover:bg-[#7C3AED] hover:text-white text-xs font-semibold px-4 py-2 rounded-full transition-colors whitespace-nowrap">
                 Get Started <ArrowRight size={12}/>
@@ -407,12 +407,12 @@ function Process({ cm }: { cm: ContentMap }) {
 /* ── Vision (Success & Stakes) ──────────────────────────── */
 function Vision({ cm }: { cm: ContentMap }) {
   const successes = [
-    { icon: "🤝", text: c(cm,"vision","s1","Parents and teenagers leave the session on the same page — for the first time") },
-    { icon: "🧭", text: c(cm,"vision","s2","Your child has a clear, personalised career direction they believe in") },
-    { icon: "💬", text: c(cm,"vision","s3","Your family has a shared language for career conversations — not just arguments") },
-    { icon: "🛡️", text: c(cm,"vision","s4","Parents feel genuinely confident in the path forward — not just resigned to it") },
-    { icon: "🌱", text: c(cm,"vision","s5","Your child knows they have your support — and the freedom to grow into themselves") },
-    { icon: "✈️", text: c(cm,"vision","s6","The family relationship comes out of the process stronger, not strained") },
+    { icon: "🤝", text: c(cm,"vision","s1","Your child wakes up knowing their direction — not paralysed by options.") },
+    { icon: "🧭", text: c(cm,"vision","s2","You stop second-guessing the fees you are about to pay.") },
+    { icon: "💬", text: c(cm,"vision","s3","The dinner table stops being a war zone.") },
+    { icon: "🛡️", text: c(cm,"vision","s4","You find out there are careers you never knew existed that actually fit your child.") },
+    { icon: "🌱", text: c(cm,"vision","s5","Your child stops hiding their interests from you.") },
+    { icon: "✈️", text: c(cm,"vision","s6","You both stop dreading: 'So what are you going to do after school?'") },
   ];
   return (
     <section className="py-28 bg-white">
@@ -424,10 +424,10 @@ function Vision({ cm }: { cm: ContentMap }) {
               <span className="text-xs font-semibold text-gray-500 tracking-[0.2em] uppercase">What Success Looks Like</span>
             </div>
             <h2 className="text-[36px] md:text-[48px] font-extrabold text-gray-900 leading-tight mb-6">
-              {c(cm,"vision","heading","Roots and Wings — Both, Not One or the Other")}
+              {c(cm,"vision","heading","What life looks like when the confusion ends.")}
             </h2>
             <p className="text-gray-600 text-[15px] leading-[1.8] mb-10">
-              {c(cm,"vision","subtext","Every child deserves the security of a family that believes in them — and the freedom to build a life that is genuinely their own. These aren't opposites. When the right conversation happens, they become the same thing.")}
+              {c(cm,"vision","subtext","These aren't guarantees. They're what families consistently describe after working with Jasmeet.")}
             </p>
             <div className="grid grid-cols-1 gap-4">
               {successes.map((s, i) => (
@@ -451,7 +451,7 @@ function Vision({ cm }: { cm: ContentMap }) {
                 {c(cm,"vision","warning_label","The cost of not having this conversation")}
               </p>
               <p className="text-gray-300 text-[15px] leading-[1.8]">
-                {c(cm,"vision","warning_text","When families make this decision without a shared framework, someone always loses — either the child follows a path they resent, or the parents feel shut out of one of the most important moments of their family's life. This doesn't have to be the story.")}
+                {c(cm,"vision","warning_text","Every year in the wrong stream is a year of lost confidence, wasted coaching fees, and a child who learns to stop trusting themselves. The families who make this decision without a shared framework — someone always loses. It doesn't have to be that way.")}
               </p>
               <a href="#contact" className="inline-flex items-center gap-2 mt-6 text-[#A78BFA] font-bold text-sm hover:text-white transition-colors">
                 Start the right conversation <ArrowRight size={14}/>
@@ -662,13 +662,13 @@ function Contact({ cm }: { cm: ContentMap }) {
           <span className="w-8 h-px bg-gray-700 block"/>
         </div>
         <h2 className="text-[40px] md:text-5xl font-extrabold text-white leading-tight mb-5">
-          Ready to <span className="text-[#8B5CF6]">{c(cm,"contact","heading","Find Your Family's Direction?")}</span>
+          Ready to <span className="text-[#8B5CF6]">{c(cm,"contact","heading","Find Your Family's Direction")}</span>
         </h2>
         <p className="text-gray-400 text-[15px] leading-relaxed mb-4 max-w-lg mx-auto">
-          {c(cm,"contact","subtext","Book a free 30-minute introductory call. We'll talk about where your family is right now, what's making the conversation difficult, and whether working together makes sense. No pressure. Just an honest conversation.")}
+          {c(cm,"contact","subtext","Book a free 30-minute call. We'll talk about where your family is right now, what's making the conversation difficult, and whether working together makes sense. No pressure. Just an honest conversation.")}
         </p>
         <p className="text-gray-600 text-sm mb-12">
-          {c(cm,"contact","note","Sessions are available for families in India and globally. Online sessions available.")}
+          {c(cm,"contact","note","Sessions available in India and globally. Online sessions available.")}
         </p>
 
         {status === "success" ? (
@@ -684,12 +684,12 @@ function Contact({ cm }: { cm: ContentMap }) {
               className="bg-white/5 border border-white/10 hover:border-white/20 focus:border-[#7C3AED] text-white placeholder-gray-600 rounded-xl px-5 py-3.5 text-sm outline-none transition-colors"/>
             <input required type="email" value={form.email} onChange={e => setForm(f => ({...f, email: e.target.value}))} placeholder="Your email address"
               className="bg-white/5 border border-white/10 hover:border-white/20 focus:border-[#7C3AED] text-white placeholder-gray-600 rounded-xl px-5 py-3.5 text-sm outline-none transition-colors"/>
-            <textarea required rows={4} value={form.message} onChange={e => setForm(f => ({...f, message: e.target.value}))} placeholder="Tell me what's making the career conversation difficult in your family right now..."
+            <textarea required rows={4} value={form.message} onChange={e => setForm(f => ({...f, message: e.target.value}))} placeholder="What's the situation at home right now? (Which class is your child in, and what's the disagreement about?)"
               className="bg-white/5 border border-white/10 hover:border-white/20 focus:border-[#7C3AED] text-white placeholder-gray-600 rounded-xl px-5 py-3.5 text-sm outline-none transition-colors resize-none"/>
             {status === "error" && <p className="text-red-400 text-xs">Something went wrong. Please try again.</p>}
             <button type="submit" disabled={status === "loading"}
               className="flex items-center justify-center gap-2 bg-[#7C3AED] hover:bg-[#6D28D9] text-white font-bold py-4 rounded-xl transition-colors mt-2 disabled:opacity-60">
-              {status === "loading" ? "Sending…" : <>{c(cm,"contact","cta_text","Book My Free Introductory Call")} <ArrowRight/></>}
+              {status === "loading" ? "Sending…" : <>{c(cm,"contact","cta_text","Get Clarity")} <ArrowRight/></>}
             </button>
             <p className="text-center text-gray-600 text-xs">
               {c(cm,"contact","guarantee","Free call. No obligation. Just clarity on whether this is the right next step for your family.")}
