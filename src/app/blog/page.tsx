@@ -58,7 +58,7 @@ export default async function BlogPage() {
             <span className="text-[#A78BFA]">Indian Families</span>
           </h1>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Evidence-based advice on stream selection, higher education, and building a successful career — tailored for Indian students and parents.
+            Evidence-based advice on stream selection, higher education, and building a successful career , tailored for Indian students and parents.
           </p>
         </div>
       </div>

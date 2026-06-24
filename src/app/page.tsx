@@ -23,19 +23,19 @@ const CheckIcon = () => (
 /* ── Navbar ─────────────────────────────────────────────── */
 function Navbar({ cm }: { cm: ContentMap }) {
   const [open, setOpen] = useState(false);
-  const links = ["Home","About","How It Works","Success Stories","Blog"];
+  const links = ["Home","About","How It Works","Success Stories"];
   return (
     <nav className="fixed top-0 inset-x-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 h-20 flex items-center justify-between">
         <a href="#home" className="flex items-center gap-2.5">
-          <img src="/jc.png" alt="Jasmeet Singh" className="h-9 w-auto object-contain"/>
+          <img src="/jc.png" alt="Jasmeet Singh" className="h-16 w-auto object-contain"/>
         </a>
         <div className="hidden md:flex items-center gap-7">
           {links.map(l => (
             <a key={l} href={`#${l.toLowerCase().replace(/ /g,"-")}`} className="text-[13px] font-medium text-gray-600 hover:text-[#7C3AED] transition-colors">{l}</a>
           ))}
         </div>
-        <a href="#contact" className="hidden md:inline-flex items-center gap-2 bg-[#0A0A0F] hover:bg-gray-800 text-white text-[13px] font-semibold px-5 py-2.5 rounded-full transition-colors">
+        <a href="https://forms.gle/y86zr3dJxsgLQZC89" target="_blank" rel="noopener noreferrer" className="hidden md:inline-flex items-center gap-2 bg-[#0A0A0F] hover:bg-gray-800 text-white text-[13px] font-semibold px-5 py-2.5 rounded-full transition-colors">
           {c(cm,"navbar","cta_text","Book a Free Call")}
         </a>
         <button onClick={() => setOpen(!open)} className="md:hidden p-2 flex flex-col gap-1.5" aria-label="Toggle menu">
@@ -49,7 +49,7 @@ function Navbar({ cm }: { cm: ContentMap }) {
           {links.map(l => (
             <a key={l} href={`#${l.toLowerCase().replace(/ /g,"-")}`} onClick={() => setOpen(false)} className="text-sm font-medium text-gray-700 hover:text-[#7C3AED]">{l}</a>
           ))}
-          <a href="#contact" onClick={() => setOpen(false)} className="inline-flex items-center gap-2 bg-[#0A0A0F] text-white text-sm font-semibold px-5 py-2.5 rounded-full w-fit mt-2">
+          <a href="https://forms.gle/y86zr3dJxsgLQZC89" target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)} className="inline-flex items-center gap-2 bg-[#0A0A0F] text-white text-sm font-semibold px-5 py-2.5 rounded-full w-fit mt-2">
             {c(cm,"navbar","cta_text","Book a Free Call")}
           </a>
         </div>
@@ -62,7 +62,7 @@ function Navbar({ cm }: { cm: ContentMap }) {
 function Hero({ cm }: { cm: ContentMap }) {
   const stats = [
     { num: c(cm,"hero","stat1_value","800+"),  label: c(cm,"hero","stat1_label","Families Helped"), icon: "🏠" },
-    { num: c(cm,"hero","stat2_value","Class 8–12"), label: c(cm,"hero","stat2_label","Students Served"), icon: "🌏" },
+    { num: c(cm,"hero","stat2_value","Class 8-12"), label: c(cm,"hero","stat2_label","Students Served"), icon: "🌏" },
     { num: c(cm,"hero","stat3_value","Certified"),      label: c(cm,"hero","stat3_label","Psychometric Tools"), icon: "✅" },
     { num: c(cm,"hero","stat4_value","Both"),           label: c(cm,"hero","stat4_label","Parent & Child Attend"), icon: "💜" },
   ];
@@ -92,10 +92,10 @@ function Hero({ cm }: { cm: ContentMap }) {
             <span className="text-[#A78BFA]">{c(cm,"hero","headline_line2","You want something safe. Let's end the fight.")}</span>
           </h1>
           <p className="text-gray-300 text-base md:text-lg leading-relaxed mb-10 max-w-lg">
-            {c(cm,"hero","subtext","Jasmeet Singh helps Indian families turn career confusion into a plan everyone agrees on — using certified tools, not opinions.")}
+            {c(cm,"hero","subtext","Jasmeet Singh helps Indian families turn career confusion into a plan everyone agrees on, using certified tools, not opinions.")}
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
-            <a href="#contact" className="inline-flex items-center justify-center gap-2.5 bg-[#7C3AED] hover:bg-[#6D28D9] text-white text-sm font-bold px-7 py-3.5 rounded-full transition-all shadow-lg shadow-purple-900/40">
+            <a href="https://forms.gle/y86zr3dJxsgLQZC89" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2.5 bg-[#7C3AED] hover:bg-[#6D28D9] text-white text-sm font-bold px-7 py-3.5 rounded-full transition-all shadow-lg shadow-purple-900/40">
               {c(cm,"hero","cta_primary","Book a Free Clarity Call")}
               <span className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center"><ArrowRight size={14}/></span>
             </a>
@@ -131,7 +131,7 @@ function Problem({ cm }: { cm: ContentMap }) {
       who: "For the Parent",
       icon: "👨‍👩‍👧",
       title: c(cm,"problem","p1_title","You want security. They say you don't understand them."),
-      desc: c(cm,"problem","p1_desc","You've seen what happens when people follow passion without a plan. You're not the villain — you're the one who has to pay the fees. But they won't hear it."),
+      desc: c(cm,"problem","p1_desc","You've seen what happens when people follow passion without a plan. You're not the villain, you're the one who has to pay the fees. But they won't hear it."),
     },
     {
       who: "For the Teenager",
@@ -143,7 +143,7 @@ function Problem({ cm }: { cm: ContentMap }) {
       who: "For the Family",
       icon: "🔄",
       title: c(cm,"problem","p3_title","So nothing gets decided. And the deadline gets closer."),
-      desc: c(cm,"problem","p3_desc","Class 10 results come. Class 12 comes. And you're still arguing. That's not a career problem — it's a communication problem with a career-shaped hole in the middle."),
+      desc: c(cm,"problem","p3_desc","Class 10 results come. Class 12 comes. And you're still arguing. That's not a career problem, it's a communication problem with a career-shaped hole in the middle."),
     },
   ];
   return (
@@ -159,7 +159,7 @@ function Problem({ cm }: { cm: ContentMap }) {
             {c(cm,"problem","heading","The same argument. Every day. No resolution.")}
           </h2>
           <p className="text-gray-400 text-[15px] leading-relaxed">
-            {c(cm,"problem","subtext","It's not a failure of love. It's the absence of a shared framework — and that's exactly what I provide.")}
+            {c(cm,"problem","subtext","It's not a failure of love. It's the absence of a shared framework, and that's exactly what I provide.")}
           </p>
         </div>
         <div className="grid md:grid-cols-3 gap-6">
@@ -178,7 +178,7 @@ function Problem({ cm }: { cm: ContentMap }) {
           <p className="text-[#A78BFA] font-semibold text-lg mb-6">
             {c(cm,"problem","pivot","This doesn't have to be how your family makes this decision.")}
           </p>
-          <a href="#contact" className="inline-flex items-center gap-2.5 bg-[#7C3AED] hover:bg-[#6D28D9] text-white text-sm font-bold px-8 py-3.5 rounded-full transition-colors shadow-lg shadow-purple-900/40">
+          <a href="https://forms.gle/y86zr3dJxsgLQZC89" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2.5 bg-[#7C3AED] hover:bg-[#6D28D9] text-white text-sm font-bold px-8 py-3.5 rounded-full transition-colors shadow-lg shadow-purple-900/40">
             {c(cm,"problem","cta","Book a Family Session")} <ArrowRight size={14}/>
           </a>
         </div>
@@ -212,10 +212,10 @@ function About({ cm }: { cm: ContentMap }) {
               <span className="text-[#7C3AED]">{c(cm,"about","title","Career Counsellor & Family Alignment Coach")}</span>
             </h2>
             <p className="text-gray-600 text-[15px] leading-[1.8] mb-4 max-w-md">
-              {c(cm,"about","bio_1","Over years of working with ambitious Indian families — at home and across the globe — I kept seeing the same pattern: bright children, caring parents, and a conversation that kept going in circles. Not because anyone was wrong. But because no one had given the family a common language for this decision.")}
+              {c(cm,"about","bio_1","Over years of working with ambitious Indian families, at home and across the globe, I kept seeing the same pattern: bright children, caring parents, and a conversation that kept going in circles. Not because anyone was wrong. But because no one had given the family a common language for this decision.")}
             </p>
             <p className="text-gray-600 text-[15px] leading-[1.8] mb-8 max-w-md">
-              {c(cm,"about","bio_2","That gap — between what a child wants and what a family can trust — is exactly where I work. I combine certified psychometric tools, structured career frameworks, and deep experience with Indian family dynamics to guide sessions that are not just about which career to choose, but about how a family makes that choice together, without losing each other in the process.")}
+              {c(cm,"about","bio_2","That gap, between what a child wants and what a family can trust, is exactly where I work. I combine certified psychometric tools, structured career frameworks, and deep experience with Indian family dynamics to guide sessions that are not just about which career to choose, but about how a family makes that choice together, without losing each other in the process.")}
             </p>
             <div className="flex flex-col gap-3 mb-10">
               {credentials.map((cred, i) => (
@@ -225,7 +225,7 @@ function About({ cm }: { cm: ContentMap }) {
                 </div>
               ))}
             </div>
-            <a href="#contact" className="inline-flex items-center gap-2.5 bg-[#7C3AED] hover:bg-[#6D28D9] text-white text-sm font-semibold px-6 py-3 rounded-full transition-colors">
+            <a href="https://forms.gle/y86zr3dJxsgLQZC89" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2.5 bg-[#7C3AED] hover:bg-[#6D28D9] text-white text-sm font-semibold px-6 py-3 rounded-full transition-colors">
               {c(cm,"about","cta_text","Work With Jasmeet")}
               <span className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center ml-1"><ArrowRight size={13}/></span>
             </a>
@@ -241,12 +241,12 @@ function About({ cm }: { cm: ContentMap }) {
                 className="w-full h-full object-cover object-top"
               />
             </div>
-            {/* Credential badge — bottom left */}
+            {/* Credential badge, bottom left */}
             <div className="absolute bottom-6 -left-4 bg-[#7C3AED] rounded-2xl px-5 py-4 shadow-xl text-white z-10">
               <p className="text-3xl font-extrabold leading-none">{c(cm,"about","experience_years","800+")}</p>
               <p className="text-[11px] text-purple-200 mt-1 font-medium">Families Guided</p>
             </div>
-            {/* Philosophy badge — top right */}
+            {/* Philosophy badge, top right */}
             <div className="absolute top-6 -right-4 w-52 bg-white rounded-2xl shadow-xl border border-gray-100 p-4 z-10">
               <span className="text-xs font-semibold text-[#7C3AED] bg-[#7C3AED]/10 px-2.5 py-0.5 rounded-full inline-block mb-2">🌏 India & Global</span>
               <p className="font-extrabold text-gray-900 text-sm mb-1">{c(cm,"about","badge_text","Roots & Wings")}</p>
@@ -265,14 +265,14 @@ function Services({ cm }: { cm: ContentMap }) {
     {
       tag:   c(cm,"services","card1_date","Most Requested"),
       title: c(cm,"services","card1_title","Family Alignment Session"),
-      desc:  c(cm,"services","card1_desc","90 minutes. Both parent and child in the room. You leave with a shortlist of careers you both agree on — backed by data, not guessing."),
+      desc:  c(cm,"services","card1_desc","90 minutes. Both parent and child in the room. You leave with a shortlist of careers you both agree on, backed by data, not guessing."),
       img:   c(cm,"services","card1_img","/Z24A9117.jpg"),
       dark:  true,
     },
     {
       tag:   c(cm,"services","card2_date","For Teenagers"),
       title: c(cm,"services","card2_title","Career Clarity Programme"),
-      desc:  c(cm,"services","card2_desc","4 sessions for your child alone. Psychometric assessments, aptitude mapping, interest profiling. They discover what they're actually good at — including options most families never considered."),
+      desc:  c(cm,"services","card2_desc","4 sessions for your child alone. Psychometric assessments, aptitude mapping, interest profiling. They discover what they're actually good at, including options most families never considered."),
       img:   c(cm,"services","card2_img","https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&q=80"),
       dark:  false,
     },
@@ -305,7 +305,7 @@ function Services({ cm }: { cm: ContentMap }) {
             </h2>
           </div>
           <p className="text-gray-600 text-[15px] leading-relaxed max-w-xs">
-            {c(cm,"services","subtext","Every session is built around your family's actual situation — not a generic checklist.")}
+            {c(cm,"services","subtext","Every session is built around your family's actual situation, not a generic checklist.")}
           </p>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 mb-12">
@@ -327,7 +327,7 @@ function Services({ cm }: { cm: ContentMap }) {
           ))}
         </div>
         <div className="flex justify-center">
-          <a href="#contact" className="inline-flex items-center gap-2.5 bg-[#7C3AED] hover:bg-[#6D28D9] text-white text-sm font-semibold px-8 py-3.5 rounded-full transition-colors">
+          <a href="https://forms.gle/y86zr3dJxsgLQZC89" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2.5 bg-[#7C3AED] hover:bg-[#6D28D9] text-white text-sm font-semibold px-8 py-3.5 rounded-full transition-colors">
             {c(cm,"services","cta_text","Book a Free Clarity Call")} <ArrowRight size={14}/>
           </a>
         </div>
@@ -341,19 +341,19 @@ function Process({ cm }: { cm: ContentMap }) {
   const [active, setActive] = useState(0);
   const steps = [
     {
-      title: c(cm,"process","step1_title","Step 1: Listen — First session is entirely about hearing what both sides actually want, without judgment."),
-      body:  c(cm,"process","step1_body","Before any advice is given, every voice in the family is heard. I create a structured space where the teenager feels safe to speak honestly, and the parents feel respected — not sidelined. Often, this alone shifts something."),
+      title: c(cm,"process","step1_title","Step 1: Listen. First session is entirely about hearing what both sides actually want, without judgment."),
+      body:  c(cm,"process","step1_body","Before any advice is given, every voice in the family is heard. I create a structured space where the teenager feels safe to speak honestly, and the parents feel respected, not sidelined. Often, this alone shifts something."),
     },
     {
-      title: c(cm,"process","step2_title","Step 2: Illuminate — Psychometric tools reveal what the child is genuinely suited for. Not what they said under pressure."),
-      body:  c(cm,"process","step2_body","We use validated psychometric assessments to surface the teenager's natural strengths, personality, interests, and values. This gives the family objective data to build on — not just opinions and feelings."),
+      title: c(cm,"process","step2_title","Step 2: Illuminate. Psychometric tools reveal what the child is genuinely suited for. Not what they said under pressure."),
+      body:  c(cm,"process","step2_body","We use validated psychometric assessments to surface the teenager's natural strengths, personality, interests, and values. This gives the family objective data to build on, not just opinions and feelings."),
     },
     {
-      title: c(cm,"process","step3_title","Step 3: Align — Structured facilitation brings parent and child to a common language and a shared decision."),
+      title: c(cm,"process","step3_title","Step 3: Align. Structured facilitation brings parent and child to a common language and a shared decision."),
       body:  c(cm,"process","step3_body","With clarity on the table, we map real-world career pathways through the lens of both the child's strengths and the family's genuine concerns. We find the intersection, not the compromise."),
     },
     {
-      title: c(cm,"process","step4_title","Step 4: Move — Concrete next steps. Which streams. Which colleges. Which entrance exams. A real plan."),
+      title: c(cm,"process","step4_title","Step 4: Move. Concrete next steps. Which streams. Which colleges. Which entrance exams. A real plan."),
       body:  c(cm,"process","step4_body","Every family leaves with a concrete next step: a shortlist of aligned career directions, a preparation roadmap, and the shared language to continue the conversation without it becoming a conflict."),
     },
   ];
@@ -366,7 +366,7 @@ function Process({ cm }: { cm: ContentMap }) {
               <h2 className="text-[36px] md:text-[44px] font-extrabold text-gray-900 leading-tight">
                 {c(cm,"process","heading","Four steps. Zero guesswork.")}
               </h2>
-              <a href="#contact" className="hidden sm:inline-flex items-center gap-2 border border-[#7C3AED] text-[#7C3AED] hover:bg-[#7C3AED] hover:text-white text-xs font-semibold px-4 py-2 rounded-full transition-colors whitespace-nowrap">
+              <a href="https://forms.gle/y86zr3dJxsgLQZC89" target="_blank" rel="noopener noreferrer" className="hidden sm:inline-flex items-center gap-2 border border-[#7C3AED] text-[#7C3AED] hover:bg-[#7C3AED] hover:text-white text-xs font-semibold px-4 py-2 rounded-full transition-colors whitespace-nowrap">
                 Get Started <ArrowRight size={12}/>
               </a>
             </div>
@@ -394,7 +394,7 @@ function Process({ cm }: { cm: ContentMap }) {
             <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent"/>
             <div className="absolute bottom-6 left-6 right-6">
               <p className="text-white font-bold text-lg leading-snug">
-                {c(cm,"process","photo_caption","The goal isn't the perfect career answer. It's the ability to find it — as a family.")}
+                {c(cm,"process","photo_caption","The goal isn't the perfect career answer. It's the ability to find it, as a family.")}
               </p>
             </div>
           </div>
@@ -407,7 +407,7 @@ function Process({ cm }: { cm: ContentMap }) {
 /* ── Vision (Success & Stakes) ──────────────────────────── */
 function Vision({ cm }: { cm: ContentMap }) {
   const successes = [
-    { icon: "🤝", text: c(cm,"vision","s1","Your child wakes up knowing their direction — not paralysed by options.") },
+    { icon: "🤝", text: c(cm,"vision","s1","Your child wakes up knowing their direction, not paralysed by options.") },
     { icon: "🧭", text: c(cm,"vision","s2","You stop second-guessing the fees you are about to pay.") },
     { icon: "💬", text: c(cm,"vision","s3","The dinner table stops being a war zone.") },
     { icon: "🛡️", text: c(cm,"vision","s4","You find out there are careers you never knew existed that actually fit your child.") },
@@ -451,9 +451,9 @@ function Vision({ cm }: { cm: ContentMap }) {
                 {c(cm,"vision","warning_label","The cost of not having this conversation")}
               </p>
               <p className="text-gray-300 text-[15px] leading-[1.8]">
-                {c(cm,"vision","warning_text","Every year in the wrong stream is a year of lost confidence, wasted coaching fees, and a child who learns to stop trusting themselves. The families who make this decision without a shared framework — someone always loses. It doesn't have to be that way.")}
+                {c(cm,"vision","warning_text","Every year in the wrong stream is a year of lost confidence, wasted coaching fees, and a child who learns to stop trusting themselves. The families who make this decision without a shared framework: someone always loses. It doesn't have to be that way.")}
               </p>
-              <a href="#contact" className="inline-flex items-center gap-2 mt-6 text-[#A78BFA] font-bold text-sm hover:text-white transition-colors">
+              <a href="https://forms.gle/y86zr3dJxsgLQZC89" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 mt-6 text-[#A78BFA] font-bold text-sm hover:text-white transition-colors">
                 Start the right conversation <ArrowRight size={14}/>
               </a>
             </div>
@@ -499,82 +499,19 @@ function VideoSection({ cm }: { cm: ContentMap }) {
   );
 }
 
-/* ── Blog ───────────────────────────────────────────────── */
-function Blog({ cm }: { cm: ContentMap }) {
-  const posts = [
-    {
-      date:    c(cm,"blog","post1_date","Family Dynamics"),
-      title:   c(cm,"blog","post1_title","Why Indian Families Struggle to Agree on Careers — And What Actually Helps"),
-      excerpt: c(cm,"blog","post1_excerpt","The problem isn't that parents want too much or children want too little. It's that both sides are speaking different languages. Here's how to find a shared one."),
-      img:     c(cm,"blog","post1_img","https://images.unsplash.com/photo-1609220136736-443140cffec6?w=600&q=80"),
-    },
-    {
-      date:    c(cm,"blog","post2_date","Career Guidance"),
-      title:   c(cm,"blog","post2_title","Psychometric Tests Won't Tell Your Child What to Do — But Here's What They Will Reveal"),
-      excerpt: c(cm,"blog","post2_excerpt","A certified assessment is not a fortune teller. It's a mirror. Understanding what it shows — and what it doesn't — is the difference between a useful session and a confusing one."),
-      img:     c(cm,"blog","post2_img","https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&q=80"),
-    },
-    {
-      date:    c(cm,"blog","post3_date","Parenting"),
-      title:   c(cm,"blog","post3_title","Roots and Wings: The Philosophy Behind Every Career Conversation I Have"),
-      excerpt: c(cm,"blog","post3_excerpt","Security and freedom are not opposites in a child's career. When families understand this, the entire conversation changes — and so does the relationship."),
-      img:     c(cm,"blog","post3_img","https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80"),
-    },
-  ];
-  return (
-    <section id="blog" className="py-28 bg-white">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex flex-col lg:flex-row gap-12 mb-16">
-          <div className="flex-1">
-            <div className="flex items-center gap-3 mb-5">
-              <span className="w-8 h-px bg-gray-400 block"/>
-              <span className="text-xs font-semibold text-gray-500 tracking-[0.2em] uppercase">Thinking & Guidance</span>
-            </div>
-            <h2 className="text-[40px] md:text-5xl font-extrabold text-gray-900 leading-tight max-w-lg">
-              {c(cm,"blog","heading","Honest Thinking on Careers, Families & What Actually Works")}
-            </h2>
-          </div>
-          <div className="max-w-xs flex flex-col justify-end">
-            <p className="text-gray-500 text-[15px] leading-relaxed mb-6">
-              {c(cm,"blog","subtext","Practical insights for Indian families navigating one of the most important — and most emotionally charged — decisions they'll ever make together.")}
-            </p>
-            <a href="#" className="inline-flex items-center gap-2.5 border border-[#7C3AED] text-[#7C3AED] hover:bg-[#7C3AED] hover:text-white text-sm font-semibold px-6 py-3 rounded-full transition-colors w-fit">
-              See All Articles <ArrowRight size={13}/>
-            </a>
-          </div>
-        </div>
-        <div className="grid md:grid-cols-3 gap-6">
-          {posts.map(p => (
-            <article key={p.title} className="rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-shadow group cursor-pointer bg-white">
-              <div className="h-52 overflow-hidden">
-                <img src={p.img} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
-              </div>
-              <div className="p-6">
-                <p className="text-[11px] text-[#7C3AED] font-semibold mb-3 uppercase tracking-wide">{p.date}</p>
-                <h3 className="font-bold text-gray-900 text-sm leading-snug mb-2">{p.title}</h3>
-                <p className="text-xs text-gray-500 leading-relaxed mb-5">{p.excerpt}</p>
-                <a href="#" className="inline-flex items-center gap-1.5 text-[#7C3AED] text-sm font-semibold hover:gap-3 transition-all">Read more <ArrowRight size={13}/></a>
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
 
 /* ── Testimonials ───────────────────────────────────────── */
 function Testimonials({ cm }: { cm: ContentMap }) {
   const [active, setActive] = useState(0);
   const testimonials = [
     {
-      quote:  c(cm,"testimonials","t1_quote","We had been arguing about this for two years. In three sessions with Jasmeet, my daughter and I finally understood what the other was actually afraid of. She's now studying what she loves — and I'm genuinely at peace with it. I didn't think both things were possible at the same time."),
+      quote:  c(cm,"testimonials","t1_quote","We had been arguing about this for two years. In three sessions with Jasmeet, my daughter and I finally understood what the other was actually afraid of. She's now studying what she loves, and I'm genuinely at peace with it. I didn't think both things were possible at the same time."),
       name:   c(cm,"testimonials","t1_name","Rajesh M."),
       role:   c(cm,"testimonials","t1_role","Parent, Delhi"),
       avatar: c(cm,"testimonials","t1_avatar","https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80"),
     },
     {
-      quote:  c(cm,"testimonials","t2_quote","My parents wanted engineering. I wanted design. Jasmeet didn't tell us who was right. He gave us something better — a way to have the conversation where we were both actually listening. The psychometric session changed everything. My parents finally saw my strengths on paper, not just in my opinion."),
+      quote:  c(cm,"testimonials","t2_quote","My parents wanted engineering. I wanted design. Jasmeet didn't tell us who was right. He gave us something better: a way to have the conversation where we were both actually listening. The psychometric session changed everything. My parents finally saw my strengths on paper, not just in my opinion."),
       name:   c(cm,"testimonials","t2_name","Ananya S."),
       role:   c(cm,"testimonials","t2_role","Student, Age 17, Bengaluru"),
       avatar: c(cm,"testimonials","t2_avatar","https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=100&q=80"),
@@ -599,7 +536,7 @@ function Testimonials({ cm }: { cm: ContentMap }) {
             Families Who Found <span className="text-[#7C3AED]">Their Direction.</span>
           </h2>
           <p className="text-gray-500 text-[15px] max-w-sm mx-auto leading-relaxed">
-            {c(cm,"testimonials","subtext","Not just students who picked a career — families who found a way to make that decision together.")}
+            {c(cm,"testimonials","subtext","Not just students who picked a career, families who found a way to make that decision together.")}
           </p>
         </div>
         <div className="grid md:grid-cols-3 gap-6 mb-10">
@@ -703,7 +640,7 @@ function Contact({ cm }: { cm: ContentMap }) {
 
 /* ── Footer ─────────────────────────────────────────────── */
 function Footer({ cm }: { cm: ContentMap }) {
-  const links = ["Home","About","How It Works","Success Stories","Blog"];
+  const links = ["Home","About","How It Works","Success Stories"];
   return (
     <footer className="bg-white relative overflow-hidden border-t border-gray-100">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
@@ -771,7 +708,6 @@ export default function Page() {
       <Process cm={cm}/>
       <Vision cm={cm}/>
       <VideoSection cm={cm}/>
-      <Blog cm={cm}/>
       <Testimonials cm={cm}/>
       <Contact cm={cm}/>
       <Footer cm={cm}/>
