@@ -426,9 +426,6 @@ function Vision({ cm }: { cm: ContentMap }) {
             <h2 className="text-[36px] md:text-[48px] font-extrabold text-gray-900 leading-tight mb-6">
               {c(cm,"vision","heading","What life looks like when the confusion ends.")}
             </h2>
-            <p className="text-gray-600 text-[15px] leading-[1.8] mb-10">
-              {c(cm,"vision","subtext","These aren't guarantees. They're what families consistently describe after working with Jasmeet.")}
-            </p>
             <div className="grid grid-cols-1 gap-4">
               {successes.map((s, i) => (
                 <div key={i} className="flex items-center gap-4 p-4 rounded-xl bg-[#F3EFFF] border border-[#7C3AED]/10">
