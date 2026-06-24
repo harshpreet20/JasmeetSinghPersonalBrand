@@ -904,6 +904,134 @@ function Footer({ cm }: { cm: ContentMap }) {
   );
 }
 
+/* ── WhatsApp Widget ────────────────────────────────────── */
+const WA_NUMBER = "919818244818";
+
+function WhatsAppWidget() {
+  const [open, setOpen] = useState(false);
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [status, setStatus] = useState<"idle"|"loading"|"done"|"error">("idle");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus("loading");
+    try {
+      await fetch("/api/submit-form", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          form_name: "WhatsApp Widget",
+          name: form.name,
+          email: form.email,
+          message: form.message,
+          notify_email: "support@jasmeetchandhok.com",
+          source_url: typeof window !== "undefined" ? window.location.href : "",
+        }),
+      });
+      setStatus("done");
+      const text = encodeURIComponent(
+        `Hi Jasmeet! I'm ${form.name}.\n\n${form.message}`
+      );
+      setTimeout(() => {
+        window.open(`https://wa.me/${WA_NUMBER}?text=${text}`, "_blank", "noopener,noreferrer");
+      }, 800);
+    } catch {
+      setStatus("error");
+    }
+  };
+
+  return (
+    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
+      {/* Popup card */}
+      {open && (
+        <div className="w-80 bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-200">
+          {/* Header */}
+          <div className="bg-[#25D366] px-4 py-3 flex items-center justify-between">
+            <div className="flex items-center gap-2.5">
+              <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.121 1.532 5.849L.057 23.286a.75.75 0 00.921.921l5.437-1.475A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.716 9.716 0 01-4.952-1.356l-.355-.212-3.676.997.977-3.566-.232-.367A9.715 9.715 0 012.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75z"/></svg>
+              </div>
+              <div>
+                <p className="text-white font-bold text-sm leading-tight">Chat with Jasmeet</p>
+                <p className="text-white/80 text-[11px]">Typically replies within a few hours</p>
+              </div>
+            </div>
+            <button onClick={() => setOpen(false)} className="text-white/70 hover:text-white transition-colors text-lg leading-none">✕</button>
+          </div>
+
+          {/* Body */}
+          <div className="p-4">
+            {status === "done" ? (
+              <div className="text-center py-4">
+                <div className="w-12 h-12 rounded-full bg-[#25D366]/10 flex items-center justify-center mx-auto mb-3">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#25D366" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                </div>
+                <p className="font-semibold text-gray-800 text-sm mb-1">Message sent!</p>
+                <p className="text-gray-500 text-xs">Opening WhatsApp now...</p>
+              </div>
+            ) : (
+              <>
+                <p className="text-gray-500 text-xs mb-3">Leave your details and we'll open WhatsApp for you.</p>
+                <form onSubmit={handleSubmit} className="space-y-2.5">
+                  <input
+                    required
+                    placeholder="Your name"
+                    value={form.name}
+                    onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
+                    className="w-full text-sm border border-gray-200 rounded-xl px-3 py-2.5 outline-none focus:border-[#25D366] transition-colors placeholder-gray-400"
+                  />
+                  <input
+                    required
+                    type="email"
+                    placeholder="Email address"
+                    value={form.email}
+                    onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
+                    className="w-full text-sm border border-gray-200 rounded-xl px-3 py-2.5 outline-none focus:border-[#25D366] transition-colors placeholder-gray-400"
+                  />
+                  <textarea
+                    required
+                    rows={3}
+                    placeholder="What would you like to discuss?"
+                    value={form.message}
+                    onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
+                    className="w-full text-sm border border-gray-200 rounded-xl px-3 py-2.5 outline-none focus:border-[#25D366] transition-colors placeholder-gray-400 resize-none"
+                  />
+                  {status === "error" && (
+                    <p className="text-red-500 text-xs">Something went wrong. Please try again.</p>
+                  )}
+                  <button
+                    type="submit"
+                    disabled={status === "loading"}
+                    className="w-full bg-[#25D366] hover:bg-[#1ebe5d] disabled:opacity-60 text-white font-semibold text-sm py-3 rounded-xl transition-colors flex items-center justify-center gap-2"
+                  >
+                    {status === "loading" ? (
+                      <><span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" /> Sending...</>
+                    ) : (
+                      <><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.121 1.532 5.849L.057 23.286a.75.75 0 00.921.921l5.437-1.475A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.716 9.716 0 01-4.952-1.356l-.355-.212-3.676.997.977-3.566-.232-.367A9.715 9.715 0 012.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75z"/></svg> Send & Open WhatsApp</>
+                    )}
+                  </button>
+                </form>
+              </>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* FAB */}
+      <button
+        onClick={() => setOpen(o => !o)}
+        className="w-14 h-14 rounded-full bg-[#25D366] hover:bg-[#1ebe5d] shadow-lg hover:shadow-xl transition-all flex items-center justify-center"
+        aria-label="Chat on WhatsApp"
+      >
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+          <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.121 1.532 5.849L.057 23.286a.75.75 0 00.921.921l5.437-1.475A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.716 9.716 0 01-4.952-1.356l-.355-.212-3.676.997.977-3.566-.232-.367A9.715 9.715 0 012.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75z"/>
+        </svg>
+      </button>
+    </div>
+  );
+}
+
 /* ── Root Page ──────────────────────────────────────────── */
 export default function Page() {
   const [cm, setCm] = useState<ContentMap>({});
@@ -932,6 +1060,7 @@ export default function Page() {
       <Testimonials cm={cm}/>
       <Contact cm={cm}/>
       <Footer cm={cm}/>
+      <WhatsAppWidget/>
     </>
   );
 }

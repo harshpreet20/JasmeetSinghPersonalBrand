@@ -8,10 +8,10 @@ function getSupabase() {
   );
 }
 
-async function sendLeadNotification({ name, email, phone, message, form_name, source_url }: {
-  name: string; email: string; phone?: string; message?: string; form_name: string; source_url?: string;
+async function sendLeadNotification({ name, email, phone, message, form_name, source_url, notify_email }: {
+  name: string; email: string; phone?: string; message?: string; form_name: string; source_url?: string; notify_email?: string;
 }) {
-  const NOTIFY_EMAIL = process.env.NOTIFY_EMAIL || "harshpreet@hotbotstudios.com";
+  const NOTIFY_EMAIL = notify_email || process.env.NOTIFY_EMAIL || "harshpreet@hotbotstudios.com";
   const RESEND_API_KEY = process.env.RESEND_API_KEY;
 
   if (!RESEND_API_KEY) return; // Skip silently if not configured
@@ -140,7 +140,7 @@ async function sendLeadNotification({ name, email, phone, message, form_name, so
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { form_name, name, email, phone, message, source_url } = body;
+    const { form_name, name, email, phone, message, source_url, notify_email } = body;
 
     if (!form_name || !email) {
       return NextResponse.json({ error: "form_name and email are required" }, { status: 400 });
@@ -169,8 +169,8 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    // Send email notification to Jasmeet
-    await sendLeadNotification({ name, email, phone, message, form_name, source_url });
+    // Send email notification
+    await sendLeadNotification({ name, email, phone, message, form_name, source_url, notify_email });
 
     return NextResponse.json({ success: true, saved });
   } catch (err: unknown) {
