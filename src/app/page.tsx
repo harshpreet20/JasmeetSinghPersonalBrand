@@ -61,59 +61,122 @@ function Navbar({ cm }: { cm: ContentMap }) {
 /* ── Hero ───────────────────────────────────────────────── */
 function Hero({ cm }: { cm: ContentMap }) {
   const stats = [
-    { num: c(cm,"hero","stat1_value","800+"),  label: c(cm,"hero","stat1_label","Families Helped"), icon: "🏠" },
-    { num: c(cm,"hero","stat2_value","Class 8-12"), label: c(cm,"hero","stat2_label","Students Served"), icon: "🌏" },
-    { num: c(cm,"hero","stat3_value","Certified"),      label: c(cm,"hero","stat3_label","Psychometric Tools"), icon: "✅" },
-    { num: c(cm,"hero","stat4_value","Both"),           label: c(cm,"hero","stat4_label","Parent & Child Attend"), icon: "💜" },
+    { num: c(cm,"hero","stat2_value","Class 9–12"), label: c(cm,"hero","stat2_label","Students Served"), icon: "🎓" },
+    { num: c(cm,"hero","stat3_value","Certified"),  label: c(cm,"hero","stat3_label","Psychometric Tools"), icon: "✅" },
+    { num: c(cm,"hero","stat4_value","Both"),       label: c(cm,"hero","stat4_label","Parent & Child Attend"), icon: "💜" },
   ];
+  const audience = ["Indian Families", "UAE Families", "Dubai (NRI) Families"];
   return (
-    <section id="home" className="relative min-h-screen flex flex-col">
-      <div className="absolute inset-0 bg-[#0A0A10]"/>
-      <div
-        className="absolute inset-0"
-        style={{
-          backgroundImage: `url('${c(cm,"hero","bg_image","/Z24A9117.jpg")}')`,
-          backgroundSize: "cover",
-          backgroundPosition: "center top",
-          opacity: 0.32,
-        }}
-      />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/20 to-black/90"/>
-      <div className="relative z-10 flex-1 max-w-7xl mx-auto px-6 lg:px-8 w-full flex flex-col justify-center pt-32 pb-10">
-        <div className="max-w-2xl">
-          <div className="inline-flex items-center gap-2 bg-[#7C3AED]/20 border border-[#7C3AED]/40 rounded-full px-4 py-1.5 mb-8">
+    <section id="home" className="relative min-h-screen bg-[#0A0A10] flex flex-col overflow-hidden">
+      {/* ── Two-column grid ── */}
+      <div className="relative z-10 flex-1 w-full grid lg:grid-cols-2 min-h-[calc(100vh-80px)]">
+
+        {/* Left — text */}
+        <div className="flex flex-col justify-center px-8 md:px-12 lg:px-16 pt-32 pb-16 max-w-2xl lg:max-w-none">
+          <div className="inline-flex items-center gap-2 bg-[#7C3AED]/20 border border-[#7C3AED]/40 rounded-full px-4 py-1.5 mb-6 w-fit">
             <span className="w-2 h-2 rounded-full bg-[#7C3AED] animate-pulse"/>
             <span className="text-[#A78BFA] text-xs font-semibold tracking-wide uppercase">
               {c(cm,"hero","badge","Certified Career Counsellor & Family Alignment Coach")}
             </span>
           </div>
-          <h1 className="text-5xl md:text-[62px] lg:text-[70px] font-extrabold text-white leading-[1.06] tracking-tight mb-6">
+
+          {/* Audience pills */}
+          <div className="flex flex-wrap gap-2 mb-7">
+            {audience.map(a => (
+              <span key={a} className="inline-flex items-center gap-1.5 bg-white/5 border border-white/15 rounded-full px-3.5 py-1 text-xs font-semibold text-gray-300">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#7C3AED]"/>
+                {a}
+              </span>
+            ))}
+          </div>
+
+          <h1 className="text-4xl md:text-[56px] lg:text-[62px] font-extrabold text-white leading-[1.07] tracking-tight mb-6">
             {c(cm,"hero","headline_line1","Your child wants one thing.")}<br/>
             <span className="text-[#A78BFA]">{c(cm,"hero","headline_line2","You want something safe. Let's end the fight.")}</span>
           </h1>
           <p className="text-gray-300 text-base md:text-lg leading-relaxed mb-10 max-w-lg">
-            {c(cm,"hero","subtext","Jasmeet Singh helps Indian families turn career confusion into a plan everyone agrees on, using certified tools, not opinions.")}
+            {c(cm,"hero","subtext","Jasmeet Singh helps Indian, UAE and NRI families turn career confusion into a plan everyone agrees on, using certified tools, not opinions.")}
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
-            <a href="https://forms.gle/y86zr3dJxsgLQZC89" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2.5 bg-[#7C3AED] hover:bg-[#6D28D9] text-white text-sm font-bold px-7 py-3.5 rounded-full transition-all shadow-lg shadow-purple-900/40">
+            <a href="https://forms.gle/y86zr3dJxsgLQZC89" target="_blank" rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2.5 bg-[#7C3AED] hover:bg-[#6D28D9] text-white text-sm font-bold px-7 py-3.5 rounded-full transition-all shadow-lg shadow-purple-900/40">
               {c(cm,"hero","cta_primary","Book a Free Clarity Call")}
               <span className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center"><ArrowRight size={14}/></span>
             </a>
-            <a href="#how-it-works" className="inline-flex items-center justify-center gap-2.5 border border-white/30 hover:border-white/60 hover:bg-white/5 text-white text-sm font-semibold px-7 py-3.5 rounded-full transition-all">
+            <a href="#how-it-works"
+              className="inline-flex items-center justify-center gap-2.5 border border-white/30 hover:border-white/60 hover:bg-white/5 text-white text-sm font-semibold px-7 py-3.5 rounded-full transition-all">
               {c(cm,"hero","cta_secondary","See how it works")}
             </a>
           </div>
+
+          {/* Stats row — desktop only */}
+          <div className="hidden lg:flex items-center gap-8 mt-14 pt-8 border-t border-white/10">
+            {stats.map(s => (
+              <div key={s.label} className="flex items-center gap-2.5">
+                <span className="text-lg">{s.icon}</span>
+                <div>
+                  <p className="text-lg font-extrabold text-white leading-none">{s.num}</p>
+                  <p className="text-gray-500 text-[11px] mt-0.5">{s.label}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Right — photo */}
+        <div className="relative hidden lg:block">
+          {/* Photo: object-position nudges Roots & Wings text to the right edge, away from face */}
+          <img
+            src={c(cm,"hero","bg_image","/Z24A9117.jpg")}
+            alt="Jasmeet Singh Chandhok"
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ objectPosition: "85% top" }}
+            loading="eager"
+            decoding="async"
+          />
+          {/* Subtle left-edge fade so photo blends into the dark left panel */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A10] via-transparent to-transparent pointer-events-none" style={{ width: "40%" }}/>
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A10]/70 via-transparent to-transparent pointer-events-none"/>
+
+          {/* 800+ badge — overlapping image bottom-left */}
+          <div className="absolute bottom-12 left-0 -translate-x-1/3 z-10">
+            <div className="bg-[#7C3AED] rounded-2xl px-6 py-4 shadow-2xl shadow-purple-900/60 border border-white/10 min-w-[160px]">
+              <p className="text-4xl font-extrabold text-white leading-none">800+</p>
+              <p className="text-white/80 text-[13px] font-semibold mt-1">Families Guided</p>
+            </div>
+          </div>
         </div>
       </div>
-      <div className="relative z-10 w-full bg-black/50 backdrop-blur-sm border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4">
-            {stats.map((s, i) => (
-              <div key={s.label} className={`py-7 px-6 flex items-center gap-3 ${i < 3 ? "border-r border-white/10" : ""}`}>
-                <span className="text-xl">{s.icon}</span>
+
+      {/* Mobile: background image + stats bar */}
+      <div className="lg:hidden absolute inset-0 z-0">
+        <img
+          src={c(cm,"hero","bg_image","/Z24A9117.jpg")}
+          alt="Jasmeet Singh Chandhok"
+          className="w-full h-full object-cover"
+          style={{ objectPosition: "75% top" }}
+          loading="eager"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black/90"/>
+      </div>
+
+      {/* Mobile stats strip */}
+      <div className="relative z-10 w-full bg-black/60 backdrop-blur-sm border-t border-white/10 lg:hidden">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex overflow-x-auto gap-0 divide-x divide-white/10">
+            <div className="flex-shrink-0 py-5 px-5 flex items-center gap-2.5">
+              <span className="text-lg">🏠</span>
+              <div>
+                <p className="text-lg font-extrabold text-white leading-none">800+</p>
+                <p className="text-gray-400 text-[11px] mt-0.5">Families Guided</p>
+              </div>
+            </div>
+            {stats.map(s => (
+              <div key={s.label} className="flex-shrink-0 py-5 px-5 flex items-center gap-2.5">
+                <span className="text-lg">{s.icon}</span>
                 <div>
-                  <p className="text-xl md:text-2xl font-extrabold text-white leading-none">{s.num}</p>
-                  <p className="text-gray-400 text-xs mt-0.5">{s.label}</p>
+                  <p className="text-lg font-extrabold text-white leading-none">{s.num}</p>
+                  <p className="text-gray-400 text-[11px] mt-0.5">{s.label}</p>
                 </div>
               </div>
             ))}
