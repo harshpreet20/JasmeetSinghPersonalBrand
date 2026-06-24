@@ -501,51 +501,101 @@ function VideoSection({ cm }: { cm: ContentMap }) {
 
 
 /* ── Testimonials ───────────────────────────────────────── */
+function Avatar({ initials, color }: { initials: string; color: string }) {
+  return (
+    <div className={`w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0 border-2 border-white shadow-sm ${color}`}>
+      {initials}
+    </div>
+  );
+}
+
 function Testimonials({ cm }: { cm: ContentMap }) {
-  const [active, setActive] = useState(0);
+  const [showModal, setShowModal] = useState(false);
+  const [modalImg, setModalImg] = useState(0);
+
   const testimonials = [
     {
-      quote:  c(cm,"testimonials","t1_quote","We had been arguing about this for two years. In three sessions with Jasmeet, my daughter and I finally understood what the other was actually afraid of. She's now studying what she loves, and I'm genuinely at peace with it. I didn't think both things were possible at the same time."),
-      name:   c(cm,"testimonials","t1_name","Rajesh M."),
-      role:   c(cm,"testimonials","t1_role","Parent, Delhi"),
-      avatar: c(cm,"testimonials","t1_avatar","https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80"),
+      quote: "My experience with Mr. Jasmeet Singh Chandok has been very positive and insightful. His guidance helped me gain a better understanding of my interests, strengths, and future possibilities. He encouraged me to think critically, explore different options, and make conscious and informed decisions about my future. I especially appreciated his patient and thoughtful approach. Through his guidance, I have developed greater clarity about my academic and career interests.",
+      initials: "J",
+      color: "bg-purple-500",
+      name: "J., Student",
+      role: "Class 12, Punjab",
+      screenshot: "/reviews/review-1.jpg",
     },
     {
-      quote:  c(cm,"testimonials","t2_quote","My parents wanted engineering. I wanted design. Jasmeet didn't tell us who was right. He gave us something better: a way to have the conversation where we were both actually listening. The psychometric session changed everything. My parents finally saw my strengths on paper, not just in my opinion."),
-      name:   c(cm,"testimonials","t2_name","Ananya S."),
-      role:   c(cm,"testimonials","t2_role","Student, Age 17, Bengaluru"),
-      avatar: c(cm,"testimonials","t2_avatar","https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=100&q=80"),
+      quote: "I was extremely confused about my career path and couldn't decide which field to pursue. Through sir's guidance, I could gain clarity about my interests and goals which made my decision making process much easier. The test helped me understand various dimensions of my personality which is very insightful. Sir was extremely professional, polite and approachable. He was genuinely invested in helping me.",
+      initials: "S",
+      color: "bg-rose-500",
+      name: "S., Student",
+      role: "NEET Aspirant",
+      screenshot: "/reviews/review-2.jpg",
     },
     {
-      quote:  c(cm,"testimonials","t3_quote","As an NRI family, we worried about career choices being relevant both in India and abroad. Jasmeet understood this layered pressure immediately. He helped us map pathways that honoured our son's strengths and worked across geographies. He was practical, thoughtful, and deeply human throughout."),
-      name:   c(cm,"testimonials","t3_name","Sunita & Vikram K."),
-      role:   c(cm,"testimonials","t3_role","Parents, Singapore"),
-      avatar: c(cm,"testimonials","t3_avatar","https://images.unsplash.com/photo-1494790108755-2616b612b47c?w=100&q=80"),
+      quote: "I must say you are truly an expert! The in-depth and detailed info you have forwarded takes a lot of time, efforts and experience to understand. This I can say out of my own experience. Kudos!",
+      initials: "R",
+      color: "bg-amber-500",
+      name: "R., Parent",
+      role: "Workshop Attendee",
+      screenshot: "/reviews/review-3.jpg",
+    },
+    {
+      quote: "Jasmeet ji, it was a wonderful workshop with insider secrets, useful tips and strategies for success. The mindset part was the icing on the cake. I was highly motivated and inspired by your workshop and signing up for your mentorship program was a no brainer. You rock!!! Looking forward to great results under your able guidance.",
+      initials: "RW",
+      color: "bg-teal-500",
+      name: "R.W.",
+      role: "Workshop Attendee",
+      screenshot: "/reviews/review-3.jpg",
+    },
+    {
+      quote: "Thank you for taking out the time to speak with me today. Our conversation was really helpful and cleared many of the doubts I had regarding my career. I appreciate how you explained the importance of combining a B.Com degree with high-demand skills. Thank you sir.",
+      initials: "A",
+      color: "bg-blue-500",
+      name: "A., Student",
+      role: "B.Com Aspirant",
+      screenshot: "/reviews/review-4.jpg",
+    },
+    {
+      quote: "Sir it was a great experience to have you as a mentor. Thank you sir.",
+      initials: "G",
+      color: "bg-green-500",
+      name: "G., Student",
+      role: "Career Clarity Session",
+      screenshot: "/reviews/review-3.jpg",
     },
   ];
+
+  const screenshots = [
+    { src: "/reviews/review-1.jpg", label: "Japleen's review" },
+    { src: "/reviews/review-2.jpg", label: "Seerat's review" },
+    { src: "/reviews/review-3.jpg", label: "Workshop reviews" },
+    { src: "/reviews/review-4.jpg", label: "Career call review" },
+  ];
+
   return (
     <section id="success-stories" className="py-28 bg-gray-50">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="text-center mb-16">
           <div className="flex items-center justify-center gap-3 mb-4">
             <span className="w-8 h-px bg-gray-400 block"/>
-            <span className="text-xs font-semibold text-gray-500 tracking-[0.2em] uppercase">Family Stories</span>
+            <span className="text-xs font-semibold text-gray-500 tracking-[0.2em] uppercase">Real Stories</span>
             <span className="w-8 h-px bg-gray-400 block"/>
           </div>
           <h2 className="text-[40px] md:text-5xl font-extrabold text-gray-900 mb-4">
-            Families Who Found <span className="text-[#7C3AED]">Their Direction.</span>
+            Students Who Found <span className="text-[#7C3AED]">Their Direction.</span>
           </h2>
           <p className="text-gray-500 text-[15px] max-w-sm mx-auto leading-relaxed">
-            {c(cm,"testimonials","subtext","Not just students who picked a career, families who found a way to make that decision together.")}
+            Real messages from students and families, shared with permission. Names withheld for privacy.
           </p>
         </div>
-        <div className="grid md:grid-cols-3 gap-6 mb-10">
-          {testimonials.map((t, i) => (
-            <div key={i} onClick={() => setActive(i)} className={`rounded-2xl p-7 cursor-pointer transition-all border ${active === i ? "bg-white border-[#7C3AED]/30 shadow-xl" : "bg-white border-gray-100 shadow-sm hover:shadow-md"}`}>
+
+        {/* Testimonial grid — first 3 visible */}
+        <div className="grid md:grid-cols-3 gap-6 mb-6">
+          {testimonials.slice(0, 3).map((t, i) => (
+            <div key={i} className="rounded-2xl p-7 bg-white border border-gray-100 shadow-sm hover:shadow-md transition-all">
               <div className="text-[64px] leading-none text-gray-200 font-serif mb-2 -mt-3 -ml-1">&ldquo;</div>
               <p className="text-gray-700 text-sm leading-[1.75] mb-6 -mt-4">{t.quote}</p>
               <div className="flex items-center gap-3">
-                <img src={t.avatar} alt={t.name} className="w-10 h-10 rounded-full object-cover border-2 border-gray-100"/>
+                <Avatar initials={t.initials} color={t.color} />
                 <div className="flex-1">
                   <p className="font-bold text-gray-900 text-sm">{t.name}</p>
                   <p className="text-gray-500 text-xs">{t.role}</p>
@@ -555,26 +605,108 @@ function Testimonials({ cm }: { cm: ContentMap }) {
             </div>
           ))}
         </div>
-        <div className="flex items-center justify-center gap-2">
-          <button onClick={() => setActive(a => Math.max(0, a - 1))} className="w-7 h-7 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5}><path d="M15 18l-6-6 6-6" strokeLinecap="round"/></svg>
-          </button>
-          {testimonials.map((_, i) => (
-            <button key={i} onClick={() => setActive(i)} className={`rounded-full transition-all ${active === i ? "w-6 h-2.5 bg-[#7C3AED]" : "w-2.5 h-2.5 bg-gray-200 hover:bg-gray-300"}`}/>
+
+        {/* Second row — last 3 visible */}
+        <div className="grid md:grid-cols-3 gap-6 mb-10">
+          {testimonials.slice(3).map((t, i) => (
+            <div key={i} className="rounded-2xl p-7 bg-white border border-gray-100 shadow-sm hover:shadow-md transition-all">
+              <div className="text-[64px] leading-none text-gray-200 font-serif mb-2 -mt-3 -ml-1">&ldquo;</div>
+              <p className="text-gray-700 text-sm leading-[1.75] mb-6 -mt-4">{t.quote}</p>
+              <div className="flex items-center gap-3">
+                <Avatar initials={t.initials} color={t.color} />
+                <div className="flex-1">
+                  <p className="font-bold text-gray-900 text-sm">{t.name}</p>
+                  <p className="text-gray-500 text-xs">{t.role}</p>
+                </div>
+                <div className="flex gap-0.5">{[...Array(5)].map((_, si) => <StarFilled key={si}/>)}</div>
+              </div>
+            </div>
           ))}
-          <button onClick={() => setActive(a => Math.min(testimonials.length - 1, a + 1))} className="w-7 h-7 rounded-full bg-[#7C3AED] hover:bg-[#6D28D9] flex items-center justify-center text-white">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5}><path d="M9 18l6-6-6-6" strokeLinecap="round"/></svg>
+        </div>
+
+        {/* View More Screenshots button */}
+        <div className="text-center">
+          <button
+            onClick={() => { setModalImg(0); setShowModal(true); }}
+            className="inline-flex items-center gap-2.5 border-2 border-[#7C3AED] text-[#7C3AED] hover:bg-[#7C3AED] hover:text-white font-semibold text-sm px-8 py-3.5 rounded-full transition-all"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+            View Original Messages
           </button>
         </div>
       </div>
+
+      {/* Screenshot lightbox modal */}
+      {showModal && (
+        <div
+          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
+          onClick={() => setShowModal(false)}
+        >
+          <div
+            className="relative bg-white rounded-3xl shadow-2xl max-w-sm w-full overflow-hidden"
+            onClick={e => e.stopPropagation()}
+          >
+            {/* Header */}
+            <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
+              <div>
+                <p className="font-bold text-gray-900 text-sm">Verified Reviews</p>
+                <p className="text-xs text-gray-500">Names & numbers hidden for privacy</p>
+              </div>
+              <button onClick={() => setShowModal(false)} className="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+              </button>
+            </div>
+
+            {/* Screenshot */}
+            <div className="relative bg-gray-50 flex items-center justify-center" style={{ minHeight: 420 }}>
+              <img
+                src={screenshots[modalImg].src}
+                alt={screenshots[modalImg].label}
+                className="w-full object-contain max-h-[60vh]"
+                style={{ filter: "blur(0px)" }}
+              />
+              {/* Privacy overlay — blurs top area with phone numbers */}
+              <div className="absolute top-0 left-0 right-0 h-16 bg-white/95 backdrop-blur-md flex items-center justify-center">
+                <span className="text-xs text-gray-400 font-medium tracking-wide">Contact details hidden</span>
+              </div>
+            </div>
+
+            {/* Navigation */}
+            <div className="flex items-center justify-between px-5 py-4 border-t border-gray-100">
+              <button
+                onClick={() => setModalImg(i => Math.max(0, i - 1))}
+                disabled={modalImg === 0}
+                className="flex items-center gap-1.5 text-sm font-semibold text-gray-600 hover:text-[#7C3AED] disabled:opacity-30 transition-colors"
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round"><path d="M15 18l-6-6 6-6"/></svg>
+                Previous
+              </button>
+              <div className="flex gap-1.5">
+                {screenshots.map((_, i) => (
+                  <button key={i} onClick={() => setModalImg(i)} className={`rounded-full transition-all ${modalImg === i ? "w-5 h-2 bg-[#7C3AED]" : "w-2 h-2 bg-gray-200 hover:bg-gray-300"}`}/>
+                ))}
+              </div>
+              <button
+                onClick={() => setModalImg(i => Math.min(screenshots.length - 1, i + 1))}
+                disabled={modalImg === screenshots.length - 1}
+                className="flex items-center gap-1.5 text-sm font-semibold text-gray-600 hover:text-[#7C3AED] disabled:opacity-30 transition-colors"
+              >
+                Next
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round"><path d="M9 18l6-6-6-6"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
 
 /* ── Contact ─────────────────────────────────────────────── */
 function Contact({ cm }: { cm: ContentMap }) {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
   const [status, setStatus] = useState<"idle"|"loading"|"success"|"error">("idle");
+  const [submittedName, setSubmittedName] = useState("");
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -583,55 +715,147 @@ function Contact({ cm }: { cm: ContentMap }) {
       const res = await fetch("/api/submit-form", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ form_name: "contact", ...form, source_url: window.location.href }),
+        body: JSON.stringify({
+          form_name: "clarity_call",
+          name: form.name,
+          email: form.email,
+          phone: form.phone,
+          message: form.message,
+          source_url: window.location.href,
+        }),
       });
-      if (res.ok) { setStatus("success"); setForm({ name: "", email: "", message: "" }); }
-      else setStatus("error");
+      if (res.ok) {
+        setSubmittedName(form.name.split(" ")[0]);
+        setStatus("success");
+        setForm({ name: "", email: "", phone: "", message: "" });
+      } else {
+        setStatus("error");
+      }
     } catch { setStatus("error"); }
   };
 
   return (
-    <section id="contact" className="py-28 bg-[#0A0A10]">
-      <div className="max-w-3xl mx-auto px-6 lg:px-8 text-center">
-        <div className="flex items-center justify-center gap-3 mb-5">
-          <span className="w-8 h-px bg-gray-700 block"/>
-          <span className="text-xs font-semibold text-gray-500 tracking-[0.2em] uppercase">Start the Conversation</span>
-          <span className="w-8 h-px bg-gray-700 block"/>
+    <section id="contact" className="py-28 bg-[#0A0A10] relative overflow-hidden">
+      {/* Glow */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-[#7C3AED]/10 rounded-full blur-3xl"/>
+      </div>
+
+      <div className="max-w-3xl mx-auto px-6 lg:px-8 relative z-10">
+        <div className="text-center mb-12">
+          <div className="flex items-center justify-center gap-3 mb-5">
+            <span className="w-8 h-px bg-gray-700 block"/>
+            <span className="text-xs font-semibold text-gray-500 tracking-[0.2em] uppercase">Start the Conversation</span>
+            <span className="w-8 h-px bg-gray-700 block"/>
+          </div>
+          <h2 className="text-[40px] md:text-5xl font-extrabold text-white leading-tight mb-5">
+            Ready to <span className="text-[#8B5CF6]">Find Your Family&apos;s Direction?</span>
+          </h2>
+          <p className="text-gray-400 text-[15px] leading-relaxed max-w-lg mx-auto">
+            Book a free 30-minute clarity call. No pressure. Just an honest conversation about where your family is right now.
+          </p>
         </div>
-        <h2 className="text-[40px] md:text-5xl font-extrabold text-white leading-tight mb-5">
-          Ready to <span className="text-[#8B5CF6]">{c(cm,"contact","heading","Find Your Family's Direction")}</span>
-        </h2>
-        <p className="text-gray-400 text-[15px] leading-relaxed mb-4 max-w-lg mx-auto">
-          {c(cm,"contact","subtext","Book a free 30-minute call. We'll talk about where your family is right now, what's making the conversation difficult, and whether working together makes sense. No pressure. Just an honest conversation.")}
-        </p>
-        <p className="text-gray-600 text-sm mb-12">
-          {c(cm,"contact","note","Sessions available in India and globally. Online sessions available.")}
-        </p>
 
         {status === "success" ? (
-          <div className="max-w-md mx-auto bg-green-500/10 border border-green-500/30 rounded-2xl p-8 text-center">
-            <p className="text-4xl mb-4">✅</p>
-            <p className="text-white font-bold text-lg mb-2">Message Received</p>
-            <p className="text-gray-400 text-sm">Thank you for reaching out. Jasmeet will be in touch within 24 hours to schedule your introductory call.</p>
-            <button onClick={() => setStatus("idle")} className="mt-6 text-[#8B5CF6] text-sm font-semibold hover:underline">Send another message</button>
+          /* ─── Thank You State ─── */
+          <div className="max-w-lg mx-auto">
+            <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-10 text-center shadow-2xl">
+              {/* Animated checkmark */}
+              <div className="w-20 h-20 rounded-full bg-[#7C3AED]/20 border-2 border-[#7C3AED]/40 flex items-center justify-center mx-auto mb-6">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#A78BFA" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M20 6L9 17l-5-5"/>
+                </svg>
+              </div>
+
+              <h3 className="text-2xl font-extrabold text-white mb-2">
+                Thank you, {submittedName || "friend"}!
+              </h3>
+              <p className="text-[#A78BFA] font-semibold text-sm mb-6">Your message has been received.</p>
+
+              <div className="bg-white/5 rounded-2xl p-5 mb-7 text-left space-y-3">
+                <div className="flex items-start gap-3">
+                  <span className="w-6 h-6 rounded-full bg-[#7C3AED]/30 flex items-center justify-center flex-shrink-0 mt-0.5 text-[#A78BFA] text-xs font-bold">1</span>
+                  <p className="text-gray-300 text-sm leading-relaxed">Jasmeet personally reviews every enquiry and will reach out within <strong className="text-white">24 hours</strong>.</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="w-6 h-6 rounded-full bg-[#7C3AED]/30 flex items-center justify-center flex-shrink-0 mt-0.5 text-[#A78BFA] text-xs font-bold">2</span>
+                  <p className="text-gray-300 text-sm leading-relaxed">You will receive a calendar link to pick a time that works for you.</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="w-6 h-6 rounded-full bg-[#7C3AED]/30 flex items-center justify-center flex-shrink-0 mt-0.5 text-[#A78BFA] text-xs font-bold">3</span>
+                  <p className="text-gray-300 text-sm leading-relaxed">The first call is completely free. No commitment, no pressure.</p>
+                </div>
+              </div>
+
+              <p className="text-gray-500 text-xs mb-7">
+                In the meantime, feel free to check out Jasmeet&apos;s work on LinkedIn or Instagram.
+              </p>
+
+              <div className="flex items-center justify-center gap-3 mb-7">
+                <a href="https://www.linkedin.com/in/jasmeetchandhok" target="_blank" rel="noopener noreferrer"
+                  className="flex items-center gap-2 bg-white/10 hover:bg-[#0077B5]/20 border border-white/10 hover:border-[#0077B5]/40 text-white text-xs font-semibold px-4 py-2.5 rounded-xl transition-all">
+                  <LinkedInIcon/> LinkedIn
+                </a>
+                <a href="https://www.instagram.com/jasmeetchandhok.ai" target="_blank" rel="noopener noreferrer"
+                  className="flex items-center gap-2 bg-white/10 hover:bg-pink-500/20 border border-white/10 hover:border-pink-500/30 text-white text-xs font-semibold px-4 py-2.5 rounded-xl transition-all">
+                  <InstagramIcon/> Instagram
+                </a>
+              </div>
+
+              <button onClick={() => setStatus("idle")} className="text-gray-600 hover:text-gray-400 text-xs transition-colors">
+                Send another message
+              </button>
+            </div>
           </div>
         ) : (
-          <form onSubmit={submit} className="flex flex-col gap-4 max-w-md mx-auto text-left">
-            <input required value={form.name} onChange={e => setForm(f => ({...f, name: e.target.value}))} placeholder="Your full name"
-              className="bg-white/5 border border-white/10 hover:border-white/20 focus:border-[#7C3AED] text-white placeholder-gray-600 rounded-xl px-5 py-3.5 text-sm outline-none transition-colors"/>
-            <input required type="email" value={form.email} onChange={e => setForm(f => ({...f, email: e.target.value}))} placeholder="Your email address"
-              className="bg-white/5 border border-white/10 hover:border-white/20 focus:border-[#7C3AED] text-white placeholder-gray-600 rounded-xl px-5 py-3.5 text-sm outline-none transition-colors"/>
-            <textarea required rows={4} value={form.message} onChange={e => setForm(f => ({...f, message: e.target.value}))} placeholder="What's the situation at home right now? (Which class is your child in, and what's the disagreement about?)"
-              className="bg-white/5 border border-white/10 hover:border-white/20 focus:border-[#7C3AED] text-white placeholder-gray-600 rounded-xl px-5 py-3.5 text-sm outline-none transition-colors resize-none"/>
-            {status === "error" && <p className="text-red-400 text-xs">Something went wrong. Please try again.</p>}
-            <button type="submit" disabled={status === "loading"}
-              className="flex items-center justify-center gap-2 bg-[#7C3AED] hover:bg-[#6D28D9] text-white font-bold py-4 rounded-xl transition-colors mt-2 disabled:opacity-60">
-              {status === "loading" ? "Sending…" : <>{c(cm,"contact","cta_text","Get Clarity")} <ArrowRight/></>}
-            </button>
-            <p className="text-center text-gray-600 text-xs">
-              {c(cm,"contact","guarantee","Free call. No obligation. Just clarity on whether this is the right next step for your family.")}
-            </p>
-          </form>
+          /* ─── Form ─── */
+          <div className="max-w-lg mx-auto">
+            <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-2xl">
+              <form onSubmit={submit} className="flex flex-col gap-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="col-span-2 sm:col-span-1">
+                    <label className="block text-xs font-semibold text-gray-500 mb-1.5 uppercase tracking-wider">Your Name</label>
+                    <input required value={form.name} onChange={e => setForm(f => ({...f, name: e.target.value}))}
+                      placeholder="Priya Sharma"
+                      className="w-full bg-white/5 border border-white/10 hover:border-white/20 focus:border-[#7C3AED] text-white placeholder-gray-600 rounded-xl px-4 py-3 text-sm outline-none transition-colors"/>
+                  </div>
+                  <div className="col-span-2 sm:col-span-1">
+                    <label className="block text-xs font-semibold text-gray-500 mb-1.5 uppercase tracking-wider">Phone / WhatsApp</label>
+                    <input value={form.phone} onChange={e => setForm(f => ({...f, phone: e.target.value}))}
+                      placeholder="+91 98765 43210"
+                      className="w-full bg-white/5 border border-white/10 hover:border-white/20 focus:border-[#7C3AED] text-white placeholder-gray-600 rounded-xl px-4 py-3 text-sm outline-none transition-colors"/>
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold text-gray-500 mb-1.5 uppercase tracking-wider">Email Address</label>
+                  <input required type="email" value={form.email} onChange={e => setForm(f => ({...f, email: e.target.value}))}
+                    placeholder="priya@example.com"
+                    className="w-full bg-white/5 border border-white/10 hover:border-white/20 focus:border-[#7C3AED] text-white placeholder-gray-600 rounded-xl px-4 py-3 text-sm outline-none transition-colors"/>
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold text-gray-500 mb-1.5 uppercase tracking-wider">What&apos;s the situation?</label>
+                  <textarea required rows={4} value={form.message} onChange={e => setForm(f => ({...f, message: e.target.value}))}
+                    placeholder="Which class is your child in, and what's the disagreement or confusion about their career?"
+                    className="w-full bg-white/5 border border-white/10 hover:border-white/20 focus:border-[#7C3AED] text-white placeholder-gray-600 rounded-xl px-4 py-3 text-sm outline-none transition-colors resize-none"/>
+                </div>
+                {status === "error" && (
+                  <p className="text-red-400 text-xs bg-red-500/10 border border-red-500/20 rounded-lg px-3 py-2">
+                    Something went wrong. Please try again or WhatsApp us directly.
+                  </p>
+                )}
+                <button type="submit" disabled={status === "loading"}
+                  className="flex items-center justify-center gap-2 bg-[#7C3AED] hover:bg-[#6D28D9] text-white font-bold py-4 rounded-xl transition-colors mt-1 disabled:opacity-60 shadow-lg shadow-purple-900/30">
+                  {status === "loading"
+                    ? <span className="flex items-center gap-2"><span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"/>Sending...</span>
+                    : <><ArrowRight size={16}/>Request My Free Clarity Call</>
+                  }
+                </button>
+                <p className="text-center text-gray-600 text-xs pt-1">
+                  Free call. No obligation. Jasmeet reads every message personally.
+                </p>
+              </form>
+            </div>
+          </div>
         )}
       </div>
     </section>
