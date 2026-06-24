@@ -90,12 +90,15 @@ function Hero({ cm }: { cm: ContentMap }) {
             ))}
           </div>
 
-          <h1 className="text-4xl md:text-[56px] lg:text-[62px] font-extrabold text-white leading-[1.07] tracking-tight mb-6">
-            {c(cm,"hero","headline_line1","Your child wants one thing.")}<br/>
-            <span className="text-[#A78BFA]">{c(cm,"hero","headline_line2","You want something safe. Let's end the fight.")}</span>
+          <h1 className="text-4xl md:text-[56px] lg:text-[62px] font-extrabold text-white leading-[1.07] tracking-tight mb-4">
+            {c(cm,"hero","headline_line1","Stop Guessing Your Child's Future —")}<br/>
+            <span className="text-[#A78BFA]">{c(cm,"hero","headline_line2","Build a Plan You Both Trust.")}</span>
           </h1>
-          <p className="text-gray-300 text-base md:text-lg leading-relaxed mb-10 max-w-lg">
-            {c(cm,"hero","subtext","Jasmeet Singh helps Indian, UAE and NRI families turn career confusion into a plan everyone agrees on, using certified tools, not opinions.")}
+          <p className="text-gray-300 text-base md:text-lg leading-relaxed mb-3 max-w-lg font-medium">
+            {c(cm,"hero","supporting_line","Family alignment sessions that turn confusion and fear into a clear path — for your child, and for you.")}
+          </p>
+          <p className="text-gray-400 text-sm md:text-base leading-relaxed mb-10 max-w-lg">
+            {c(cm,"hero","subtext","You are not guessing alone. Jasmeet works with the whole family — parents and child together — using certified tools to find a path everyone can trust, not just the one with the loudest voice.")}
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <a href="https://forms.gle/y86zr3dJxsgLQZC89" target="_blank" rel="noopener noreferrer"
@@ -461,6 +464,62 @@ function Process({ cm }: { cm: ContentMap }) {
               </p>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ── Objections ─────────────────────────────────────────── */
+function Objections({ cm }: { cm: ContentMap }) {
+  const faqs = [
+    {
+      q: c(cm,"objections","q1","Isn't this just another aptitude test?"),
+      a: c(cm,"objections","a1","No. Aptitude tests give your child a report. We give your family a conversation. The difference is that everyone in the room — parent and child — leaves having been heard, and leaves with a shared plan, not a printout that gathers dust. The assessments are one input, not the answer."),
+    },
+    {
+      q: c(cm,"objections","q2","What if my child has no idea what they want?"),
+      a: c(cm,"objections","a2","That is exactly the right place to start. Most teenagers do not know what they want — they know what they are afraid of disappointing you with. The sessions create a safe space for real interests to surface, often for the first time. Not knowing is not a problem. Pretending to know is."),
+    },
+    {
+      q: c(cm,"objections","q3","The school already has a counsellor."),
+      a: c(cm,"objections","a3","School counsellors serve hundreds of students and are under pressure to guide them toward familiar streams. This is a dedicated, private session for your family — not a group talk. The goal is not a shortlist of colleges. The goal is that your family agrees on a direction and your child owns that decision."),
+    },
+  ];
+  return (
+    <section className="py-24 bg-[#0A0A10]">
+      <div className="max-w-4xl mx-auto px-6 lg:px-8">
+        <div className="text-center mb-14">
+          <div className="flex items-center justify-center gap-3 mb-5">
+            <span className="w-8 h-px bg-gray-700 block"/>
+            <span className="text-xs font-semibold text-gray-500 tracking-[0.2em] uppercase">Questions We Hear Every Day</span>
+            <span className="w-8 h-px bg-gray-700 block"/>
+          </div>
+          <h2 className="text-[32px] md:text-[42px] font-extrabold text-white leading-tight">
+            {c(cm,"objections","heading","You have doubts. Good — they mean you're thinking carefully.")}
+          </h2>
+        </div>
+        <div className="flex flex-col gap-4">
+          {faqs.map((f, i) => (
+            <div key={i} className="bg-white/5 border border-white/10 rounded-2xl p-7 hover:border-[#7C3AED]/40 transition-colors">
+              <div className="flex items-start gap-4">
+                <div className="w-8 h-8 rounded-full bg-[#7C3AED]/20 border border-[#7C3AED]/30 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <span className="text-[#A78BFA] text-sm font-bold">?</span>
+                </div>
+                <div>
+                  <p className="text-white font-bold text-base mb-3">{f.q}</p>
+                  <p className="text-gray-400 text-sm leading-[1.8]">{f.a}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="text-center mt-10">
+          <a href="https://forms.gle/y86zr3dJxsgLQZC89" target="_blank" rel="noopener noreferrer"
+            className="inline-flex items-center gap-2.5 bg-[#7C3AED] hover:bg-[#6D28D9] text-white text-sm font-bold px-8 py-4 rounded-full transition-all shadow-lg shadow-purple-900/40">
+            Book a Free Clarity Call <ArrowRight size={14}/>
+          </a>
+          <p className="text-gray-600 text-xs mt-3">No commitment. Just a conversation.</p>
         </div>
       </div>
     </section>
@@ -1118,6 +1177,7 @@ export default function Page() {
       <About cm={cm}/>
       <Services cm={cm}/>
       <Process cm={cm}/>
+      <Objections cm={cm}/>
       <Vision cm={cm}/>
       <VideoSection cm={cm}/>
       <Testimonials cm={cm}/>
