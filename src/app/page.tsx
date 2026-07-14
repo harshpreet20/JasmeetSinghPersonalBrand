@@ -312,8 +312,8 @@ function About({ cm }: { cm: ContentMap }) {
               <p className="text-3xl font-extrabold leading-none">{c(cm,"about","experience_years","800+")}</p>
               <p className="text-[11px] text-purple-200 mt-1 font-medium">Families Guided</p>
             </div>
-            {/* Philosophy badge, top right */}
-            <div className="absolute top-6 -right-4 w-52 bg-white rounded-2xl shadow-xl border border-gray-100 p-4 z-10">
+            {/* Philosophy badge, top right (nudged lower on mobile so it clears the face) */}
+            <div className="absolute top-44 right-0 sm:top-6 sm:-right-4 w-[190px] sm:w-52 bg-white rounded-2xl shadow-xl border border-gray-100 p-4 z-10">
               <span className="text-xs font-semibold text-[#7C3AED] bg-[#7C3AED]/10 px-2.5 py-0.5 rounded-full inline-block mb-2">🌏 India & Global</span>
               <p className="font-extrabold text-gray-900 text-sm mb-1">{c(cm,"about","badge_text","Roots & Wings")}</p>
               <p className="text-[11px] text-gray-500 leading-relaxed">Security of family support. Freedom to fly toward a life genuinely their own.</p>
@@ -996,8 +996,8 @@ function Footer({ cm }: { cm: ContentMap }) {
               ))}
             </div>
           </div>
-          <div className="flex items-center gap-6">
-            <a href={`mailto:${c(cm,"footer","email","hello@jasmeetchandhok.com")}`} className="text-sm text-gray-500 hover:text-gray-800 transition-colors flex items-center gap-1.5">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-4">
+            <a href={`mailto:${c(cm,"footer","email","hello@jasmeetchandhok.com")}`} className="text-sm text-gray-500 hover:text-gray-800 transition-colors flex items-center gap-1.5 break-all">
               ✉ {c(cm,"footer","email","hello@jasmeetchandhok.com")}
             </a>
             <div className="flex gap-2">
@@ -1012,13 +1012,13 @@ function Footer({ cm }: { cm: ContentMap }) {
             </div>
           </div>
         </div>
-        <div className="py-5 flex items-center justify-between">
+        <div className="py-5 flex flex-col gap-2 text-center sm:flex-row sm:items-center sm:justify-between sm:text-left">
           <p className="text-xs text-gray-400">{c(cm,"footer","copyright","© 2026 Jasmeet Singh")} · Privacy Policy</p>
           <a href="#" className="text-xs text-gray-400 hover:text-gray-600 transition-colors">Terms &amp; Conditions · All rights reserved.</a>
         </div>
       </div>
-      <div className="relative overflow-hidden h-28 flex items-end">
-        <p className="text-[120px] md:text-[160px] font-extrabold text-gray-900 leading-none whitespace-nowrap select-none pointer-events-none px-4 -mb-4">
+      <div className="relative overflow-hidden flex items-end justify-center md:justify-start pt-6">
+        <p className="text-[44px] sm:text-[80px] md:text-[120px] lg:text-[160px] font-extrabold text-gray-900/95 leading-[0.8] whitespace-nowrap select-none pointer-events-none px-4">
           {c(cm,"footer","watermark","Jasmeet Singh")}
         </p>
       </div>
