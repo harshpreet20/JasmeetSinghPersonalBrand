@@ -416,37 +416,89 @@ function Contact({ cm }: { cm: ContentMap }) {
 
 /* ── Footer ─────────────────────────────────────────────── */
 function Footer({ cm }: { cm: ContentMap }) {
-  const links = ["Home","About","Services","Success Stories","Blog"];
+  const quickLinks = ["Home","About","Services","Success Stories","Blog"];
+  const dynamicServices = [1,2,3,4].map(n => c(cm,"services",`card${n}_title`,"")).filter(Boolean);
+  const services = dynamicServices.length ? dynamicServices : ["Personal Branding Strategy","1:1 Executive Coaching","Content & Visibility","Workshops & Keynotes"];
+  const socials = [
+    { icon:<LinkedInIcon/>,  href:c(cm,"footer","linkedin_url","#"),  label:"LinkedIn"  },
+    { icon:<InstagramIcon/>, href:c(cm,"footer","instagram_url","#"), label:"Instagram" },
+    { icon:<FacebookIcon/>,  href:c(cm,"footer","facebook_url","#"),  label:"Facebook"  },
+    { icon:<TwitterIcon/>,   href:c(cm,"footer","twitter_url","#"),   label:"Twitter"   },
+  ];
+
   return (
-    <footer className="bg-white relative overflow-hidden border-t border-gray-100">
+    <footer className="bg-[#0A0A10] relative overflow-hidden border-t border-white/5">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-        <div className="py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-8 border-b border-gray-100">
-          <div className="flex flex-wrap gap-6">
-            {links.map(l => <a key={l} href={`#${l.toLowerCase().replace(/ /g,"-")}`} className="text-sm text-gray-600 hover:text-gray-900 transition-colors">{l}</a>)}
-          </div>
-          <div className="flex items-center gap-6">
-            <a href={`mailto:${c(cm,"footer","email","info@jasmeetsingh.com")}`} className="text-sm text-gray-500 hover:text-gray-800 transition-colors flex items-center gap-1.5">
-              ✉ {c(cm,"footer","email","info@jasmeetsingh.com")}
+        <div className="py-20 grid sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr] gap-x-8 gap-y-12">
+          <div className="max-w-sm sm:col-span-2 lg:col-span-1">
+            <a href="#home" className="flex items-center gap-2.5 mb-5">
+              <div className="w-8 h-8 rounded-full bg-[#7C3AED] flex items-center justify-center">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+              </div>
+              <span className="font-bold text-[17px] text-white tracking-tight">{c(cm,"about","name","Jasmeet Singh")}</span>
             </a>
+            <p className="text-gray-400 text-sm leading-relaxed mb-6">
+              {c(cm,"footer","tagline","Helping ambitious professionals build authentic personal brands that turn connections into opportunities.")}
+            </p>
             <div className="flex gap-2">
-              {[
-                { icon:<LinkedInIcon/>,   href:c(cm,"footer","linkedin_url","#") },
-                { icon:<InstagramIcon/>,  href:c(cm,"footer","instagram_url","#") },
-                { icon:<FacebookIcon/>,   href:c(cm,"footer","facebook_url","#") },
-                { icon:<TwitterIcon/>,    href:c(cm,"footer","twitter_url","#")  },
-              ].map((s,i) => (
-                <a key={i} href={s.href} className="w-8 h-8 rounded-full border border-gray-200 hover:border-[#7C3AED] hover:text-[#7C3AED] flex items-center justify-center text-gray-500 transition-colors">{s.icon}</a>
+              {socials.map((s,i) => (
+                <a key={i} href={s.href} aria-label={s.label} className="w-9 h-9 rounded-full border border-white/10 hover:border-[#7C3AED] hover:bg-[#7C3AED] flex items-center justify-center text-gray-400 hover:text-white transition-colors">{s.icon}</a>
               ))}
             </div>
           </div>
+
+          <div>
+            <h4 className="text-white font-semibold text-xs tracking-[0.15em] uppercase mb-5">Quick Links</h4>
+            <ul className="flex flex-col gap-3.5">
+              {quickLinks.map(l => (
+                <li key={l}><a href={`#${l.toLowerCase().replace(/ /g,"-")}`} className="text-gray-400 hover:text-white text-sm transition-colors">{l}</a></li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-white font-semibold text-xs tracking-[0.15em] uppercase mb-5">Services</h4>
+            <ul className="flex flex-col gap-3.5">
+              {services.map(s => (
+                <li key={s}><a href="#services" className="text-gray-400 hover:text-white text-sm transition-colors">{s}</a></li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-white font-semibold text-xs tracking-[0.15em] uppercase mb-5">Get In Touch</h4>
+            <ul className="flex flex-col gap-4 mb-6">
+              <li>
+                <a href={`mailto:${c(cm,"footer","email","info@jasmeetsingh.com")}`} className="text-gray-400 hover:text-white text-sm transition-colors flex items-start gap-2.5">
+                  <span className="mt-0.5 text-[#8B5CF6]">✉</span>{c(cm,"footer","email","info@jasmeetsingh.com")}
+                </a>
+              </li>
+              <li>
+                <a href={`tel:${c(cm,"footer","phone","+15551234567").replace(/[^+\d]/g,"")}`} className="text-gray-400 hover:text-white text-sm transition-colors flex items-start gap-2.5">
+                  <span className="mt-0.5 text-[#8B5CF6]">☎</span>{c(cm,"footer","phone","+1 (555) 123-4567")}
+                </a>
+              </li>
+              <li className="text-gray-400 text-sm flex items-start gap-2.5">
+                <span className="mt-0.5 text-[#8B5CF6]">📍</span>{c(cm,"footer","location","New York, NY")}
+              </li>
+            </ul>
+            <a href="#contact" className="inline-flex items-center gap-2 bg-[#7C3AED] hover:bg-[#6D28D9] text-white text-xs font-semibold px-5 py-2.5 rounded-full transition-colors">
+              Book a Call <ArrowRight size={12}/>
+            </a>
+          </div>
         </div>
-        <div className="py-5 flex items-center justify-between">
-          <p className="text-xs text-gray-400">{c(cm,"footer","copyright","© copyright 2025")} · Privacy Policy</p>
-          <a href="#" className="text-xs text-gray-400 hover:text-gray-600 transition-colors">Terms &amp; Condition · All rights reserved.</a>
+
+        <div className="py-6 border-t border-white/10 flex flex-col-reverse sm:flex-row items-center justify-between gap-4">
+          <p className="text-xs text-gray-500 text-center sm:text-left">{c(cm,"footer","copyright","© 2025 Jasmeet Singh. All rights reserved.")}</p>
+          <div className="flex items-center gap-6">
+            <a href="#" className="text-xs text-gray-500 hover:text-gray-300 transition-colors">Privacy Policy</a>
+            <a href="#" className="text-xs text-gray-500 hover:text-gray-300 transition-colors">Terms &amp; Conditions</a>
+          </div>
         </div>
       </div>
-      <div className="relative overflow-hidden h-28 flex items-end">
-        <p className="text-[120px] md:text-[160px] font-extrabold text-gray-900 leading-none whitespace-nowrap select-none pointer-events-none px-4 -mb-4">
+
+      <div className="relative overflow-hidden h-16 md:h-24 flex items-end pointer-events-none select-none" aria-hidden="true">
+        <p className="text-[70px] md:text-[130px] font-extrabold leading-none whitespace-nowrap px-4 -mb-3 bg-gradient-to-b from-white/[0.07] to-white/0 bg-clip-text text-transparent">
           {c(cm,"footer","watermark","Jasmeet Singh")}
         </p>
       </div>
