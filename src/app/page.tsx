@@ -9,15 +9,10 @@ const ArrowRight = ({ size = 16 }: { size?: number }) => (
 const ChevronRight = () => (
   <svg width={18} height={18} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6" /></svg>
 );
-const StarFilled = () => (
-  <svg width={14} height={14} viewBox="0 0 24 24" fill="#F59E0B"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
-);
 const LinkedInIcon  = () => (<svg width={14} height={14} viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>);
 const InstagramIcon = () => (<svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>);
 const FacebookIcon  = () => (<svg width={14} height={14} viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>);
 const TwitterIcon   = () => (<svg width={14} height={14} viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>);
-
-const PARTNERS = ["BCG","DailyPay","Tweewieler","PFALZWERKE","airbnb","actionCOACH","Allstate","brave","zepto","binocs","Credova","FlySafair","Jeven","Allbridge","Consodata"];
 
 /* ── Navbar ─────────────────────────────────────────────── */
 function Navbar({ cm }: { cm: ContentMap }) {
@@ -90,21 +85,6 @@ function Hero({ cm }: { cm: ContentMap }) {
               </div>
             ))}
           </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ── Partners Marquee ───────────────────────────────────── */
-function Partners() {
-  const doubled = [...PARTNERS,...PARTNERS];
-  return (
-    <section className="py-14 bg-white border-b border-gray-100 overflow-hidden">
-      <p className="text-center text-[#7C3AED] font-bold text-base tracking-widest uppercase mb-10">Partners and Clients</p>
-      <div className="overflow-hidden">
-        <div className="marquee-inner">
-          {doubled.map((p,i) => <span key={i} className="mx-10 text-gray-400 hover:text-gray-700 font-semibold text-xs tracking-[0.2em] uppercase transition-colors cursor-default whitespace-nowrap">{p}</span>)}
         </div>
       </div>
     </section>
@@ -340,7 +320,6 @@ function Testimonials({ cm }: { cm: ContentMap }) {
               <div className="flex items-center gap-3">
                 <img src={t.avatar} alt={t.name} className="w-10 h-10 rounded-full object-cover border-2 border-gray-100"/>
                 <div className="flex-1"><p className="font-bold text-gray-900 text-sm">{t.name}</p><p className="text-gray-500 text-xs">{t.role}</p></div>
-                <div className="flex gap-0.5">{[...Array(5)].map((_,si) => <StarFilled key={si}/>)}</div>
               </div>
             </div>
           ))}
@@ -525,7 +504,6 @@ export default function Page() {
     <>
       <Navbar cm={cm}/>
       <Hero cm={cm}/>
-      <Partners/>
       <About cm={cm}/>
       <Services cm={cm}/>
       <Process cm={cm}/>

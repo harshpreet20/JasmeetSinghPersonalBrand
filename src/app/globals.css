@@ -21,18 +21,3 @@ body {
   font-family: 'Inter', Arial, Helvetica, sans-serif;
   overflow-x: hidden;
 }
-
-@keyframes marquee {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-.marquee-inner {
-  display: flex;
-  width: max-content;
-  animation: marquee 28s linear infinite;
-}
-
-.marquee-inner:hover {
-  animation-play-state: paused;
-}
