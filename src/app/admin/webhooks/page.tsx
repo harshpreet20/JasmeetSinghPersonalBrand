@@ -51,7 +51,7 @@ export default function Webhooks() {
   const testWebhook = async (id: string, url: string) => {
     setTesting(id);
     try {
-      const res = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ event: "test", message: "Test from BrandElevate CRM", timestamp: new Date().toISOString() }) });
+      const res = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ event: "test", message: "Test from Jasmeet Chandhok CRM", timestamp: new Date().toISOString() }) });
       alert(`✅ Response: ${res.status} ${res.statusText}`);
     } catch (e) {
       alert(`❌ Error: ${String(e)}`);

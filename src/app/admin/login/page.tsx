@@ -71,12 +71,10 @@ function LoginForm() {
       <div className="relative w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">
-          <div className="w-14 h-14 rounded-2xl bg-[#7C3AED] flex items-center justify-center mx-auto mb-4 shadow-xl shadow-purple-900/40">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
-              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-            </svg>
+          <div className="w-14 h-14 rounded-2xl bg-white flex items-center justify-center mx-auto mb-4 shadow-xl shadow-purple-900/40">
+            <img src="/jc.png" alt="" className="h-8 w-8 object-contain"/>
           </div>
-          <h1 className="text-2xl font-extrabold text-white tracking-tight">BrandElevate</h1>
+          <h1 className="text-2xl font-extrabold text-white tracking-tight">Jasmeet Chandhok</h1>
           <p className="text-gray-500 text-sm mt-1">Admin & CRM</p>
         </div>
 
