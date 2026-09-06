@@ -60,7 +60,7 @@ export default function Templates() {
           <h2 className="text-xl font-bold text-gray-900">Email Templates</h2>
           <p className="text-sm text-gray-500 mt-0.5">Reusable templates for automations</p>
         </div>
-        <button onClick={() => { setIsNew(true); setSelected(null); setForm({ name: "", subject: "", body_html: "<p>Hi {{name}},</p><p></p><p>Best,<br/>Jasmeet Singh</p>", variables: "name, email" }); }}
+        <button onClick={() => { setIsNew(true); setSelected(null); setForm({ name: "", subject: "", body_html: "<p>Hi {{name}},</p><p></p><p>Best,<br/>Jasmeet Chandhok</p>", variables: "name, email" }); }}
           className="bg-[#7C3AED] hover:bg-[#6D28D9] text-white px-4 py-2 rounded-xl text-sm font-semibold">+ New Template</button>
       </div>
 

@@ -22,10 +22,8 @@ function Navbar({ cm }: { cm: ContentMap }) {
     <nav className="fixed top-0 inset-x-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 h-16 flex items-center justify-between">
         <a href="#home" className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-full bg-[#7C3AED] flex items-center justify-center">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-          </div>
-          <span className="font-bold text-[17px] text-gray-900 tracking-tight">{c(cm,"navbar","brand_name","BrandElevate")}</span>
+          <img src="/jc.png" alt="" className="h-8 w-8 object-contain"/>
+          <span className="font-bold text-[17px] text-gray-900 tracking-tight">{c(cm,"navbar","brand_name","Jasmeet Chandhok")}</span>
         </a>
         <div className="hidden md:flex items-center gap-7">
           {links.map(l => <a key={l} href={`#${l.toLowerCase().replace(/ /g,"-")}`} className="text-[13px] font-medium text-gray-600 hover:text-[#7C3AED] transition-colors">{l}</a>)}
@@ -60,7 +58,7 @@ function Hero({ cm }: { cm: ContentMap }) {
   return (
     <section id="home" className="relative min-h-screen flex flex-col">
       <div className="absolute inset-0 bg-[#0A0A10]"/>
-      <div className="absolute inset-0" style={{ backgroundImage:`url('${c(cm,"hero","bg_image","https://images.unsplash.com/photo-1598550476439-6847785fcea6?w=1600&q=85")}')`, backgroundSize:"cover", backgroundPosition:"center top", opacity:0.38 }}/>
+      <div className="absolute inset-0" style={{ backgroundImage:`url('${c(cm,"hero","bg_image","/jasmeet-chandhok-portrait.jpg")}')`, backgroundSize:"cover", backgroundPosition:"center top", opacity:0.38 }}/>
       <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/20 to-black/85"/>
       <div className="relative z-10 flex-1 max-w-7xl mx-auto px-6 lg:px-8 w-full flex flex-col justify-center pt-32 pb-10">
         <div className="max-w-xl">
@@ -99,7 +97,7 @@ function About({ cm }: { cm: ContentMap }) {
         <div className="grid lg:grid-cols-2 gap-20 items-center">
           <div>
             <div className="flex items-center gap-3 mb-5"><span className="w-8 h-px bg-gray-400 block"/><span className="text-xs font-semibold text-gray-500 tracking-[0.2em] uppercase">About me</span></div>
-            <h2 className="text-[40px] md:text-5xl font-extrabold text-gray-900 leading-tight mb-2">Meet {c(cm,"about","name","Jasmeet Singh")}</h2>
+            <h2 className="text-[40px] md:text-5xl font-extrabold text-gray-900 leading-tight mb-2">Meet {c(cm,"about","name","Jasmeet Chandhok")}</h2>
             <h2 className="text-[40px] md:text-5xl font-extrabold leading-tight mb-6">Your Personal <span className="text-[#7C3AED]">{c(cm,"about","title","Branding Coach")}</span></h2>
             <p className="text-gray-600 text-[15px] leading-[1.8] mb-4 max-w-md">{c(cm,"about","bio_1","")}</p>
             <p className="text-gray-600 text-[15px] leading-[1.8] mb-10 max-w-md">{c(cm,"about","bio_2","")}</p>
@@ -109,10 +107,10 @@ function About({ cm }: { cm: ContentMap }) {
           </div>
           <div className="relative h-[560px]">
             <div className="absolute left-0 top-0 w-[260px] h-[380px] rounded-2xl overflow-hidden shadow-xl">
-              <img src={c(cm,"about","photo_1","https://images.unsplash.com/photo-1618077360395-f3068be8e001?w=600&q=80")} alt="Jasmeet" className="w-full h-full object-cover"/>
+              <img src={c(cm,"about","photo_1","/jasmeet-chandhok-portrait.jpg")} alt="Jasmeet Chandhok" className="w-full h-full object-cover"/>
             </div>
             <div className="absolute right-0 bottom-0 w-[220px] h-[300px] rounded-2xl overflow-hidden shadow-xl">
-              <img src={c(cm,"about","photo_2","https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&q=80")} alt="Coaching" className="w-full h-full object-cover"/>
+              <img src={c(cm,"about","photo_2","/jasmeet-chandhok-seated.jpg")} alt="Jasmeet Chandhok" className="w-full h-full object-cover"/>
             </div>
             <div className="absolute right-2 top-8 w-52 bg-white rounded-2xl shadow-2xl border border-gray-100 p-4 z-10">
               <div className="flex items-center gap-1.5 mb-2"><span className="text-xs font-semibold text-[#7C3AED] bg-[#7C3AED]/10 px-2.5 py-0.5 rounded-full">🌐 World wide</span></div>
@@ -411,10 +409,8 @@ function Footer({ cm }: { cm: ContentMap }) {
         <div className="py-20 grid sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr] gap-x-8 gap-y-12">
           <div className="max-w-sm sm:col-span-2 lg:col-span-1">
             <a href="#home" className="flex items-center gap-2.5 mb-5">
-              <div className="w-8 h-8 rounded-full bg-[#7C3AED] flex items-center justify-center">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-              </div>
-              <span className="font-bold text-[17px] text-white tracking-tight">{c(cm,"about","name","Jasmeet Singh")}</span>
+              <img src="/jc.png" alt="" className="h-8 w-8 object-contain" style={{ filter: "brightness(0) invert(1)" }}/>
+              <span className="font-bold text-[17px] text-white tracking-tight">{c(cm,"about","name","Jasmeet Chandhok")}</span>
             </a>
             <p className="text-gray-400 text-sm leading-relaxed mb-6">
               {c(cm,"footer","tagline","Helping ambitious professionals build authentic personal brands that turn connections into opportunities.")}
@@ -448,8 +444,8 @@ function Footer({ cm }: { cm: ContentMap }) {
             <h4 className="text-white font-semibold text-xs tracking-[0.15em] uppercase mb-5">Get In Touch</h4>
             <ul className="flex flex-col gap-4 mb-6">
               <li>
-                <a href={`mailto:${c(cm,"footer","email","info@jasmeetsingh.com")}`} className="text-gray-400 hover:text-white text-sm transition-colors flex items-start gap-2.5">
-                  <span className="mt-0.5 text-[#8B5CF6]">✉</span>{c(cm,"footer","email","info@jasmeetsingh.com")}
+                <a href={`mailto:${c(cm,"footer","email","info@jasmeetchandhok.com")}`} className="text-gray-400 hover:text-white text-sm transition-colors flex items-start gap-2.5">
+                  <span className="mt-0.5 text-[#8B5CF6]">✉</span>{c(cm,"footer","email","info@jasmeetchandhok.com")}
                 </a>
               </li>
               <li>
@@ -468,7 +464,7 @@ function Footer({ cm }: { cm: ContentMap }) {
         </div>
 
         <div className="py-6 border-t border-white/10 flex flex-col-reverse sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-gray-500 text-center sm:text-left">{c(cm,"footer","copyright","© 2025 Jasmeet Singh. All rights reserved.")}</p>
+          <p className="text-xs text-gray-500 text-center sm:text-left">{c(cm,"footer","copyright","© 2025 Jasmeet Chandhok. All rights reserved.")}</p>
           <div className="flex items-center gap-6">
             <a href="#" className="text-xs text-gray-500 hover:text-gray-300 transition-colors">Privacy Policy</a>
             <a href="#" className="text-xs text-gray-500 hover:text-gray-300 transition-colors">Terms &amp; Conditions</a>
@@ -478,7 +474,7 @@ function Footer({ cm }: { cm: ContentMap }) {
 
       <div className="relative overflow-hidden h-16 md:h-24 flex items-end pointer-events-none select-none" aria-hidden="true">
         <p className="text-[70px] md:text-[130px] font-extrabold leading-none whitespace-nowrap px-4 -mb-3 bg-gradient-to-b from-white/[0.07] to-white/0 bg-clip-text text-transparent">
-          {c(cm,"footer","watermark","Jasmeet Singh")}
+          {c(cm,"footer","watermark","Jasmeet Chandhok")}
         </p>
       </div>
     </footer>

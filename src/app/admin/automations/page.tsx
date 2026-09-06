@@ -11,7 +11,7 @@ export default function Automations() {
   const [automations, setAutomations] = useState<Automation[]>([]);
   const [loading, setLoading] = useState(true);
   const [showNew, setShowNew] = useState(false);
-  const [form, setForm] = useState({ name: "", description: "", trigger_type: "form_submission", trigger_form: "contact", action_type: "send_email", action_to: "{{contact.email}}", action_subject: "Thanks for reaching out, {{contact.name}}!", action_body: "Hi {{contact.name}},\n\nThank you for reaching out!\n\nBest,\nJasmeet Singh" });
+  const [form, setForm] = useState({ name: "", description: "", trigger_type: "form_submission", trigger_form: "contact", action_type: "send_email", action_to: "{{contact.email}}", action_subject: "Thanks for reaching out, {{contact.name}}!", action_body: "Hi {{contact.name}},\n\nThank you for reaching out!\n\nBest,\nJasmeet Chandhok" });
   const [saving, setSaving] = useState(false);
 
   const load = () => {

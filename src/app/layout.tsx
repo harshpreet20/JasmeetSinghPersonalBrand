@@ -5,7 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
-  title: "Jasmeet Singh – Personal Branding Coach",
+  title: "Jasmeet Chandhok – Personal Branding Coach",
   description:
     "Helping professionals stand out and build powerful personal brands that open doors to career-defining opportunities.",
 };

@@ -101,7 +101,7 @@ function LoginForm() {
               </label>
               <input
                 type="email" required value={email} onChange={e => setEmail(e.target.value)}
-                placeholder="admin@jasmeetsingh.com"
+                placeholder="admin@jasmeetchandhok.com"
                 className="w-full bg-white/5 border border-white/10 focus:border-[#7C3AED] text-white placeholder-gray-600 rounded-xl px-4 py-3.5 text-sm outline-none transition-colors"
               />
             </div>
